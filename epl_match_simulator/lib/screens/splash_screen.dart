@@ -23,11 +23,12 @@ class _SplashScreenState extends State<SplashScreen>
   late List<AnimationController> _emblemControllers;
 
   final List<String> allTeams = [
-    'Arsenal', 'Manchester City', 'Manchester United', 'Liverpool',
-    'Aston Villa', 'AFC Bournemouth', 'Brighton & Hove Albion', 'Brentford',
-    'Tottenham Hotspur', 'Fulham', 'Newcastle United', 'Nottingham Forest',
-    'Crystal Palace', 'Chelsea', 'Everton', 'West Ham United',
-    'Leeds United', 'Sunderland', 'Burnley', 'Wolverhampton Wanderers',
+    'Chelsea',
+    'Liverpool',
+    'Manchester United',
+    'Manchester City',
+    'Arsenal',
+    'Tottenham Hotspur',
   ];
 
   late List<String> selectedTeams;
@@ -54,8 +55,8 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
     )..repeat(reverse: true);
 
-    // Select 6 random teams
-    selectedTeams = (allTeams..shuffle()).take(6).toList();
+    // Use all 6 official badge teams
+    selectedTeams = allTeams;
     emblemPositions = List.generate(6, (_) => _randomOffset());
     targetPositions = List.generate(6, (_) => _randomOffset());
 
