@@ -1,3 +1,17 @@
+class GoalEvent {
+  final String minute;
+  final String team;
+  final String scorer;
+  final String? assist;
+
+  GoalEvent({
+    required this.minute,
+    required this.team,
+    required this.scorer,
+    this.assist,
+  });
+}
+
 class MatchPrediction {
   final String homeTeamName;
   final String awayTeamName;
@@ -8,6 +22,7 @@ class MatchPrediction {
   final double drawProbability;
   final double awayWinProbability;
   final String topScorer;
+  final List<GoalEvent> goals;
 
   MatchPrediction({
     required this.homeTeamName,
@@ -19,6 +34,7 @@ class MatchPrediction {
     required this.drawProbability,
     required this.awayWinProbability,
     required this.topScorer,
+    required this.goals,
   });
 
   String get result {

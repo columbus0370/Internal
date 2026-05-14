@@ -34,6 +34,14 @@ class PredictionEngine {
         ? homeTeam.players.where((p) => p.position == 'ST').first.name
         : awayTeam.players.where((p) => p.position == 'ST').first.name;
 
+    // Generate goal events
+    final goals = _generateGoalEvents(
+      homeTeam,
+      awayTeam,
+      homeScore,
+      awayScore,
+    );
+
     return MatchPrediction(
       homeTeamName: homeTeam.name,
       awayTeamName: awayTeam.name,
@@ -44,6 +52,7 @@ class PredictionEngine {
       drawProbability: drawProb,
       awayWinProbability: awayWinProb,
       topScorer: topScorer,
+      goals: goals,
     );
   }
 
@@ -95,5 +104,74 @@ class PredictionEngine {
       (drawProb / total).clamp(0.0, 1.0),
       (awayWinProb / total).clamp(0.0, 1.0),
     );
+  }
+
+  static List<GoalEvent> _generateGoalEvents(
+    Team homeTeam,
+    Team awayTeam,
+    int homeScore,
+    int awayScore,
+  ) {
+    final goals = <GoalEvent>[];
+    final goalMinutes = <int>[];
+
+    // Generate random goal minutes for home team
+    for (int i = 0; i < homeScore; i++) {
+      goalMinutes.add(_random.nextInt(85) + 5);
+    }
+
+    // Generate random goal minutes for away team
+    for (int i = 0; i < awayScore; i++) {
+      goalMinutes.add(_random.nextInt(85) + 5);
+    }
+
+    goalMinutes.sort();
+
+    int homeGoalsCount = 0;
+    int awayGoalsCount = 0;
+
+    for (final minute in goalMinutes) {
+      late GoalEvent goal;
+
+      if (homeGoalsCount < homeScore) {
+        final strikers = homeTeam.players.where((p) => p.position == 'ST').toList();
+        final midfielders = homeTeam.players.where((p) => p.position == 'MF').toList();
+        final scorer = strikers.isNotEmpty
+            ? strikers[_random.nextInt(strikers.length)]
+            : homeTeam.players.first;
+        final assist = midfielders.isNotEmpty
+            ? midfielders[_random.nextInt(midfielders.length)].name
+            : null;
+
+        goal = GoalEvent(
+          minute: "${minute}'",
+          team: homeTeam.name,
+          scorer: scorer.name,
+          assist: assist,
+        );
+        homeGoalsCount++;
+      } else {
+        final strikers = awayTeam.players.where((p) => p.position == 'ST').toList();
+        final midfielders = awayTeam.players.where((p) => p.position == 'MF').toList();
+        final scorer = strikers.isNotEmpty
+            ? strikers[_random.nextInt(strikers.length)]
+            : awayTeam.players.first;
+        final assist = midfielders.isNotEmpty
+            ? midfielders[_random.nextInt(midfielders.length)].name
+            : null;
+
+        goal = GoalEvent(
+          minute: "${minute}'",
+          team: awayTeam.name,
+          scorer: scorer.name,
+          assist: assist,
+        );
+        awayGoalsCount++;
+      }
+
+      goals.add(goal);
+    }
+
+    return goals;
   }
 }
