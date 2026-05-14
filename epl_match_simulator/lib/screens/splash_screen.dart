@@ -187,13 +187,12 @@ class _SplashScreenState extends State<SplashScreen>
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withOpacity(0.15),
         border: Border.all(
-          color: Colors.white.withOpacity(0.2),
-          width: 1,
+          color: Colors.white.withOpacity(0.3),
+          width: 1.5,
         ),
         borderRadius: BorderRadius.circular(50),
-        backdropFilter: const FilteringTextureImageFilter(),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
