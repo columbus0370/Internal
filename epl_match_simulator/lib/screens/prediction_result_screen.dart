@@ -949,23 +949,27 @@ class SoccerFieldPainter extends CustomPainter {
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 
+    // Field border
     canvas.drawRect(
       Rect.fromLTWH(0, 0, size.width, size.height),
       whiteSolidPaint,
     );
 
+    // Center line (vertical for portrait orientation)
     canvas.drawLine(
       Offset(size.width / 2, 0),
       Offset(size.width / 2, size.height),
       whiteSolidPaint,
     );
 
+    // Center circle
     canvas.drawCircle(
       Offset(size.width / 2, size.height / 2),
-      size.height * 0.15,
+      size.width * 0.15,
       whiteSolidPaint,
     );
 
+    // Center spot
     canvas.drawCircle(
       Offset(size.width / 2, size.height / 2),
       2,
@@ -974,32 +978,55 @@ class SoccerFieldPainter extends CustomPainter {
         ..style = PaintingStyle.fill,
     );
 
-    final penaltyWidth = size.width * 0.25;
-    final penaltyHeight = size.height * 0.4;
+    // Penalty areas (top and bottom for portrait)
+    final penaltyWidth = size.width * 0.4;
+    final penaltyHeight = size.height * 0.25;
 
+    // Top penalty area
     canvas.drawRect(
-      Rect.fromLTWH(0, (size.height - penaltyHeight) / 2, penaltyWidth,
-          penaltyHeight),
+      Rect.fromLTWH(
+        (size.width - penaltyWidth) / 2,
+        0,
+        penaltyWidth,
+        penaltyHeight,
+      ),
       whiteSolidPaint,
     );
 
+    // Bottom penalty area
     canvas.drawRect(
-      Rect.fromLTWH(size.width - penaltyWidth, (size.height - penaltyHeight) / 2,
-          penaltyWidth, penaltyHeight),
+      Rect.fromLTWH(
+        (size.width - penaltyWidth) / 2,
+        size.height - penaltyHeight,
+        penaltyWidth,
+        penaltyHeight,
+      ),
       whiteSolidPaint,
     );
 
-    final goalWidth = size.width * 0.08;
-    final goalHeight = size.height * 0.2;
+    // Goal areas (top and bottom for portrait)
+    final goalWidth = size.width * 0.2;
+    final goalHeight = size.height * 0.08;
 
+    // Top goal area
     canvas.drawRect(
-      Rect.fromLTWH(0, (size.height - goalHeight) / 2, goalWidth, goalHeight),
+      Rect.fromLTWH(
+        (size.width - goalWidth) / 2,
+        0,
+        goalWidth,
+        goalHeight,
+      ),
       whiteSolidPaint,
     );
 
+    // Bottom goal area
     canvas.drawRect(
-      Rect.fromLTWH(size.width - goalWidth, (size.height - goalHeight) / 2,
-          goalWidth, goalHeight),
+      Rect.fromLTWH(
+        (size.width - goalWidth) / 2,
+        size.height - goalHeight,
+        goalWidth,
+        goalHeight,
+      ),
       whiteSolidPaint,
     );
   }
