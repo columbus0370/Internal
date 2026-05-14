@@ -440,17 +440,17 @@ class SoccerFieldWidget extends StatelessWidget {
 
   List<String> _getFormationPlayers() {
     return [
-      'Player 1',
-      'Player 2',
-      'Player 3',
-      'Player 4',
-      'Player 5',
-      'Player 6',
-      'Player 7',
-      'Player 8',
-      'Player 9',
-      'Player 10',
-      'Player 11',
+      'GK',
+      'LB',
+      'CB',
+      'CB',
+      'RB',
+      'LM',
+      'CM',
+      'RM',
+      'LW',
+      'ST',
+      'RW',
     ];
   }
 
@@ -468,62 +468,74 @@ class SoccerFieldWidget extends StatelessWidget {
         const SizedBox(height: 12),
         AspectRatio(
           aspectRatio: 105 / 68,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.green[700],
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                color: Colors.white,
-                width: 2,
-              ),
-            ),
-            child: CustomPaint(
-              painter: SoccerFieldPainter(),
-              child: Stack(
-                children: _buildPlayerPositions(),
-              ),
-            ),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.green[700],
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 2,
+                  ),
+                ),
+                child: CustomPaint(
+                  painter: SoccerFieldPainter(),
+                  child: Stack(
+                    children: _buildPlayerPositions(constraints),
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ],
     );
   }
 
-  List<Widget> _buildPlayerPositions() {
+  List<Widget> _buildPlayerPositions(BoxConstraints constraints) {
     final players = _getFormationPlayers();
     final positions = _getPositions();
+    final width = constraints.maxWidth;
+    final height = constraints.maxHeight;
 
     return List.generate(players.length, (index) {
       if (index >= positions.length) return const SizedBox.shrink();
       final pos = positions[index];
 
+      final pixelX = (pos['x'] as double) * width;
+      final pixelY = (pos['y'] as double) * height;
+
       return Positioned(
-        left: pos['x'] as double,
-        top: pos['y'] as double,
-        child: Transform.translate(
-          offset: const Offset(-20, -20),
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: isHome ? Colors.blue : Colors.orange,
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Colors.white,
-                width: 2,
-              ),
-            ),
-            child: Center(
-              child: Text(
-                '${index + 1}',
-                style: const TextStyle(
+        left: pixelX - 25,
+        top: pixelY - 25,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                color: isHome ? Colors.blue : Colors.orange,
+                shape: BoxShape.circle,
+                border: Border.all(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
+                  width: 2,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  players[index],
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 10,
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
       );
     });
@@ -531,17 +543,17 @@ class SoccerFieldWidget extends StatelessWidget {
 
   List<Map<String, double>> _getPositions() {
     return [
-      {'x': 0.5, 'y': 0.5},
-      {'x': 0.2, 'y': 0.2},
+      {'x': 0.1, 'y': 0.5},
+      {'x': 0.2, 'y': 0.15},
       {'x': 0.2, 'y': 0.5},
-      {'x': 0.2, 'y': 0.8},
-      {'x': 0.35, 'y': 0.15},
+      {'x': 0.2, 'y': 0.85},
+      {'x': 0.2, 'y': 0.85},
+      {'x': 0.35, 'y': 0.2},
       {'x': 0.35, 'y': 0.5},
-      {'x': 0.35, 'y': 0.85},
-      {'x': 0.55, 'y': 0.25},
-      {'x': 0.55, 'y': 0.5},
-      {'x': 0.55, 'y': 0.75},
-      {'x': 0.8, 'y': 0.5},
+      {'x': 0.35, 'y': 0.8},
+      {'x': 0.6, 'y': 0.25},
+      {'x': 0.6, 'y': 0.5},
+      {'x': 0.6, 'y': 0.75},
     ];
   }
 }
