@@ -37,7 +37,7 @@ jobs:
 
       - name: Build Flutter Web
         working-directory: epl_match_simulator
-        run: flutter build web --release --web-renderer html
+        run: flutter build web --release --web-renderer html --base-href=/Internal/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
