@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/match_prediction.dart';
 import '../models/team.dart';
+import '../services/ai_match_analyzer.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
@@ -66,7 +67,11 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
             const SizedBox(height: 24),
             _buildTabBar(),
             const SizedBox(height: 16),
-            _selectedTabIndex == 0 ? _buildStamenTab() : _buildStatsTab(),
+            _selectedTabIndex == 0
+                ? _buildStamenTab()
+                : _selectedTabIndex == 1
+                    ? _buildStatsTab()
+                    : _buildAiAnalysisTab(),
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () => Navigator.pop(context),
@@ -154,6 +159,35 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               ),
             ),
           ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () => setState(() => _selectedTabIndex = 2),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                  border: _selectedTabIndex == 2
+                      ? Border(
+                          bottom: BorderSide(
+                            color: Colors.deepPurple,
+                            width: 3,
+                          ),
+                        )
+                      : null,
+                ),
+                child: Text(
+                  'AI Analysis',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: _selectedTabIndex == 2
+                        ? Colors.deepPurple
+                        : Colors.grey,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -215,6 +249,78 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         Text(label, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
         Text(awayValue, style: _boldPurpleStyle),
       ],
+    );
+  }
+
+  Widget _buildAiAnalysisTab() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'AI Analysis',
+              style: _headerStyle,
+            ),
+            const SizedBox(height: 16),
+            FutureBuilder<String>(
+              future: AiMatchAnalyzer.analyzeMatch(widget.prediction),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(24),
+                      child: CircularProgressIndicator(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  );
+                }
+
+                if (snapshot.hasError) {
+                  return Text(
+                    'Error: ${snapshot.error}',
+                    style: const TextStyle(color: Colors.red, fontSize: 14),
+                  );
+                }
+
+                if (!snapshot.hasData) {
+                  return const Text(
+                    'No analysis available',
+                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                  );
+                }
+
+                final analysis = snapshot.data!;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurple.withOpacity(0.05),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: Colors.deepPurple.withOpacity(0.2),
+                        ),
+                      ),
+                      child: Text(
+                        analysis,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          height: 1.6,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
