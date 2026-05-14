@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/match_prediction.dart';
+import '../models/team.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
@@ -169,21 +170,15 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               'Starting Lineup',
               style: _headerStyle,
             ),
-            const SizedBox(height: 16),
-            Text(
-              'Formation Preview',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
-              ),
+            const SizedBox(height: 24),
+            SoccerFieldWidget(
+              teamName: widget.prediction.homeTeamName,
+              isHome: true,
             ),
-            const SizedBox(height: 8),
-            Text(
-              'Team formations and player positions will be displayed here',
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey[500],
-              ),
+            const SizedBox(height: 32),
+            SoccerFieldWidget(
+              teamName: widget.prediction.awayTeamName,
+              isHome: false,
             ),
           ],
         ),
@@ -432,3 +427,194 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     );
   }
 }
+
+class SoccerFieldWidget extends StatelessWidget {
+  final String teamName;
+  final bool isHome;
+
+  const SoccerFieldWidget({
+    super.key,
+    required this.teamName,
+    required this.isHome,
+  });
+
+  List<String> _getFormationPlayers() {
+    return [
+      'Player 1',
+      'Player 2',
+      'Player 3',
+      'Player 4',
+      'Player 5',
+      'Player 6',
+      'Player 7',
+      'Player 8',
+      'Player 9',
+      'Player 10',
+      'Player 11',
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          teamName,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 12),
+        AspectRatio(
+          aspectRatio: 105 / 68,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.green[700],
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: Colors.white,
+                width: 2,
+              ),
+            ),
+            child: CustomPaint(
+              painter: SoccerFieldPainter(),
+              child: Stack(
+                children: _buildPlayerPositions(),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _buildPlayerPositions() {
+    final players = _getFormationPlayers();
+    final positions = _getPositions();
+
+    return List.generate(players.length, (index) {
+      if (index >= positions.length) return const SizedBox.shrink();
+      final pos = positions[index];
+
+      return Positioned(
+        left: pos['x'] as double,
+        top: pos['y'] as double,
+        child: Transform.translate(
+          offset: const Offset(-20, -20),
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: isHome ? Colors.blue : Colors.orange,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white,
+                width: 2,
+              ),
+            ),
+            child: Center(
+              child: Text(
+                '${index + 1}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  List<Map<String, double>> _getPositions() {
+    return [
+      {'x': 0.5, 'y': 0.5},
+      {'x': 0.2, 'y': 0.2},
+      {'x': 0.2, 'y': 0.5},
+      {'x': 0.2, 'y': 0.8},
+      {'x': 0.35, 'y': 0.15},
+      {'x': 0.35, 'y': 0.5},
+      {'x': 0.35, 'y': 0.85},
+      {'x': 0.55, 'y': 0.25},
+      {'x': 0.55, 'y': 0.5},
+      {'x': 0.55, 'y': 0.75},
+      {'x': 0.8, 'y': 0.5},
+    ];
+  }
+}
+
+class SoccerFieldPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.white
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke;
+
+    final whiteSolidPaint = Paint()
+      ..color = Colors.white
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke;
+
+    canvas.drawRect(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      whiteSolidPaint,
+    );
+
+    canvas.drawLine(
+      Offset(size.width / 2, 0),
+      Offset(size.width / 2, size.height),
+      whiteSolidPaint,
+    );
+
+    canvas.drawCircle(
+      Offset(size.width / 2, size.height / 2),
+      size.height * 0.15,
+      whiteSolidPaint,
+    );
+
+    canvas.drawCircle(
+      Offset(size.width / 2, size.height / 2),
+      2,
+      Paint()
+        ..color = Colors.white
+        ..style = PaintingStyle.fill,
+    );
+
+    final penaltyWidth = size.width * 0.25;
+    final penaltyHeight = size.height * 0.4;
+
+    canvas.drawRect(
+      Rect.fromLTWH(0, (size.height - penaltyHeight) / 2, penaltyWidth,
+          penaltyHeight),
+      whiteSolidPaint,
+    );
+
+    canvas.drawRect(
+      Rect.fromLTWH(size.width - penaltyWidth, (size.height - penaltyHeight) / 2,
+          penaltyWidth, penaltyHeight),
+      whiteSolidPaint,
+    );
+
+    final goalWidth = size.width * 0.08;
+    final goalHeight = size.height * 0.2;
+
+    canvas.drawRect(
+      Rect.fromLTWH(0, (size.height - goalHeight) / 2, goalWidth, goalHeight),
+      whiteSolidPaint,
+    );
+
+    canvas.drawRect(
+      Rect.fromLTWH(size.width - goalWidth, (size.height - goalHeight) / 2,
+          goalWidth, goalHeight),
+      whiteSolidPaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(SoccerFieldPainter oldDelegate) => false;
+}
+

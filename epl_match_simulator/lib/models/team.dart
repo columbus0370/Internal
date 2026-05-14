@@ -7,6 +7,7 @@ class Team {
   final int defensePower;
   final int ballControl;
   final List<Player> players;
+  final String formation;
 
   Team({
     required this.id,
@@ -17,6 +18,7 @@ class Team {
     required this.defensePower,
     required this.ballControl,
     required this.players,
+    this.formation = '4-3-3',
   });
 }
 
