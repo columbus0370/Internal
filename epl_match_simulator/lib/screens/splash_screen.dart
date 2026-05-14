@@ -326,11 +326,28 @@ class SvgEmblem extends StatelessWidget {
       child: SizedBox(
         width: 60,
         height: 60,
-        child: SvgPicture.asset(
-          'assets/emblems/$assetName.svg',
-          fit: BoxFit.contain,
-        ),
+        child: _buildEmblem(assetName),
       ),
+    );
+  }
+
+  Widget _buildEmblem(String assetName) {
+    // Try to load image files (PNG/JPG) first, fall back to SVG
+    return Image.asset(
+      'assets/emblems/$assetName.png',
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        return Image.asset(
+          'assets/emblems/$assetName.jpg',
+          fit: BoxFit.contain,
+          errorBuilder: (context, error, stackTrace) {
+            return SvgPicture.asset(
+              'assets/emblems/$assetName.svg',
+              fit: BoxFit.contain,
+            );
+          },
+        );
+      },
     );
   }
 }
