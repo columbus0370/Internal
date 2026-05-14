@@ -205,15 +205,6 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               style: _headerStyle,
             ),
             const SizedBox(height: 24),
-            Text(
-              widget.prediction.awayTeam.name,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.orange,
-              ),
-            ),
-            const SizedBox(height: 8),
             AspectRatio(
               aspectRatio: 68 / 105,
               child: LayoutBuilder(
@@ -230,45 +221,65 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                     child: CustomPaint(
                       painter: SoccerFieldPainter(),
                       child: Stack(
-                        children: _buildAwayPlayerPositions(constraints),
+                        children: [
+                          ..._buildAwayPlayerPositionsHalf(constraints),
+                          ..._buildHomePlayerPositionsHalf(constraints),
+                        ],
                       ),
                     ),
                   );
                 },
               ),
             ),
-            const SizedBox(height: 32),
-            Text(
-              widget.prediction.homeTeam.name,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
-              ),
-            ),
-            const SizedBox(height: 8),
-            AspectRatio(
-              aspectRatio: 68 / 105,
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green[700],
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2,
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: 12,
+                      height: 12,
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        shape: BoxShape.circle,
                       ),
                     ),
-                    child: CustomPaint(
-                      painter: SoccerFieldPainter(),
-                      child: Stack(
-                        children: _buildHomePlayerPositions(constraints),
+                    const SizedBox(height: 4),
+                    Text(
+                      widget.prediction.awayTeam.name,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.orange,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Container(
+                      width: 12,
+                      height: 12,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.circle,
                       ),
                     ),
-                  );
-                },
-              ),
+                    const SizedBox(height: 4),
+                    Text(
+                      widget.prediction.homeTeam.name,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
@@ -276,10 +287,10 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     );
   }
 
-  List<Widget> _buildHomePlayerPositions(BoxConstraints constraints) {
-    final homeTeam = widget.prediction.homeTeam;
-    final players = _getFormationPlayers(homeTeam);
-    final positions = _getHomePositions();
+  List<Widget> _buildAwayPlayerPositionsHalf(BoxConstraints constraints) {
+    final awayTeam = widget.prediction.awayTeam;
+    final players = _getFormationPlayers(awayTeam);
+    final positions = _getAwayHalfPositions();
     final width = constraints.maxWidth;
     final height = constraints.maxHeight;
 
@@ -298,7 +309,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
           width: 50,
           height: 50,
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: Colors.orange,
             shape: BoxShape.circle,
             border: Border.all(
               color: Colors.white,
@@ -323,10 +334,10 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     });
   }
 
-  List<Widget> _buildAwayPlayerPositions(BoxConstraints constraints) {
-    final awayTeam = widget.prediction.awayTeam;
-    final players = _getFormationPlayers(awayTeam);
-    final positions = _getAwayPositions();
+  List<Widget> _buildHomePlayerPositionsHalf(BoxConstraints constraints) {
+    final homeTeam = widget.prediction.homeTeam;
+    final players = _getFormationPlayers(homeTeam);
+    final positions = _getHomeHalfPositions();
     final width = constraints.maxWidth;
     final height = constraints.maxHeight;
 
@@ -345,7 +356,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
           width: 50,
           height: 50,
           decoration: BoxDecoration(
-            color: Colors.orange,
+            color: Colors.blue,
             shape: BoxShape.circle,
             border: Border.all(
               color: Colors.white,
@@ -391,35 +402,35 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     ];
   }
 
-  List<Map<String, double>> _getHomePositions() {
+  List<Map<String, double>> _getHomeHalfPositions() {
     return [
       {'x': 0.5, 'y': 0.9},
-      {'x': 0.2, 'y': 0.75},
-      {'x': 0.35, 'y': 0.75},
-      {'x': 0.65, 'y': 0.75},
-      {'x': 0.8, 'y': 0.75},
-      {'x': 0.2, 'y': 0.55},
-      {'x': 0.5, 'y': 0.55},
-      {'x': 0.8, 'y': 0.55},
-      {'x': 0.25, 'y': 0.3},
-      {'x': 0.5, 'y': 0.25},
-      {'x': 0.75, 'y': 0.3},
+      {'x': 0.2, 'y': 0.78},
+      {'x': 0.35, 'y': 0.78},
+      {'x': 0.65, 'y': 0.78},
+      {'x': 0.8, 'y': 0.78},
+      {'x': 0.2, 'y': 0.68},
+      {'x': 0.5, 'y': 0.68},
+      {'x': 0.8, 'y': 0.68},
+      {'x': 0.25, 'y': 0.55},
+      {'x': 0.5, 'y': 0.51},
+      {'x': 0.75, 'y': 0.55},
     ];
   }
 
-  List<Map<String, double>> _getAwayPositions() {
+  List<Map<String, double>> _getAwayHalfPositions() {
     return [
       {'x': 0.5, 'y': 0.1},
-      {'x': 0.2, 'y': 0.25},
-      {'x': 0.35, 'y': 0.25},
-      {'x': 0.65, 'y': 0.25},
-      {'x': 0.8, 'y': 0.25},
-      {'x': 0.2, 'y': 0.45},
-      {'x': 0.5, 'y': 0.45},
-      {'x': 0.8, 'y': 0.45},
-      {'x': 0.25, 'y': 0.7},
-      {'x': 0.5, 'y': 0.75},
-      {'x': 0.75, 'y': 0.7},
+      {'x': 0.2, 'y': 0.22},
+      {'x': 0.35, 'y': 0.22},
+      {'x': 0.65, 'y': 0.22},
+      {'x': 0.8, 'y': 0.22},
+      {'x': 0.2, 'y': 0.32},
+      {'x': 0.5, 'y': 0.32},
+      {'x': 0.8, 'y': 0.32},
+      {'x': 0.25, 'y': 0.45},
+      {'x': 0.5, 'y': 0.49},
+      {'x': 0.75, 'y': 0.45},
     ];
   }
 
