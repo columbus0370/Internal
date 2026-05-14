@@ -378,7 +378,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 9,
+                fontSize: 10,
               ),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -425,7 +425,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 9,
+                fontSize: 10,
               ),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
