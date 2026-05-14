@@ -34,6 +34,13 @@ class PredictionEngine {
         ? homeTeam.players.where((p) => p.position == 'ST').first.name
         : awayTeam.players.where((p) => p.position == 'ST').first.name;
 
+    // Determine Man of the Match (different from top scorer)
+    final momTeam = homeScore > awayScore ? homeTeam : awayTeam;
+    final momPlayers = momTeam.players.where((p) => p.name != topScorer).toList();
+    final mom = momPlayers.isNotEmpty
+        ? momPlayers[_random.nextInt(momPlayers.length)].name
+        : momTeam.players.first.name;
+
     // Generate goal events
     final goals = _generateGoalEvents(
       homeTeam,
@@ -52,7 +59,10 @@ class PredictionEngine {
       drawProbability: drawProb,
       awayWinProbability: awayWinProb,
       topScorer: topScorer,
+      mom: mom,
       goals: goals,
+      homeTeam: homeTeam,
+      awayTeam: awayTeam,
     );
   }
 
@@ -135,12 +145,13 @@ class PredictionEngine {
 
       if (homeGoalsCount < homeScore) {
         final strikers = homeTeam.players.where((p) => p.position == 'ST').toList();
-        final midfielders = homeTeam.players.where((p) => p.position == 'MF').toList();
+        final outfield = homeTeam.players.where((p) => p.position != 'GK').toList();
         final scorer = strikers.isNotEmpty
             ? strikers[_random.nextInt(strikers.length)]
             : homeTeam.players.first;
-        final assist = midfielders.isNotEmpty
-            ? midfielders[_random.nextInt(midfielders.length)].name
+        final assistPlayers = outfield.where((p) => p.name != scorer.name).toList();
+        final assist = assistPlayers.isNotEmpty
+            ? assistPlayers[_random.nextInt(assistPlayers.length)].name
             : null;
 
         goal = GoalEvent(
@@ -152,12 +163,13 @@ class PredictionEngine {
         homeGoalsCount++;
       } else {
         final strikers = awayTeam.players.where((p) => p.position == 'ST').toList();
-        final midfielders = awayTeam.players.where((p) => p.position == 'MF').toList();
+        final outfield = awayTeam.players.where((p) => p.position != 'GK').toList();
         final scorer = strikers.isNotEmpty
             ? strikers[_random.nextInt(strikers.length)]
             : awayTeam.players.first;
-        final assist = midfielders.isNotEmpty
-            ? midfielders[_random.nextInt(midfielders.length)].name
+        final assistPlayers = outfield.where((p) => p.name != scorer.name).toList();
+        final assist = assistPlayers.isNotEmpty
+            ? assistPlayers[_random.nextInt(assistPlayers.length)].name
             : null;
 
         goal = GoalEvent(

@@ -93,8 +93,8 @@ class LeagueTableScreen extends StatelessWidget {
         3: FlexColumnWidth(0.8),
         4: FlexColumnWidth(0.8),
         5: FlexColumnWidth(0.8),
-        6: FlexColumnWidth(0.8),
-        7: FlexColumnWidth(1),
+        6: FlexColumnWidth(0.9),
+        7: FlexColumnWidth(1.2),
       },
       border: TableBorder.all(color: Colors.grey[300]!),
       children: [
@@ -166,6 +166,8 @@ class LeagueTableScreen extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontWeight: isHeader || bold ? FontWeight.bold : FontWeight.normal,
           fontSize: isHeader ? 12 : 11,

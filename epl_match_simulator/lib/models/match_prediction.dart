@@ -1,3 +1,5 @@
+import 'team.dart';
+
 class GoalEvent {
   final String minute;
   final String team;
@@ -22,7 +24,10 @@ class MatchPrediction {
   final double drawProbability;
   final double awayWinProbability;
   final String topScorer;
+  final String mom;
   final List<GoalEvent> goals;
+  final Team homeTeam;
+  final Team awayTeam;
 
   MatchPrediction({
     required this.homeTeamName,
@@ -34,7 +39,10 @@ class MatchPrediction {
     required this.drawProbability,
     required this.awayWinProbability,
     required this.topScorer,
+    required this.mom,
     required this.goals,
+    required this.homeTeam,
+    required this.awayTeam,
   });
 
   String get result {
