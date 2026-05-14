@@ -1069,6 +1069,13 @@ class SoccerFieldPainter extends CustomPainter {
       whiteSolidPaint,
     );
 
+    // Halfway line (horizontal)
+    canvas.drawLine(
+      Offset(0, size.height / 2),
+      Offset(size.width, size.height / 2),
+      whiteSolidPaint,
+    );
+
     // Center circle
     canvas.drawCircle(
       Offset(size.width / 2, size.height / 2),
