@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:async';
 import 'dart:math';
 
@@ -324,7 +325,7 @@ class SvgEmblem extends StatelessWidget {
       child: SizedBox(
         width: 60,
         height: 60,
-        child: Image.asset(
+        child: SvgPicture.asset(
           'assets/emblems/$assetName.svg',
           fit: BoxFit.contain,
         ),
