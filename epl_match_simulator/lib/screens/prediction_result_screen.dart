@@ -206,7 +206,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
             ),
             const SizedBox(height: 24),
             AspectRatio(
-              aspectRatio: 68 / 105,
+              aspectRatio: 50 / 150,
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return Container(
