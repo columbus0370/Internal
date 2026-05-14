@@ -206,39 +206,6 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              widget.prediction.homeTeam.name,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
-              ),
-            ),
-            const SizedBox(height: 8),
-            AspectRatio(
-              aspectRatio: 68 / 105,
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green[700],
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2,
-                      ),
-                    ),
-                    child: CustomPaint(
-                      painter: SoccerFieldPainter(),
-                      child: Stack(
-                        children: _buildHomePlayerPositions(constraints),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 32),
-            Text(
               widget.prediction.awayTeam.name,
               style: const TextStyle(
                 fontSize: 14,
@@ -264,6 +231,39 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                       painter: SoccerFieldPainter(),
                       child: Stack(
                         children: _buildAwayPlayerPositions(constraints),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 32),
+            Text(
+              widget.prediction.homeTeam.name,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
+            ),
+            const SizedBox(height: 8),
+            AspectRatio(
+              aspectRatio: 68 / 105,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green[700],
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2,
+                      ),
+                    ),
+                    child: CustomPaint(
+                      painter: SoccerFieldPainter(),
+                      child: Stack(
+                        children: _buildHomePlayerPositions(constraints),
                       ),
                     ),
                   );
