@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/league_standing.dart';
-import '../utils/team_badges.dart';
 
 class LeagueTableScreen extends StatelessWidget {
   final List<LeagueStanding> standings;
@@ -87,7 +86,16 @@ class LeagueTableScreen extends StatelessWidget {
 
   Widget _buildTable() {
     return Table(
-      defaultColumnWidth: const FlexColumnWidth(1),
+      columnWidths: const {
+        0: FlexColumnWidth(0.8),
+        1: FlexColumnWidth(2.5),
+        2: FlexColumnWidth(0.8),
+        3: FlexColumnWidth(0.8),
+        4: FlexColumnWidth(0.8),
+        5: FlexColumnWidth(0.8),
+        6: FlexColumnWidth(0.8),
+        7: FlexColumnWidth(1),
+      },
       border: TableBorder.all(color: Colors.grey[300]!),
       children: [
         _buildHeaderRow(),
@@ -125,21 +133,10 @@ class LeagueTableScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Text(
-                    getTeamBadge(standing.teamName),
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      standing.teamName,
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+              Text(
+                standing.teamName,
+                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                overflow: TextOverflow.ellipsis,
               ),
               if (qualLabel.isNotEmpty)
                 Text(

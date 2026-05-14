@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/match_prediction.dart';
-import '../utils/team_badges.dart';
 
 class PredictionResultScreen extends StatelessWidget {
   final MatchPrediction prediction;
@@ -65,26 +64,14 @@ class PredictionResultScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            getTeamBadge(prediction.homeTeamName),
-                            style: const TextStyle(fontSize: 20),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              prediction.homeTeamName,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        prediction.homeTeamName,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 12),
                       Text(
@@ -106,26 +93,14 @@ class PredictionResultScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            getTeamBadge(prediction.awayTeamName),
-                            style: const TextStyle(fontSize: 20),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              prediction.awayTeamName,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        prediction.awayTeamName,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 12),
                       Text(
@@ -181,18 +156,9 @@ class PredictionResultScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      getTeamBadge(prediction.homeTeamName),
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      prediction.homeTeamName,
-                      style: const TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                  ],
+                Text(
+                  prediction.homeTeamName,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
                 Text(
                   '$homePos%',
@@ -219,18 +185,9 @@ class PredictionResultScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      getTeamBadge(prediction.awayTeamName),
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      prediction.awayTeamName,
-                      style: const TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                  ],
+                Text(
+                  prediction.awayTeamName,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
                 Text(
                   '$awayPos%',
@@ -262,7 +219,6 @@ class PredictionResultScreen extends StatelessWidget {
             _buildProbabilityRow(
               prediction.homeTeamName,
               prediction.homeWinProbability,
-              badge: getTeamBadge(prediction.homeTeamName),
             ),
             const SizedBox(height: 12),
             _buildProbabilityRow(
@@ -273,7 +229,6 @@ class PredictionResultScreen extends StatelessWidget {
             _buildProbabilityRow(
               prediction.awayTeamName,
               prediction.awayWinProbability,
-              badge: getTeamBadge(prediction.awayTeamName),
             ),
           ],
         ),
@@ -281,20 +236,12 @@ class PredictionResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildProbabilityRow(String label, double probability, {String? badge}) {
+  Widget _buildProbabilityRow(String label, double probability) {
     final percentage = (probability * 100).toStringAsFixed(1);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            if (badge != null) ...[
-              Text(badge, style: const TextStyle(fontSize: 16)),
-              const SizedBox(width: 6),
-            ],
-            Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
-          ],
-        ),
+        Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
         Text(
           '$percentage%',
           style: const TextStyle(

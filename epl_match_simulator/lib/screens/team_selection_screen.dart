@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/team.dart';
 import '../services/prediction_engine.dart';
-import '../utils/team_badges.dart';
 import 'prediction_result_screen.dart';
 
 class TeamSelectionScreen extends StatefulWidget {
@@ -96,16 +95,7 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
       items: widget.teams
           .map((team) => DropdownMenuItem(
                 value: team,
-                child: Row(
-                  children: [
-                    Text(
-                      getTeamBadge(team.name),
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                    const SizedBox(width: 12),
-                    Text(team.name),
-                  ],
-                ),
+                child: Text(team.name),
               ))
           .toList(),
       onChanged: onChanged,
@@ -125,23 +115,11 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            getTeamBadge(home.name),
-                            style: const TextStyle(fontSize: 20),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              home.name,
-                              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        home.name,
+                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 8),
                       _buildStatRow('Overall', home.overallPower, away.overallPower),
@@ -156,23 +134,11 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            getTeamBadge(away.name),
-                            style: const TextStyle(fontSize: 20),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              away.name,
-                              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        away.name,
+                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 8),
                     ],
