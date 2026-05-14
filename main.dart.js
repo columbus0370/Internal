@@ -35054,7 +35054,7 @@ if(r.$2(a,j)>0){s[b]=j
 b=o}}s[b]=a}}
 A.By.prototype={
 L(a){var s=null
-return new A.rA(B.B9,"EPL Match Predictor",A.a99(s,A.abf(B.U,s,s,B.aB),!0),s)}}
+return new A.rA(B.B9,"EPL Match Predictor v2.0 (AI Engine)",A.a99(s,A.abf(B.U,s,s,B.aB),!0),s)}}
 A.AK.prototype={
 L(a){var s=null
 return A.a8S(A.a7y(B.aB,B.Og),A.a7F(A.fd(A.b([B.Bh,B.cx,B.Od,B.br,B.O9,B.IM,A.a84(B.Oe,new A.R6(a),A.a85(s,s,B.aB,s,s,s,s,s,s,s,s,s,B.AQ,s,s,s,s,s,s))],t.E),B.a_,B.pU,B.V),s,s))}}
