@@ -29,8 +29,6 @@ class PredictionResultScreen extends StatelessWidget {
             ],
             _buildPossessionCard(),
             const SizedBox(height: 24),
-            _buildWinProbabilityCard(),
-            const SizedBox(height: 24),
             _buildTopScorerCard(),
             const SizedBox(height: 32),
             ElevatedButton(
@@ -208,55 +206,6 @@ class PredictionResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildWinProbabilityCard() {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Win Probability',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            _buildProbabilityRow(
-              prediction.homeTeamName,
-              prediction.homeWinProbability,
-            ),
-            const SizedBox(height: 12),
-            _buildProbabilityRow(
-              'Draw',
-              prediction.drawProbability,
-            ),
-            const SizedBox(height: 12),
-            _buildProbabilityRow(
-              prediction.awayTeamName,
-              prediction.awayWinProbability,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProbabilityRow(String label, double probability) {
-    final percentage = (probability * 100).toStringAsFixed(1);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
-        Text(
-          '$percentage%',
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.deepPurple,
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildTopScorerCard() {
     return Card(
       child: Padding(
@@ -349,28 +298,33 @@ class PredictionResultScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 Expanded(
-                                  child: Text(
-                                    goal.scorer,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        goal.scorer,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      if (goal.assist != null) ...[
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          goal.assist!,
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.grey[600],
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
-                            if (goal.assist != null) ...[
-                              const SizedBox(height: 4),
-                              Text(
-                                'Assist: ${goal.assist}',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[600],
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
                           ],
                         ),
                       ),

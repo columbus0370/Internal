@@ -166,6 +166,8 @@ class LeagueTableScreen extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontWeight: isHeader || bold ? FontWeight.bold : FontWeight.normal,
           fontSize: isHeader ? 12 : 11,
