@@ -440,17 +440,17 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
     final forwards = team.players.where((p) => p.position == 'ST').toList();
 
     return [
-      {'pos': 'GK', 'name': gk.name},
-      {'pos': 'LB', 'name': defenders.isNotEmpty ? defenders[0].name : 'LB'},
-      {'pos': 'CB', 'name': defenders.length > 1 ? defenders[1].name : 'CB'},
-      {'pos': 'CB', 'name': defenders.length > 2 ? defenders[2].name : 'CB'},
-      {'pos': 'RB', 'name': defenders.length > 3 ? defenders[3].name : 'RB'},
-      {'pos': 'LM', 'name': midfielders.isNotEmpty ? midfielders[0].name : 'LM'},
-      {'pos': 'CM', 'name': midfielders.length > 1 ? midfielders[1].name : 'CM'},
-      {'pos': 'RM', 'name': midfielders.length > 2 ? midfielders[2].name : 'RM'},
-      {'pos': 'LW', 'name': forwards.isNotEmpty ? forwards[0].name : 'LW'},
-      {'pos': 'ST', 'name': forwards.length > 1 ? forwards[1].name : 'ST'},
-      {'pos': 'RW', 'name': forwards.length > 2 ? forwards[2].name : 'RW'},
+      {'name': gk.name},
+      {'name': defenders.isNotEmpty ? defenders[0].name : ''},
+      {'name': defenders.length > 1 ? defenders[1].name : ''},
+      {'name': defenders.length > 2 ? defenders[2].name : ''},
+      {'name': defenders.length > 3 ? defenders[3].name : ''},
+      {'name': midfielders.isNotEmpty ? midfielders[0].name : ''},
+      {'name': midfielders.length > 1 ? midfielders[1].name : ''},
+      {'name': midfielders.length > 2 ? midfielders[2].name : ''},
+      {'name': forwards.isNotEmpty ? forwards[0].name : ''},
+      {'name': forwards.length > 1 ? forwards[1].name : ''},
+      {'name': forwards.length > 2 ? forwards[2].name : ''},
     ];
   }
 
@@ -536,31 +536,18 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  player['pos']!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 8,
-                  ),
+            child: Center(
+              child: Text(
+                player['name']!.split(' ').last,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 9,
                 ),
-                Text(
-                  player['name']!.split(' ').last,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 7,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ),
         ),
