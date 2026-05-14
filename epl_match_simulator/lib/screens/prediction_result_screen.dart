@@ -237,6 +237,39 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                 },
               ),
             ),
+            const SizedBox(height: 32),
+            Text(
+              widget.prediction.awayTeam.name,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Colors.orange,
+              ),
+            ),
+            const SizedBox(height: 8),
+            AspectRatio(
+              aspectRatio: 68 / 105,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green[700],
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2,
+                      ),
+                    ),
+                    child: CustomPaint(
+                      painter: SoccerFieldPainter(),
+                      child: Stack(
+                        children: _buildAwayPlayerPositions(constraints),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -266,6 +299,53 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
           height: 50,
           decoration: BoxDecoration(
             color: Colors.blue,
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white,
+              width: 2,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              player['name']!.split(' ').last,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 9,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  List<Widget> _buildAwayPlayerPositions(BoxConstraints constraints) {
+    final awayTeam = widget.prediction.awayTeam;
+    final players = _getFormationPlayers(awayTeam);
+    final positions = _getAwayPositions();
+    final width = constraints.maxWidth;
+    final height = constraints.maxHeight;
+
+    return List.generate(players.length, (index) {
+      if (index >= positions.length) return const SizedBox.shrink();
+      final pos = positions[index];
+      final player = players[index];
+
+      final pixelX = (pos['x'] as double) * width;
+      final pixelY = (pos['y'] as double) * height;
+
+      return Positioned(
+        left: pixelX - 25,
+        top: pixelY - 25,
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.orange,
             shape: BoxShape.circle,
             border: Border.all(
               color: Colors.white,
@@ -324,6 +404,22 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       {'x': 0.25, 'y': 0.3},
       {'x': 0.5, 'y': 0.25},
       {'x': 0.75, 'y': 0.3},
+    ];
+  }
+
+  List<Map<String, double>> _getAwayPositions() {
+    return [
+      {'x': 0.5, 'y': 0.1},
+      {'x': 0.2, 'y': 0.25},
+      {'x': 0.35, 'y': 0.25},
+      {'x': 0.65, 'y': 0.25},
+      {'x': 0.8, 'y': 0.25},
+      {'x': 0.2, 'y': 0.45},
+      {'x': 0.5, 'y': 0.45},
+      {'x': 0.8, 'y': 0.45},
+      {'x': 0.25, 'y': 0.7},
+      {'x': 0.5, 'y': 0.75},
+      {'x': 0.75, 'y': 0.7},
     ];
   }
 
