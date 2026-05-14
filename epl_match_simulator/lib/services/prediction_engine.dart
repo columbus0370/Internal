@@ -61,6 +61,8 @@ class PredictionEngine {
       topScorer: topScorer,
       mom: mom,
       goals: goals,
+      homeTeam: homeTeam,
+      awayTeam: awayTeam,
     );
   }
 

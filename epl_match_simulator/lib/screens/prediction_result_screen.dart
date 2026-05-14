@@ -172,8 +172,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
             ),
             const SizedBox(height: 24),
             UnifiedSoccerFieldWidget(
-              homeTeamName: widget.prediction.homeTeamName,
-              awayTeamName: widget.prediction.awayTeamName,
+              homeTeam: widget.prediction.homeTeam,
+              awayTeam: widget.prediction.awayTeam,
             ),
           ],
         ),
@@ -424,28 +424,33 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
 }
 
 class UnifiedSoccerFieldWidget extends StatelessWidget {
-  final String homeTeamName;
-  final String awayTeamName;
+  final Team homeTeam;
+  final Team awayTeam;
 
   const UnifiedSoccerFieldWidget({
     super.key,
-    required this.homeTeamName,
-    required this.awayTeamName,
+    required this.homeTeam,
+    required this.awayTeam,
   });
 
-  List<String> _getFormationPlayers() {
+  List<Map<String, String>> _getFormationPlayers(Team team) {
+    final gk = team.players.where((p) => p.position == 'GK').first;
+    final defenders = team.players.where((p) => p.position == 'DF').toList();
+    final midfielders = team.players.where((p) => p.position == 'MF').toList();
+    final forwards = team.players.where((p) => p.position == 'ST').toList();
+
     return [
-      'GK',
-      'LB',
-      'CB',
-      'CB',
-      'RB',
-      'LM',
-      'CM',
-      'RM',
-      'LW',
-      'ST',
-      'RW',
+      {'pos': 'GK', 'name': gk.name},
+      {'pos': 'LB', 'name': defenders.isNotEmpty ? defenders[0].name : 'LB'},
+      {'pos': 'CB', 'name': defenders.length > 1 ? defenders[1].name : 'CB'},
+      {'pos': 'CB', 'name': defenders.length > 2 ? defenders[2].name : 'CB'},
+      {'pos': 'RB', 'name': defenders.length > 3 ? defenders[3].name : 'RB'},
+      {'pos': 'LM', 'name': midfielders.isNotEmpty ? midfielders[0].name : 'LM'},
+      {'pos': 'CM', 'name': midfielders.length > 1 ? midfielders[1].name : 'CM'},
+      {'pos': 'RM', 'name': midfielders.length > 2 ? midfielders[2].name : 'RM'},
+      {'pos': 'LW', 'name': forwards.isNotEmpty ? forwards[0].name : 'LW'},
+      {'pos': 'ST', 'name': forwards.length > 1 ? forwards[1].name : 'ST'},
+      {'pos': 'RW', 'name': forwards.length > 2 ? forwards[2].name : 'RW'},
     ];
   }
 
@@ -454,7 +459,7 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          homeTeamName,
+          homeTeam.name,
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -479,8 +484,8 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
                   painter: SoccerFieldPainter(),
                   child: Stack(
                     children: [
-                      ..._buildPlayerPositions(constraints, true),
-                      ..._buildPlayerPositions(constraints, false),
+                      ..._buildPlayerPositions(constraints, homeTeam, true),
+                      ..._buildPlayerPositions(constraints, awayTeam, false),
                     ],
                   ),
                 ),
@@ -490,7 +495,7 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          awayTeamName,
+          awayTeam.name,
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -501,8 +506,9 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildPlayerPositions(BoxConstraints constraints, bool isHome) {
-    final players = _getFormationPlayers();
+  List<Widget> _buildPlayerPositions(
+      BoxConstraints constraints, Team team, bool isHome) {
+    final players = _getFormationPlayers(team);
     final positions = _getPositions(isHome);
     final width = constraints.maxWidth;
     final height = constraints.maxHeight;
@@ -510,6 +516,7 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
     return List.generate(players.length, (index) {
       if (index >= positions.length) return const SizedBox.shrink();
       final pos = positions[index];
+      final player = players[index];
 
       final pixelX = (pos['x'] as double) * width;
       final pixelY = (pos['y'] as double) * height;
@@ -529,14 +536,31 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: Text(
-              players[index],
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 9,
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  player['pos']!,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 8,
+                  ),
+                ),
+                Text(
+                  player['name']!.split(' ').last,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 7,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
         ),
