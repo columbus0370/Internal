@@ -39835,25 +39835,25 @@ a.ck(new A.y(0,0,0+r,0+q),s)
 p=r/2
 a.qo(new A.m(p,0),new A.m(p,q),s)
 o=q/2
-a.h3(new A.m(p,o),q*0.15,s)
+a.h3(new A.m(p,o),r*0.15,s)
 j=j.aR()
 j.saa(B.i)
 j.scp(B.aZ)
 a.h3(new A.m(p,o),2,j)
-n=r*0.25
-m=q*0.4
-j=(q-m)/2
-o=j+m
-a.ck(new A.y(0,j,0+n,o),s)
-p=r-n
-a.ck(new A.y(p,j,p+n,o),s)
-l=r*0.08
-k=q*0.2
-q=(q-k)/2
-o=q+k
-a.ck(new A.y(0,q,0+l,o),s)
-r-=l
-a.ck(new A.y(r,q,r+l,o),s)},
+n=r*0.4
+m=q*0.25
+j=(r-n)/2
+o=j+n
+a.ck(new A.y(j,0,o,0+m),s)
+p=q-m
+a.ck(new A.y(j,p,o,p+m),s)
+l=r*0.2
+k=q*0.08
+r=(r-l)/2
+p=r+l
+a.ck(new A.y(r,0,p,0+k),s)
+q-=k
+a.ck(new A.y(r,q,p,q+k),s)},
 hu(a){return!1}}
 A.xX.prototype={
 ai(){var s=A.a(["Chelsea","Liverpool","Manchester United","Manchester City","Arsenal","Tottenham Hotspur"],t.s)
