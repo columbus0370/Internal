@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import '../models/match_prediction.dart';
 
-class PredictionResultScreen extends StatelessWidget {
+class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
 
   const PredictionResultScreen({
     super.key,
     required this.prediction,
   });
+
+  @override
+  State<PredictionResultScreen> createState() => _PredictionResultScreenState();
+}
+
+class _PredictionResultScreenState extends State<PredictionResultScreen> {
+  int _selectedTabIndex = 0;
 
   static const _scoreTextStyle = TextStyle(
     fontSize: 48,
@@ -50,13 +57,15 @@ class PredictionResultScreen extends StatelessWidget {
           children: [
             _buildScoreCard(),
             const SizedBox(height: 24),
-            if (prediction.goals.isNotEmpty) ...[
+            if (widget.prediction.goals.isNotEmpty) ...[
               _buildTimeline(),
               const SizedBox(height: 24),
             ],
-            _buildPossessionCard(),
+            _buildMOMCard(),
             const SizedBox(height: 24),
-            _buildTopScorerCard(),
+            _buildTabBar(),
+            const SizedBox(height: 16),
+            _selectedTabIndex == 0 ? _buildStamenTab() : _buildStatsTab(),
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () => Navigator.pop(context),
@@ -79,6 +88,146 @@ class PredictionResultScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildTabBar() {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onTap: () => setState(() => _selectedTabIndex = 0),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                  border: _selectedTabIndex == 0
+                      ? Border(
+                          bottom: BorderSide(
+                            color: Colors.deepPurple,
+                            width: 3,
+                          ),
+                        )
+                      : null,
+                ),
+                child: Text(
+                  'Stamen',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: _selectedTabIndex == 0
+                        ? Colors.deepPurple
+                        : Colors.grey,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () => setState(() => _selectedTabIndex = 1),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                  border: _selectedTabIndex == 1
+                      ? Border(
+                          bottom: BorderSide(
+                            color: Colors.deepPurple,
+                            width: 3,
+                          ),
+                        )
+                      : null,
+                ),
+                child: Text(
+                  'Stats',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: _selectedTabIndex == 1
+                        ? Colors.deepPurple
+                        : Colors.grey,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStamenTab() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Starting Lineup',
+              style: _headerStyle,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Formation Preview',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[600],
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Team formations and player positions will be displayed here',
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey[500],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStatsTab() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Match Statistics',
+              style: _headerStyle,
+            ),
+            const SizedBox(height: 16),
+            _buildStatRow('Possession', '${(widget.prediction.possession * 100).toStringAsFixed(1)}%',
+                '${((1 - widget.prediction.possession) * 100).toStringAsFixed(1)}%'),
+            const SizedBox(height: 12),
+            _buildStatRow('Shots', '${widget.prediction.homeScore * 3 + 5}',
+                '${widget.prediction.awayScore * 3 + 4}'),
+            const SizedBox(height: 12),
+            _buildStatRow('Goals', '${widget.prediction.homeScore}',
+                '${widget.prediction.awayScore}'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStatRow(String label, String homeValue, String awayValue) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(homeValue, style: _boldPurpleStyle),
+        Text(label, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+        Text(awayValue, style: _boldPurpleStyle),
+      ],
+    );
+  }
+
   Widget _buildScoreCard() {
     return Card(
       elevation: 4,
@@ -94,7 +243,7 @@ class PredictionResultScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        prediction.homeTeamName,
+                        widget.prediction.homeTeamName,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -104,7 +253,7 @@ class PredictionResultScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        '${prediction.homeScore}',
+                        '${widget.prediction.homeScore}',
                         style: _scoreTextStyle,
                       ),
                     ],
@@ -119,7 +268,7 @@ class PredictionResultScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        prediction.awayTeamName,
+                        widget.prediction.awayTeamName,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -129,7 +278,7 @@ class PredictionResultScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        '${prediction.awayScore}',
+                        '${widget.prediction.awayScore}',
                         style: _scoreTextStyle,
                       ),
                     ],
@@ -145,7 +294,7 @@ class PredictionResultScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                prediction.result,
+                widget.prediction.result,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -159,84 +308,24 @@ class PredictionResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPossessionCard() {
-    final homePos = (prediction.possession * 100).toStringAsFixed(1);
-    final awayPos = ((1 - prediction.possession) * 100).toStringAsFixed(1);
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Ball Possession',
-              style: _headerStyle,
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  prediction.homeTeamName,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  '$homePos%',
-                  style: _boldPurpleStyle,
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(
-                value: prediction.possession,
-                minHeight: 8,
-                backgroundColor: Colors.grey[300],
-                valueColor: const AlwaysStoppedAnimation<Color>(
-                  Colors.deepPurple,
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  prediction.awayTeamName,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  '$awayPos%',
-                  style: _boldPurpleStyle,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTopScorerCard() {
+  Widget _buildMOMCard() {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
-            const Icon(Icons.star, color: Colors.orange, size: 28),
+            const Icon(Icons.emoji_events, color: Colors.amber, size: 28),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Top Scorer',
+                  'Man of the Match',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  prediction.topScorer,
+                  widget.prediction.mom,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -262,8 +351,8 @@ class PredictionResultScreen extends StatelessWidget {
               style: _headerStyle,
             ),
             const SizedBox(height: 16),
-            ...prediction.goals.map((goal) {
-              final isHomeGoal = goal.team == prediction.homeTeamName;
+            ...widget.prediction.goals.map((goal) {
+              final isHomeGoal = goal.team == widget.prediction.homeTeamName;
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: Container(
@@ -287,7 +376,7 @@ class PredictionResultScreen extends StatelessWidget {
                           color: isHomeGoal ? Colors.blue : Colors.orange,
                           shape: BoxShape.circle,
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             '⚽',
                             style: TextStyle(fontSize: 20),
@@ -308,7 +397,8 @@ class PredictionResultScreen extends StatelessWidget {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         goal.scorer,

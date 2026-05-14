@@ -22,6 +22,7 @@ class MatchPrediction {
   final double drawProbability;
   final double awayWinProbability;
   final String topScorer;
+  final String mom;
   final List<GoalEvent> goals;
 
   MatchPrediction({
@@ -34,6 +35,7 @@ class MatchPrediction {
     required this.drawProbability,
     required this.awayWinProbability,
     required this.topScorer,
+    required this.mom,
     required this.goals,
   });
 

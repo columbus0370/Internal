@@ -34,6 +34,13 @@ class PredictionEngine {
         ? homeTeam.players.where((p) => p.position == 'ST').first.name
         : awayTeam.players.where((p) => p.position == 'ST').first.name;
 
+    // Determine Man of the Match (different from top scorer)
+    final momTeam = homeScore > awayScore ? homeTeam : awayTeam;
+    final momPlayers = momTeam.players.where((p) => p.name != topScorer).toList();
+    final mom = momPlayers.isNotEmpty
+        ? momPlayers[_random.nextInt(momPlayers.length)].name
+        : momTeam.players.first.name;
+
     // Generate goal events
     final goals = _generateGoalEvents(
       homeTeam,
@@ -52,6 +59,7 @@ class PredictionEngine {
       drawProbability: drawProb,
       awayWinProbability: awayWinProb,
       topScorer: topScorer,
+      mom: mom,
       goals: goals,
     );
   }
