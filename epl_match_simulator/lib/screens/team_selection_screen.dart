@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/team.dart';
+import '../services/prediction_engine.dart';
+import 'prediction_result_screen.dart';
 
 class TeamSelectionScreen extends StatefulWidget {
   final List<Team> teams;
@@ -56,7 +58,15 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: homeTeam != null && awayTeam != null && homeTeam != awayTeam
-                  ? () => widget.onTeamsSelected(homeTeam!, awayTeam!)
+                  ? () {
+                      final prediction = PredictionEngine.predictMatch(homeTeam!, awayTeam!);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PredictionResultScreen(prediction: prediction),
+                        ),
+                      );
+                    }
                   : null,
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
