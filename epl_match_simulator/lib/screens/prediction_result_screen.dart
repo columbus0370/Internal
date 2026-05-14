@@ -619,8 +619,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         child: Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            border: Border.left(
-              side: BorderSide(
+            border: Border(
+              left: BorderSide(
                 color: color,
                 width: 4,
               ),
