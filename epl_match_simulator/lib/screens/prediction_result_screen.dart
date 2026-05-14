@@ -281,9 +281,64 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                 ),
               ],
             ),
+            const SizedBox(height: 32),
+            _buildTeamRoster(widget.prediction.awayTeam, Colors.orange),
+            const SizedBox(height: 24),
+            _buildTeamRoster(widget.prediction.homeTeam, Colors.blue),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildTeamRoster(Team team, Color color) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          team.name,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: color,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: team.players.map((player) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.1),
+                border: Border.all(color: color, width: 1),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    player.name,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    player.position,
+                    style: const TextStyle(
+                      fontSize: 9,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
+        ),
+      ],
     );
   }
 
