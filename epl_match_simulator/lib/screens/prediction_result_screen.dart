@@ -205,14 +205,126 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               style: _headerStyle,
             ),
             const SizedBox(height: 24),
-            UnifiedSoccerFieldWidget(
-              homeTeam: widget.prediction.homeTeam,
-              awayTeam: widget.prediction.awayTeam,
+            Text(
+              widget.prediction.homeTeam.name,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
+            ),
+            const SizedBox(height: 8),
+            AspectRatio(
+              aspectRatio: 105 / 68,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green[700],
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2,
+                      ),
+                    ),
+                    child: CustomPaint(
+                      painter: SoccerFieldPainter(),
+                      child: Stack(
+                        children: _buildHomePlayerPositions(constraints),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> _buildHomePlayerPositions(BoxConstraints constraints) {
+    final homeTeam = widget.prediction.homeTeam;
+    final players = _getFormationPlayers(homeTeam);
+    final positions = _getHomePositions();
+    final width = constraints.maxWidth;
+    final height = constraints.maxHeight;
+
+    return List.generate(players.length, (index) {
+      if (index >= positions.length) return const SizedBox.shrink();
+      final pos = positions[index];
+      final player = players[index];
+
+      final pixelX = (pos['x'] as double) * width;
+      final pixelY = (pos['y'] as double) * height;
+
+      return Positioned(
+        left: pixelX - 25,
+        top: pixelY - 25,
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white,
+              width: 2,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              player['name']!.split(' ').last,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 9,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  List<Map<String, String>> _getFormationPlayers(Team team) {
+    final gk = team.players.where((p) => p.position == 'GK').first;
+    final defenders = team.players.where((p) => p.position == 'DF').toList();
+    final midfielders = team.players.where((p) => p.position == 'MF').toList();
+    final forwards = team.players.where((p) => p.position == 'ST').toList();
+
+    return [
+      {'name': gk.name},
+      {'name': defenders.isNotEmpty ? defenders[0].name : ''},
+      {'name': defenders.length > 1 ? defenders[1].name : ''},
+      {'name': defenders.length > 2 ? defenders[2].name : ''},
+      {'name': defenders.length > 3 ? defenders[3].name : ''},
+      {'name': midfielders.isNotEmpty ? midfielders[0].name : ''},
+      {'name': midfielders.length > 1 ? midfielders[1].name : ''},
+      {'name': midfielders.length > 2 ? midfielders[2].name : ''},
+      {'name': forwards.isNotEmpty ? forwards[0].name : ''},
+      {'name': forwards.length > 1 ? forwards[1].name : ''},
+      {'name': forwards.length > 2 ? forwards[2].name : ''},
+    ];
+  }
+
+  List<Map<String, double>> _getHomePositions() {
+    return [
+      {'x': 0.1, 'y': 0.5},
+      {'x': 0.2, 'y': 0.15},
+      {'x': 0.2, 'y': 0.35},
+      {'x': 0.2, 'y': 0.65},
+      {'x': 0.2, 'y': 0.85},
+      {'x': 0.35, 'y': 0.2},
+      {'x': 0.35, 'y': 0.5},
+      {'x': 0.35, 'y': 0.8},
+      {'x': 0.6, 'y': 0.25},
+      {'x': 0.6, 'y': 0.5},
+      {'x': 0.6, 'y': 0.75},
+    ];
   }
 
   Widget _buildStatsTab() {
