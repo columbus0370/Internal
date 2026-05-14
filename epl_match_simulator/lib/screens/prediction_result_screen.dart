@@ -171,14 +171,9 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               style: _headerStyle,
             ),
             const SizedBox(height: 24),
-            SoccerFieldWidget(
-              teamName: widget.prediction.homeTeamName,
-              isHome: true,
-            ),
-            const SizedBox(height: 32),
-            SoccerFieldWidget(
-              teamName: widget.prediction.awayTeamName,
-              isHome: false,
+            UnifiedSoccerFieldWidget(
+              homeTeamName: widget.prediction.homeTeamName,
+              awayTeamName: widget.prediction.awayTeamName,
             ),
           ],
         ),
@@ -425,6 +420,160 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         ),
       ),
     );
+  }
+}
+
+class UnifiedSoccerFieldWidget extends StatelessWidget {
+  final String homeTeamName;
+  final String awayTeamName;
+
+  const UnifiedSoccerFieldWidget({
+    super.key,
+    required this.homeTeamName,
+    required this.awayTeamName,
+  });
+
+  List<String> _getFormationPlayers() {
+    return [
+      'GK',
+      'LB',
+      'CB',
+      'CB',
+      'RB',
+      'LM',
+      'CM',
+      'RM',
+      'LW',
+      'ST',
+      'RW',
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          homeTeamName,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+        ),
+        const SizedBox(height: 8),
+        AspectRatio(
+          aspectRatio: 105 / 136,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.green[700],
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 2,
+                  ),
+                ),
+                child: CustomPaint(
+                  painter: SoccerFieldPainter(),
+                  child: Stack(
+                    children: [
+                      ..._buildPlayerPositions(constraints, true),
+                      ..._buildPlayerPositions(constraints, false),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          awayTeamName,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: Colors.orange,
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _buildPlayerPositions(BoxConstraints constraints, bool isHome) {
+    final players = _getFormationPlayers();
+    final positions = _getPositions(isHome);
+    final width = constraints.maxWidth;
+    final height = constraints.maxHeight;
+
+    return List.generate(players.length, (index) {
+      if (index >= positions.length) return const SizedBox.shrink();
+      final pos = positions[index];
+
+      final pixelX = (pos['x'] as double) * width;
+      final pixelY = (pos['y'] as double) * height;
+
+      return Positioned(
+        left: pixelX - 25,
+        top: pixelY - 25,
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color: isHome ? Colors.blue : Colors.orange,
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white,
+              width: 2,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              players[index],
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 9,
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  List<Map<String, double>> _getPositions(bool isHome) {
+    if (isHome) {
+      return [
+        {'x': 0.5, 'y': 0.1},
+        {'x': 0.2, 'y': 0.22},
+        {'x': 0.2, 'y': 0.4},
+        {'x': 0.2, 'y': 0.58},
+        {'x': 0.2, 'y': 0.76},
+        {'x': 0.35, 'y': 0.28},
+        {'x': 0.35, 'y': 0.5},
+        {'x': 0.35, 'y': 0.72},
+        {'x': 0.65, 'y': 0.32},
+        {'x': 0.65, 'y': 0.5},
+        {'x': 0.65, 'y': 0.68},
+      ];
+    } else {
+      return [
+        {'x': 0.5, 'y': 0.9},
+        {'x': 0.2, 'y': 0.78},
+        {'x': 0.2, 'y': 0.6},
+        {'x': 0.2, 'y': 0.42},
+        {'x': 0.2, 'y': 0.24},
+        {'x': 0.35, 'y': 0.72},
+        {'x': 0.35, 'y': 0.5},
+        {'x': 0.35, 'y': 0.28},
+        {'x': 0.65, 'y': 0.68},
+        {'x': 0.65, 'y': 0.5},
+        {'x': 0.65, 'y': 0.32},
+      ];
+    }
   }
 }
 
