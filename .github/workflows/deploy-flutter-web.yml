@@ -37,7 +37,7 @@ jobs:
 
       - name: Build Flutter Web
         working-directory: epl_match_simulator
-        run: flutter build web --release --web-renderer html --base-href=/Internal/
+        run: flutter build web --release --web-renderer html --base-href=/Internal/ --dart-define=CLAUDE_API_KEY=${{ secrets.CLAUDE_API_KEY }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

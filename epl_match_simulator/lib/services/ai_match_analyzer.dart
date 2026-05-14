@@ -10,7 +10,7 @@ class AiMatchAnalyzer {
 
   static Future<String> analyzeMatch(MatchPrediction prediction) async {
     if (_apiKey.isEmpty) {
-      return 'AI API key not configured. Please set the CLAUDE_API_KEY environment variable.';
+      return _generateFallbackAnalysis(prediction);
     }
 
     try {
@@ -40,11 +40,41 @@ class AiMatchAnalyzer {
         final analysis = jsonResponse['content'][0]['text'] as String;
         return analysis;
       } else {
-        return 'Failed to generate analysis. Status: ${response.statusCode}';
+        return _generateFallbackAnalysis(prediction);
       }
     } catch (e) {
-      return 'Error analyzing match: $e';
+      return _generateFallbackAnalysis(prediction);
     }
+  }
+
+  static String _generateFallbackAnalysis(MatchPrediction prediction) {
+    final scoreGap = (prediction.homeScore - prediction.awayScore).abs();
+    final homeControl = (prediction.possession * 100).toStringAsFixed(1);
+    final awayControl = ((1 - prediction.possession) * 100).toStringAsFixed(1);
+
+    final analyses = <String>[];
+
+    // スコア分析
+    if (scoreGap == 0) {
+      analyses.add('• Balanced Match: Both teams showed equal strength in this competitive fixture');
+    } else if (prediction.homeScore > prediction.awayScore) {
+      analyses.add('• Home Advantage: ${prediction.homeTeamName} dominated with a ${scoreGap}-goal margin');
+    } else {
+      analyses.add('• Away Victory: ${prediction.awayTeamName} impressed with an away win');
+    }
+
+    // ポゼッション分析
+    analyses.add('• Ball Control: ${prediction.homeTeamName} controlled $homeControl% of possession');
+
+    // ゴール分析
+    if (prediction.goals.isNotEmpty) {
+      analyses.add('• Goal Scorers: ${prediction.goals.take(3).map((g) => g.scorer).join(', ')} led the scoring');
+    }
+
+    // MOM分析
+    analyses.add('• Player of the Match: ${prediction.mom} delivered a standout performance');
+
+    return analyses.join('\n');
   }
 
   static String _buildAnalysisPrompt(MatchPrediction prediction) {
