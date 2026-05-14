@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/match_prediction.dart';
 import '../models/team.dart';
+import '../models/match_commentary.dart';
 import '../services/ai_match_analyzer.dart';
+import '../services/match_commentary_generator.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
@@ -542,72 +544,138 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'AI Analysis',
-              style: _headerStyle,
-            ),
-            const SizedBox(height: 16),
-            FutureBuilder<String>(
-              future: AiMatchAnalyzer.analyzeMatch(widget.prediction),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(24),
-                      child: CircularProgressIndicator(
-                        color: Colors.deepPurple,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                '試合実況 - Match Commentary',
+                style: _headerStyle,
+              ),
+              const SizedBox(height: 16),
+              ..._buildCommentaryList(),
+              const SizedBox(height: 24),
+              const Divider(thickness: 2),
+              const SizedBox(height: 16),
+              const Text(
+                'AI Tactical Analysis',
+                style: _headerStyle,
+              ),
+              const SizedBox(height: 12),
+              FutureBuilder<String>(
+                future: AiMatchAnalyzer.analyzeMatch(widget.prediction),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator(
+                      color: Colors.deepPurple,
+                    );
+                  }
+
+                  if (snapshot.hasError || !snapshot.hasData) {
+                    return const Text(
+                      'Loading analysis...',
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    );
+                  }
+
+                  final analysis = snapshot.data!;
+                  return Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Colors.deepPurple.withOpacity(0.2),
+                      ),
+                    ),
+                    child: Text(
+                      analysis,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        height: 1.6,
+                        color: Colors.black87,
                       ),
                     ),
                   );
-                }
-
-                if (snapshot.hasError) {
-                  return Text(
-                    'Error: ${snapshot.error}',
-                    style: const TextStyle(color: Colors.red, fontSize: 14),
-                  );
-                }
-
-                if (!snapshot.hasData) {
-                  return const Text(
-                    'No analysis available',
-                    style: TextStyle(color: Colors.grey, fontSize: 14),
-                  );
-                }
-
-                final analysis = snapshot.data!;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple.withOpacity(0.05),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: Colors.deepPurple.withOpacity(0.2),
-                        ),
-                      ),
-                      child: Text(
-                        analysis,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          height: 1.6,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  List<Widget> _buildCommentaryList() {
+    final commentaries = MatchCommentaryGenerator.generateCommentary(widget.prediction);
+
+    return commentaries.map((commentary) {
+      final color = commentary.teamName == widget.prediction.homeTeamName
+          ? Colors.blue
+          : Colors.orange;
+
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            border: Border.left(
+              side: BorderSide(
+                color: color,
+                width: 4,
+              ),
+            ),
+            color: color.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    commentary.toString(),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: color,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      commentary.action,
+                      style: const TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                commentary.description,
+                style: const TextStyle(
+                  fontSize: 13,
+                  height: 1.5,
+                  color: Colors.black87,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }).toList();
   }
 
   Widget _buildScoreCard() {
