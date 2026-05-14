@@ -9,6 +9,33 @@ class PredictionResultScreen extends StatelessWidget {
     required this.prediction,
   });
 
+  static const _scoreTextStyle = TextStyle(
+    fontSize: 48,
+    fontWeight: FontWeight.bold,
+    color: Colors.deepPurple,
+  );
+  static const _headerStyle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+  static const _labelStyle = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+    color: Colors.grey,
+  );
+  static const _scorerStyle = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
+  static const _boldPurpleStyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.deepPurple,
+  );
+  static const _assistStyle = TextStyle(
+    fontSize: 11,
+    color: Color(0xFF9E9E9E),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,11 +105,7 @@ class PredictionResultScreen extends StatelessWidget {
                       const SizedBox(height: 12),
                       Text(
                         '${prediction.homeScore}',
-                        style: const TextStyle(
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepPurple,
-                        ),
+                        style: _scoreTextStyle,
                       ),
                     ],
                   ),
@@ -107,11 +130,7 @@ class PredictionResultScreen extends StatelessWidget {
                       const SizedBox(height: 12),
                       Text(
                         '${prediction.awayScore}',
-                        style: const TextStyle(
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepPurple,
-                        ),
+                        style: _scoreTextStyle,
                       ),
                     ],
                   ),
@@ -152,7 +171,7 @@ class PredictionResultScreen extends StatelessWidget {
           children: [
             const Text(
               'Ball Possession',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: _headerStyle,
             ),
             const SizedBox(height: 16),
             Row(
@@ -164,10 +183,7 @@ class PredictionResultScreen extends StatelessWidget {
                 ),
                 Text(
                   '$homePos%',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple,
-                  ),
+                  style: _boldPurpleStyle,
                 ),
               ],
             ),
@@ -193,10 +209,7 @@ class PredictionResultScreen extends StatelessWidget {
                 ),
                 Text(
                   '$awayPos%',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple,
-                  ),
+                  style: _boldPurpleStyle,
                 ),
               ],
             ),
@@ -246,7 +259,7 @@ class PredictionResultScreen extends StatelessWidget {
           children: [
             const Text(
               'Timeline',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: _headerStyle,
             ),
             const SizedBox(height: 16),
             ...prediction.goals.map((goal) {
@@ -290,11 +303,7 @@ class PredictionResultScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   goal.minute,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey,
-                                  ),
+                                  style: _labelStyle,
                                 ),
                                 const SizedBox(width: 8),
                                 Expanded(
@@ -303,20 +312,14 @@ class PredictionResultScreen extends StatelessWidget {
                                     children: [
                                       Text(
                                         goal.scorer,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                        style: _scorerStyle,
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                       if (goal.assist != null) ...[
                                         const SizedBox(height: 2),
                                         Text(
                                           goal.assist!,
-                                          style: TextStyle(
-                                            fontSize: 11,
-                                            color: Colors.grey[600],
-                                          ),
+                                          style: _assistStyle,
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ],
