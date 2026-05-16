@@ -3,7 +3,6 @@ import '../models/match_prediction.dart';
 import '../models/team.dart';
 import '../models/match_commentary.dart';
 import '../models/match_stats.dart';
-import '../services/ai_match_analyzer.dart';
 import '../services/match_commentary_generator.dart';
 import '../services/match_stats_generator.dart';
 
@@ -75,7 +74,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                 ? _buildStamenTab()
                 : _selectedTabIndex == 1
                     ? _buildStatsTab()
-                    : _buildAiAnalysisTab(),
+                    : _buildCommentaryTab(),
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () => Navigator.pop(context),
@@ -179,7 +178,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                       : null,
                 ),
                 child: Text(
-                  'AI Analysis',
+                  'Commentary',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -720,7 +719,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     );
   }
 
-  Widget _buildAiAnalysisTab() {
+  Widget _buildCommentaryTab() {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -729,77 +728,11 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             const Text(
-              '試合実況 - Match Commentary',
+              'Match Commentary',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             ..._buildCommentaryList(),
-            const SizedBox(height: 18),
-            const Divider(thickness: 1.5),
-            const SizedBox(height: 12),
-            const Text(
-              'AI Tactical Analysis',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            FutureBuilder<String>(
-              future: AiMatchAnalyzer.analyzeMatch(widget.prediction),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const SizedBox(
-                    height: 60,
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.deepPurple,
-                        strokeWidth: 2,
-                      ),
-                    ),
-                  );
-                }
-
-                if (snapshot.hasError) {
-                  return Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.red.withOpacity(0.05),
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: Colors.red.withOpacity(0.3)),
-                    ),
-                    child: Text(
-                      'エラー: ${snapshot.error}',
-                      style: const TextStyle(color: Colors.red, fontSize: 12),
-                    ),
-                  );
-                }
-
-                if (!snapshot.hasData) {
-                  return const Text(
-                    'Loading analysis...',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  );
-                }
-
-                final analysis = snapshot.data!;
-                return Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurple.withOpacity(0.05),
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(
-                      color: Colors.deepPurple.withOpacity(0.2),
-                    ),
-                  ),
-                  child: Text(
-                    analysis,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      height: 1.5,
-                      color: Colors.black87,
-                    ),
-                  ),
-                );
-              },
-            ),
             const SizedBox(height: 16),
           ],
         ),
