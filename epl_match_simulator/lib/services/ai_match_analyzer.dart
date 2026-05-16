@@ -11,9 +11,8 @@ class AiMatchAnalyzer {
   static const String _apiVersion = '2024-06-01';
 
   static Future<String> analyzeMatch(MatchPrediction prediction) async {
-    // Check if API key is configured
     if (_apiKey.isEmpty) {
-      throw Exception('CLAUDE_API_KEY is not configured. Please set the environment variable.');
+      return _generateFallbackAnalysis(prediction);
     }
 
     try {
@@ -43,10 +42,10 @@ class AiMatchAnalyzer {
         final analysis = jsonResponse['content'][0]['text'] as String;
         return analysis;
       } else {
-        throw Exception('API Error: ${response.statusCode} - ${response.body}');
+        return _generateFallbackAnalysis(prediction);
       }
     } catch (e) {
-      rethrow;
+      return _generateFallbackAnalysis(prediction);
     }
   }
 
