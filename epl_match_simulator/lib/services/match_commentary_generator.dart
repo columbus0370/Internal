@@ -118,14 +118,18 @@ class MatchCommentaryGenerator {
       final position = _getPosition(player.position ?? 'MF');
       final side = random.nextBool() ? '右' : '左';
 
-      if (defender != null) {
+      if (attackingTeamPlayers.length > 1) {
+        final teammate = attackingTeamPlayers.firstWhere(
+          (p) => p.name != playerName,
+          orElse: () => attackingTeamPlayers[random.nextInt(attackingTeamPlayers.length)]
+        );
         return MatchCommentary(
           minute: minute,
           period: period,
           action: 'ドリブル',
           playerName: playerName,
           teamName: attackingTeamName,
-          description: '$side サイドの$playerNameがドリブル突破をし、${defender.name}へのクロスを放つ！',
+          description: '$side サイドの$playerNameがドリブル突破をし、${teammate.name}へのクロスを放つ！',
         );
       } else {
         return MatchCommentary(

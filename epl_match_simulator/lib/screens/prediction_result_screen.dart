@@ -757,7 +757,22 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   );
                 }
 
-                if (snapshot.hasError || !snapshot.hasData) {
+                if (snapshot.hasError) {
+                  return Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.red.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(color: Colors.red.withOpacity(0.3)),
+                    ),
+                    child: Text(
+                      'エラー: ${snapshot.error}',
+                      style: const TextStyle(color: Colors.red, fontSize: 12),
+                    ),
+                  );
+                }
+
+                if (!snapshot.hasData) {
                   return const Text(
                     'Loading analysis...',
                     style: TextStyle(color: Colors.grey, fontSize: 12),
