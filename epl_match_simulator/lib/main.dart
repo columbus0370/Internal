@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'data/league_standings.dart';
 import 'screens/team_selection_screen.dart';
 import 'screens/league_table_screen.dart';
@@ -8,7 +7,8 @@ import 'services/team_data_loader.dart';
 import 'services/ai_match_predictor.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
+  // Flutter Web では .env ファイルの読み込みをスキップ
+  // Vercel の環境変数が自動的に使用されます
   await AIMatchPredictor.initialize();
   runApp(const MyApp());
 }

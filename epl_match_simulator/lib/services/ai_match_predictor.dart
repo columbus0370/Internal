@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import '../models/match_prediction.dart';
 import '../models/team.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MatchPredictionResult {
   final int homeScore;
@@ -145,12 +144,10 @@ class AIMatchPredictor {
   static late final Dio _dio;
 
   static Future<void> initialize() async {
-    final apiBase = dotenv.env['API_BASE_URL'] ?? '';
-    final baseUrl = apiBase.isEmpty ? '' : apiBase;
-
+    // Flutter Web では相対パス /api/predictMatch を使用
+    // Vercel がプロキシとして Claude API に転送します
     _dio = Dio(
       BaseOptions(
-        baseUrl: baseUrl,
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 60),
         sendTimeout: const Duration(seconds: 30),
