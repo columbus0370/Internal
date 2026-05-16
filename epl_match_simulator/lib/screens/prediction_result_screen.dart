@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import '../models/match_prediction.dart';
 import '../models/team.dart';
+import '../models/match_commentary.dart';
+import '../models/match_stats.dart';
 import '../services/ai_match_analyzer.dart';
+import '../services/match_commentary_generator.dart';
+import '../services/match_stats_generator.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
@@ -197,8 +201,9 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             const Text(
               'Starting Lineup',
@@ -209,22 +214,24 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               aspectRatio: 50 / 150,
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green[700],
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2,
+                  return RepaintBoundary(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green[700],
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 2,
+                        ),
                       ),
-                    ),
-                    child: CustomPaint(
-                      painter: SoccerFieldPainter(),
-                      child: Stack(
-                        children: [
-                          ..._buildAwayPlayerPositionsHalf(constraints),
-                          ..._buildHomePlayerPositionsHalf(constraints),
-                        ],
+                      child: CustomPaint(
+                        painter: SoccerFieldPainter(),
+                        child: Stack(
+                          children: [
+                            ..._buildAwayPlayerPositionsHalf(constraints),
+                            ..._buildHomePlayerPositionsHalf(constraints),
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -240,7 +247,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                     Container(
                       width: 12,
                       height: 12,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.orange,
                         shape: BoxShape.circle,
                       ),
@@ -262,7 +269,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                     Container(
                       width: 12,
                       height: 12,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.blue,
                         shape: BoxShape.circle,
                       ),
@@ -449,24 +456,25 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
   }
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.position == 'GK').first;
+    final gk = team.players.where((p) => p.position == 'GK').toList();
     final defenders = team.players.where((p) => p.position == 'DF').toList();
     final midfielders = team.players.where((p) => p.position == 'MF').toList();
-    final forwards = team.players.where((p) => p.position == 'ST').toList();
+    final forwards = team.players.where((p) => p.position == 'FW').toList();
 
-    return [
-      {'name': gk.name},
-      {'name': defenders.isNotEmpty ? defenders[0].name : ''},
-      {'name': defenders.length > 1 ? defenders[1].name : ''},
-      {'name': defenders.length > 2 ? defenders[2].name : ''},
-      {'name': defenders.length > 3 ? defenders[3].name : ''},
-      {'name': midfielders.isNotEmpty ? midfielders[0].name : ''},
-      {'name': midfielders.length > 1 ? midfielders[1].name : ''},
-      {'name': midfielders.length > 2 ? midfielders[2].name : ''},
-      {'name': forwards.isNotEmpty ? forwards[0].name : ''},
-      {'name': forwards.length > 1 ? forwards[1].name : ''},
-      {'name': forwards.length > 2 ? forwards[2].name : ''},
-    ];
+    final players = <Map<String, String>>[];
+
+    if (gk.isNotEmpty) players.add({'name': gk[0].name});
+    for (int i = 0; i < 4 && i < defenders.length; i++) {
+      players.add({'name': defenders[i].name});
+    }
+    for (int i = 0; i < 3 && i < midfielders.length; i++) {
+      players.add({'name': midfielders[i].name});
+    }
+    for (int i = 0; i < 3 && i < forwards.length; i++) {
+      players.add({'name': forwards[i].name});
+    }
+
+    return players;
   }
 
   List<Map<String, double>> _getHomeHalfPositions() {
@@ -496,34 +504,208 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       {'x': 0.5, 'y': 0.32},
       {'x': 0.8, 'y': 0.32},
       {'x': 0.25, 'y': 0.45},
-      {'x': 0.5, 'y': 0.49},
+      {'x': 0.5, 'y': 0.52},
       {'x': 0.75, 'y': 0.45},
     ];
   }
 
   Widget _buildStatsTab() {
+    final stats = MatchStatsGenerator.generate(widget.prediction);
+
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.all(12),
+        child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
-            const Text(
-              'Match Statistics',
-              style: _headerStyle,
+            const Text('Match Statistics', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            // Team name headers
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    widget.prediction.homeTeamName,
+                    style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.blue),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const SizedBox(width: 60),
+                Expanded(
+                  child: Text(
+                    widget.prediction.awayTeamName,
+                    style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.orange),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
-            _buildStatRow('Possession', '${(widget.prediction.possession * 100).toStringAsFixed(1)}%',
-                '${((1 - widget.prediction.possession) * 100).toStringAsFixed(1)}%'),
             const SizedBox(height: 12),
-            _buildStatRow('Shots', '${widget.prediction.homeScore * 3 + 5}',
-                '${widget.prediction.awayScore * 3 + 4}'),
+
+            _buildStatSection('⚽ Attack', [
+              _buildStatBarRow('Goals', stats.homeGoals.toString(), stats.awayGoals.toString(), stats.homeGoals.toDouble(), stats.awayGoals.toDouble()),
+              _buildStatBarRow('Shots', stats.homeShots.toString(), stats.awayShots.toString(), stats.homeShots.toDouble(), stats.awayShots.toDouble()),
+              _buildStatBarRow('On Target', stats.homeShotsOnTarget.toString(), stats.awayShotsOnTarget.toString(), stats.homeShotsOnTarget.toDouble(), stats.awayShotsOnTarget.toDouble()),
+              _buildStatBarRow('xG', stats.homeXG.toStringAsFixed(2), stats.awayXG.toStringAsFixed(2), stats.homeXG, stats.awayXG),
+              _buildStatBarRow('Dribbles', stats.homeDribbles.toString(), stats.awayDribbles.toString(), stats.homeDribbles.toDouble(), stats.awayDribbles.toDouble()),
+              _buildStatBarRow('Corners', stats.homeCorners.toString(), stats.awayCorners.toString(), stats.homeCorners.toDouble(), stats.awayCorners.toDouble()),
+            ]),
+
             const SizedBox(height: 12),
-            _buildStatRow('Goals', '${widget.prediction.homeScore}',
-                '${widget.prediction.awayScore}'),
+
+            _buildStatSection('🎯 Possession & Passing', [
+              _buildStatBarRow('Possession', '${stats.homePossession.toStringAsFixed(1)}%', '${stats.awayPossession.toStringAsFixed(1)}%', stats.homePossession, stats.awayPossession),
+              _buildStatBarRow('Passes', stats.homePasses.toString(), stats.awayPasses.toString(), stats.homePasses.toDouble(), stats.awayPasses.toDouble()),
+              _buildStatBarRow('Pass Accuracy', '${stats.homePassAccuracy.toStringAsFixed(1)}%', '${stats.awayPassAccuracy.toStringAsFixed(1)}%', stats.homePassAccuracy, stats.awayPassAccuracy),
+            ]),
+
+            const SizedBox(height: 12),
+
+            _buildStatSection('🛡️ Defence', [
+              _buildStatBarRow('Tackles', stats.homeTackles.toString(), stats.awayTackles.toString(), stats.homeTackles.toDouble(), stats.awayTackles.toDouble()),
+              _buildStatBarRow('Aerial Duels', stats.homeAerialDuels.toString(), stats.awayAerialDuels.toString(), stats.homeAerialDuels.toDouble(), stats.awayAerialDuels.toDouble()),
+              _buildStatBarRow('Fouls', stats.homeFouls.toString(), stats.awayFouls.toString(), stats.homeFouls.toDouble(), stats.awayFouls.toDouble()),
+            ]),
+
+            const SizedBox(height: 12),
+
+            _buildStatSection('🟨 Discipline', [
+              _buildStatBarRow('Yellow Cards', stats.homeYellowCards.toString(), stats.awayYellowCards.toString(), stats.homeYellowCards.toDouble(), stats.awayYellowCards.toDouble()),
+              _buildStatBarRow('Red Cards', stats.homeRedCards.toString(), stats.awayRedCards.toString(), stats.homeRedCards.toDouble(), stats.awayRedCards.toDouble()),
+            ]),
+
+            const SizedBox(height: 12),
+
+            _buildRatingSection(stats),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildStatSection(String title, List<Widget> rows) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+        ),
+        const SizedBox(height: 8),
+        ...rows,
+      ],
+    );
+  }
+
+  Widget _buildStatBarRow(String label, String homeVal, String awayVal, double homeNum, double awayNum) {
+    final total = homeNum + awayNum;
+    final homeRatio = total > 0 ? homeNum / total : 0.5;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(homeVal, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.blue)),
+              Text(label, style: const TextStyle(fontSize: 11, color: Colors.black54)),
+              Text(awayVal, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.orange)),
+            ],
+          ),
+          const SizedBox(height: 4),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(3),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: (homeRatio * 100).round().clamp(1, 99),
+                  child: Container(height: 5, color: Colors.blue),
+                ),
+                Expanded(
+                  flex: ((1 - homeRatio) * 100).round().clamp(1, 99),
+                  child: Container(height: 5, color: Colors.orange),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRatingSection(MatchStats stats) {
+    final home = widget.prediction.homeTeam;
+    final away = widget.prediction.awayTeam;
+
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.deepPurple.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: Colors.deepPurple.withOpacity(0.2)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('📊 Team Ratings', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.deepPurple)),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(child: _buildRatingBar('ATK', home.attackPower, Colors.blue)),
+              const SizedBox(width: 6),
+              Expanded(child: _buildRatingBar('ATK', away.attackPower, Colors.orange)),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              Expanded(child: _buildRatingBar('DEF', home.defensePower, Colors.blue)),
+              const SizedBox(width: 6),
+              Expanded(child: _buildRatingBar('DEF', away.defensePower, Colors.orange)),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              Expanded(child: _buildRatingBar('CTL', home.ballControl, Colors.blue)),
+              const SizedBox(width: 6),
+              Expanded(child: _buildRatingBar('CTL', away.ballControl, Colors.orange)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRatingBar(String label, int value, Color color) {
+    return Row(
+      children: [
+        SizedBox(
+          width: 28,
+          child: Text(label, style: const TextStyle(fontSize: 10, color: Colors.black54)),
+        ),
+        Expanded(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(3),
+            child: LinearProgressIndicator(
+              value: value / 100.0,
+              backgroundColor: Colors.grey[200],
+              valueColor: AlwaysStoppedAnimation<Color>(color),
+              minHeight: 6,
+            ),
+          ),
+        ),
+        const SizedBox(width: 4),
+        SizedBox(
+          width: 24,
+          child: Text('$value', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: color), textAlign: TextAlign.right),
+        ),
+      ],
     );
   }
 
@@ -541,73 +723,153 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
   Widget _buildAiAnalysisTab() {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.all(12),
+        child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             const Text(
-              'AI Analysis',
-              style: _headerStyle,
+              '試合実況 - Match Commentary',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
+            ..._buildCommentaryList(),
+            const SizedBox(height: 18),
+            const Divider(thickness: 1.5),
+            const SizedBox(height: 12),
+            const Text(
+              'AI Tactical Analysis',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
             FutureBuilder<String>(
               future: AiMatchAnalyzer.analyzeMatch(widget.prediction),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(24),
+                  return const SizedBox(
+                    height: 60,
+                    child: Center(
                       child: CircularProgressIndicator(
                         color: Colors.deepPurple,
+                        strokeWidth: 2,
                       ),
                     ),
                   );
                 }
 
-                if (snapshot.hasError) {
-                  return Text(
-                    'Error: ${snapshot.error}',
-                    style: const TextStyle(color: Colors.red, fontSize: 14),
-                  );
-                }
-
-                if (!snapshot.hasData) {
+                if (snapshot.hasError || !snapshot.hasData) {
                   return const Text(
-                    'No analysis available',
-                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                    'Loading analysis...',
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
                   );
                 }
 
                 final analysis = snapshot.data!;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple.withOpacity(0.05),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: Colors.deepPurple.withOpacity(0.2),
-                        ),
-                      ),
-                      child: Text(
-                        analysis,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          height: 1.6,
-                          color: Colors.black87,
-                        ),
-                      ),
+                return Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple.withOpacity(0.05),
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(
+                      color: Colors.deepPurple.withOpacity(0.2),
                     ),
-                  ],
+                  ),
+                  child: Text(
+                    analysis,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      height: 1.5,
+                      color: Colors.black87,
+                    ),
+                  ),
                 );
               },
             ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> _buildCommentaryList() {
+    final commentaries = MatchCommentaryGenerator.generateCommentary(widget.prediction);
+
+    return commentaries.map((commentary) {
+      final color = commentary.teamName == widget.prediction.homeTeamName
+          ? Colors.blue
+          : Colors.orange;
+
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            border: Border(
+              left: BorderSide(
+                color: color,
+                width: 3,
+              ),
+            ),
+            color: color.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      commentary.toString(),
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: color,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      commentary.action,
+                      style: const TextStyle(
+                        fontSize: 9,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+              Text(
+                commentary.description,
+                style: const TextStyle(
+                  fontSize: 12,
+                  height: 1.4,
+                  color: Colors.black87,
+                ),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      );
+    }).toList();
   }
 
   Widget _buildScoreCard() {
@@ -826,24 +1088,25 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
   });
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.position == 'GK').first;
+    final gk = team.players.where((p) => p.position == 'GK').toList();
     final defenders = team.players.where((p) => p.position == 'DF').toList();
     final midfielders = team.players.where((p) => p.position == 'MF').toList();
-    final forwards = team.players.where((p) => p.position == 'ST').toList();
+    final forwards = team.players.where((p) => p.position == 'FW').toList();
 
-    return [
-      {'name': gk.name},
-      {'name': defenders.isNotEmpty ? defenders[0].name : ''},
-      {'name': defenders.length > 1 ? defenders[1].name : ''},
-      {'name': defenders.length > 2 ? defenders[2].name : ''},
-      {'name': defenders.length > 3 ? defenders[3].name : ''},
-      {'name': midfielders.isNotEmpty ? midfielders[0].name : ''},
-      {'name': midfielders.length > 1 ? midfielders[1].name : ''},
-      {'name': midfielders.length > 2 ? midfielders[2].name : ''},
-      {'name': forwards.isNotEmpty ? forwards[0].name : ''},
-      {'name': forwards.length > 1 ? forwards[1].name : ''},
-      {'name': forwards.length > 2 ? forwards[2].name : ''},
-    ];
+    final players = <Map<String, String>>[];
+
+    if (gk.isNotEmpty) players.add({'name': gk[0].name});
+    for (int i = 0; i < 4 && i < defenders.length; i++) {
+      players.add({'name': defenders[i].name});
+    }
+    for (int i = 0; i < 3 && i < midfielders.length; i++) {
+      players.add({'name': midfielders[i].name});
+    }
+    for (int i = 0; i < 3 && i < forwards.length; i++) {
+      players.add({'name': forwards[i].name});
+    }
+
+    return players;
   }
 
   @override
