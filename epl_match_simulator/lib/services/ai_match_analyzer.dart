@@ -11,9 +11,7 @@ class AiMatchAnalyzer {
   static const String _apiVersion = '2024-06-01';
 
   static Future<String> analyzeMatch(MatchPrediction prediction) async {
-    // Check if API key is configured
     if (_apiKey.isEmpty) {
-      // API key not set - use fallback analysis
       return _generateFallbackAnalysis(prediction);
     }
 

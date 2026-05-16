@@ -4,8 +4,12 @@ import 'screens/team_selection_screen.dart';
 import 'screens/league_table_screen.dart';
 import 'screens/splash_screen.dart';
 import 'services/team_data_loader.dart';
+import 'services/ai_match_predictor.dart';
 
-void main() {
+void main() async {
+  // Flutter Web では .env ファイルの読み込みをスキップ
+  // Vercel の環境変数が自動的に使用されます
+  await AIMatchPredictor.initialize();
   runApp(const MyApp());
 }
 

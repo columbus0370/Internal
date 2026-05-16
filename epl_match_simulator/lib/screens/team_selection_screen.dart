@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/team.dart';
+import '../models/match_prediction.dart';
 import '../services/prediction_engine.dart';
+import '../services/ai_match_predictor.dart';
+import '../widgets/match_simulation_loading.dart';
 import 'prediction_result_screen.dart';
 
 class TeamSelectionScreen extends StatefulWidget {
@@ -58,15 +61,7 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: homeTeam != null && awayTeam != null && homeTeam != awayTeam
-                  ? () {
-                      final prediction = PredictionEngine.predictMatch(homeTeam!, awayTeam!);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PredictionResultScreen(prediction: prediction),
-                        ),
-                      );
-                    }
+                  ? () => _predictMatch(context, homeTeam!, awayTeam!)
                   : null,
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -182,5 +177,62 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
         ],
       ),
     );
+  }
+
+  void _predictMatch(BuildContext context, Team homeTeam, Team awayTeam) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => MatchSimulationLoading(
+        homeTeam: homeTeam.name,
+        awayTeam: awayTeam.name,
+      ),
+    );
+
+    try {
+      final result = await AIMatchPredictor.predictMatch(homeTeam, awayTeam);
+
+      if (!context.mounted) return;
+      Navigator.of(context).pop();
+
+      final topScorer = result.goals.isNotEmpty
+          ? result.goals.first.scorer
+          : homeTeam.players.isNotEmpty
+              ? homeTeam.players.first.name
+              : 'Unknown';
+
+      final prediction = MatchPrediction(
+        homeTeamName: homeTeam.name,
+        awayTeamName: awayTeam.name,
+        homeScore: result.homeScore,
+        awayScore: result.awayScore,
+        possession: result.stats.homePossession,
+        homeWinProbability: 0.0,
+        drawProbability: 0.0,
+        awayWinProbability: 0.0,
+        topScorer: topScorer,
+        mom: result.homeScore > result.awayScore ? result.homeTeamMom : result.awayTeamMom,
+        goals: result.goals,
+        homeTeam: homeTeam,
+        awayTeam: awayTeam,
+      );
+
+      if (!context.mounted) return;
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => PredictionResultScreen(prediction: prediction),
+        ),
+      );
+    } catch (e) {
+      if (!context.mounted) return;
+      Navigator.of(context).pop();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: ${e.toString()}'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 }
