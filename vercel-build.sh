@@ -1,96 +1,119 @@
 #!/bin/bash
 
-set -e  # Exit on any error
+# Vercel Build Script v3.0 - Production Ready
+# This script prepares pre-built Flutter Web assets and Serverless Functions for Vercel
+# NO FLUTTER INSTALLATION OR COMPILATION OCCURS HERE
+
+set -e
+trap 'echo "ERROR: Build failed at line $LINENO"; exit 1' ERR
 
 echo "=========================================="
-echo "=== Vercel Build Script (v2.0) ==="
+echo "=== Vercel Build Script (v3.0) ==="
 echo "=========================================="
 echo "Working directory: $(pwd)"
+echo "Timestamp: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 echo ""
 
-# ===== STEP 1: Verify project structure =====
+# CRITICAL: Remove any Flutter-related environment variables that might interfere
+unset FLUTTER_HOME
+unset FLUTTER_SDK
+unset PATH_WITH_FLUTTER
+
+# ===== STEP 1: Verify basic project structure =====
 echo "[STEP 1] Verifying project structure..."
 
 if [ ! -d "epl_match_simulator" ]; then
-  echo "ERROR: epl_match_simulator directory not found!"
-  exit 1
-fi
-
-if [ ! -f "epl_match_simulator/pubspec.yaml" ]; then
-  echo "ERROR: pubspec.yaml not found!"
+  echo "ERROR: epl_match_simulator directory not found"
   exit 1
 fi
 
 if [ ! -d "api" ] || [ ! -f "api/predictMatch.js" ]; then
-  echo "ERROR: api/predictMatch.js not found!"
+  echo "ERROR: api/predictMatch.js not found"
   exit 1
 fi
 
 echo "✓ Project structure verified"
 echo ""
 
-# ===== STEP 2: Use pre-built web assets (CRITICAL) =====
-echo "[STEP 2] Checking for pre-built Flutter Web assets..."
+# ===== STEP 2: Verify pre-built Flutter Web assets =====
+echo "[STEP 2] Verifying pre-built Flutter Web assets..."
 
-cd epl_match_simulator
-
-if [ ! -d "build/web" ]; then
-  echo "ERROR: build/web directory not found!"
+if [ ! -d "epl_match_simulator/build/web" ]; then
+  echo "ERROR: Pre-built web assets not found!"
+  echo "This deployment requires pre-built Flutter Web assets."
   echo ""
-  echo "SOLUTION: Build locally and commit to git:"
-  echo "  1. flutter pub get"
-  echo "  2. flutter build web --release"
-  echo "  3. git add epl_match_simulator/build/web/"
-  echo "  4. git commit -m 'Add pre-built web assets'"
-  echo "  5. git push"
+  echo "FIX: Build locally and commit to git:"
+  echo "  1. cd epl_match_simulator"
+  echo "  2. flutter clean && flutter pub get"
+  echo "  3. flutter build web --release"
+  echo "  4. cd .."
+  echo "  5. git add epl_match_simulator/build/web/"
+  echo "  6. git commit -m 'Add pre-built Flutter Web assets for Vercel'"
+  echo "  7. git push"
+  echo ""
   exit 1
 fi
 
-# Verify build output has essential files
-REQUIRED_FILES=("index.html" "main.dart.js" "flutter.js")
-for file in "${REQUIRED_FILES[@]}"; do
-  if [ ! -f "build/web/$file" ]; then
-    echo "ERROR: Required file missing: build/web/$file"
+# Verify critical files exist
+CRITICAL_FILES=("epl_match_simulator/build/web/index.html" \
+                "epl_match_simulator/build/web/main.dart.js" \
+                "epl_match_simulator/build/web/flutter.js")
+
+for file in "${CRITICAL_FILES[@]}"; do
+  if [ ! -f "$file" ]; then
+    echo "ERROR: Critical file missing: $file"
     exit 1
   fi
 done
 
-echo "✓ Pre-built web assets found"
-echo "  - Contains: $(ls build/web | wc -l) files"
-echo "  - Size: $(du -sh build/web | cut -f1)"
+WEB_ASSET_COUNT=$(find epl_match_simulator/build/web -type f | wc -l)
+WEB_ASSET_SIZE=$(du -sh epl_match_simulator/build/web | cut -f1)
+
+echo "✓ Pre-built web assets verified"
+echo "  - Files: $WEB_ASSET_COUNT"
+echo "  - Size: $WEB_ASSET_SIZE"
 echo "  - Key files:"
-ls -1 build/web | grep -E "\.html|\.js" | head -5 | sed 's/^/    - /'
+echo "    • index.html"
+echo "    • main.dart.js (Flutter app)"
+echo "    • flutter.js (Framework)"
 echo ""
 
-# ===== STEP 3: Verify API layer =====
+# ===== STEP 3: Verify Serverless Function =====
 echo "[STEP 3] Verifying Serverless Functions..."
 
-cd ..
-
-if [ -f "api/predictMatch.js" ]; then
-  echo "✓ API function found: api/predictMatch.js"
-else
-  echo "ERROR: api/predictMatch.js not found!"
+if [ ! -f "api/predictMatch.js" ]; then
+  echo "ERROR: api/predictMatch.js not found"
   exit 1
 fi
 
+API_FILE_SIZE=$(stat -f%z api/predictMatch.js 2>/dev/null || stat -c%s api/predictMatch.js 2>/dev/null)
+
+echo "✓ API function verified: api/predictMatch.js ($API_FILE_SIZE bytes)"
 echo ""
 
-# ===== STEP 4: Final verification =====
+# ===== STEP 4: Final checks =====
 echo "[STEP 4] Final verification..."
-echo "✓ Flutter Web assets: $(test -d epl_match_simulator/build/web && echo 'READY' || echo 'MISSING')"
-echo "✓ API function: $(test -f api/predictMatch.js && echo 'READY' || echo 'MISSING')"
+
+WEB_DIR_EXISTS=$(test -d epl_match_simulator/build/web && echo "✓" || echo "✗")
+API_FILE_EXISTS=$(test -f api/predictMatch.js && echo "✓" || echo "✗")
+
+echo "$WEB_DIR_EXISTS Flutter Web assets ready"
+echo "$API_FILE_EXISTS API function ready"
 echo ""
 
+# ===== SUCCESS =====
 echo "=========================================="
-echo "=== Build Complete ==="
+echo "=== Build Completed Successfully ==="
 echo "=========================================="
 echo ""
-echo "Output structure:"
-echo "  - Frontend: epl_match_simulator/build/web/"
-echo "  - API: api/predictMatch.js"
+echo "Deployment Summary:"
+echo "  Frontend:  epl_match_simulator/build/web/ ($WEB_ASSET_SIZE, $WEB_ASSET_COUNT files)"
+echo "  API:       api/predictMatch.js"
 echo ""
-echo "Vercel will:"
-echo "  1. Serve index.html for all routes (SPA)"
-echo "  2. Route /api/* to Serverless Functions"
+echo "Vercel Configuration:"
+echo "  • Output directory: epl_match_simulator/build/web/"
+echo "  • Static files will be served"
+echo "  • /api/* routes to Serverless Functions"
+echo "  • All other routes → index.html (SPA)"
 echo ""
+exit 0
