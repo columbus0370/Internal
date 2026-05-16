@@ -17,7 +17,18 @@ if [ ! -f "pubspec.yaml" ]; then
   exit 1
 fi
 
-echo "=== Checking if Flutter is available ==="
+# プリビルド済みアセットを確認
+if [ -d "build/web" ]; then
+  echo "=== Using pre-built Flutter Web assets ==="
+  echo "SUCCESS: build/web directory found"
+  echo "Contents:"
+  ls -la build/web | head -15
+  echo ""
+  echo "=== Build completed successfully (using pre-built assets) ==="
+  exit 0
+fi
+
+echo "=== Pre-built assets not found. Checking if Flutter is available ==="
 if ! command -v flutter &> /dev/null; then
   echo "Flutter not found, attempting to download..."
 
@@ -31,15 +42,26 @@ if ! command -v flutter &> /dev/null; then
     echo "Downloading Flutter $FLUTTER_VERSION..."
     DOWNLOAD_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
 
-    curl -L "$DOWNLOAD_URL" -o flutter.tar.xz 2>&1
+    # タイムアウト設定を追加し、より堅牢なダウンロード処理
+    echo "Download URL: $DOWNLOAD_URL"
+    curl -L --max-time 600 --connect-timeout 30 "$DOWNLOAD_URL" -o flutter.tar.xz 2>&1
 
     if [ $? -ne 0 ] || [ ! -f "flutter.tar.xz" ]; then
       echo "ERROR: Failed to download Flutter SDK from $DOWNLOAD_URL"
+      echo "Note: Try rebuilding locally and committing build/web to git"
+      exit 1
+    fi
+
+    # ファイルタイプ検証
+    FILE_TYPE=$(file flutter.tar.xz | grep -o "XZ compressed data")
+    if [ -z "$FILE_TYPE" ]; then
+      echo "ERROR: Downloaded file is not valid XZ compressed data"
+      file flutter.tar.xz
       exit 1
     fi
 
     echo "Extracting Flutter SDK..."
-    tar -xf flutter.tar.xz
+    tar -xf flutter.tar.xz 2>&1
 
     if [ $? -ne 0 ]; then
       echo "ERROR: Failed to extract Flutter SDK"

@@ -10,12 +10,18 @@ node_modules/
 .env.*.local
 
 # Flutter
-epl_match_simulator/build/
+# Note: epl_match_simulator/build/web is intentionally NOT ignored
+# It contains pre-built assets needed for Vercel deployment
 epl_match_simulator/.dart_tool/
 epl_match_simulator/.flutter-plugins
 epl_match_simulator/.flutter-plugins-dependencies
 epl_match_simulator/.packages
 epl_match_simulator/pubspec.lock
+epl_match_simulator/build/ios/
+epl_match_simulator/build/macos/
+epl_match_simulator/build/android/
+epl_match_simulator/build/windows/
+epl_match_simulator/build/linux/
 
 # IDE
 .vscode/
