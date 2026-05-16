@@ -201,8 +201,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             const Text(
               'Starting Lineup',
@@ -213,22 +212,24 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               aspectRatio: 50 / 150,
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green[700],
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2,
+                  return RepaintBoundary(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green[700],
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 2,
+                        ),
                       ),
-                    ),
-                    child: CustomPaint(
-                      painter: SoccerFieldPainter(),
-                      child: Stack(
-                        children: [
-                          ..._buildAwayPlayerPositionsHalf(constraints),
-                          ..._buildHomePlayerPositionsHalf(constraints),
-                        ],
+                      child: CustomPaint(
+                        painter: SoccerFieldPainter(),
+                        child: Stack(
+                          children: [
+                            ..._buildAwayPlayerPositionsHalf(constraints),
+                            ..._buildHomePlayerPositionsHalf(constraints),
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -244,7 +245,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                     Container(
                       width: 12,
                       height: 12,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.orange,
                         shape: BoxShape.circle,
                       ),
@@ -266,7 +267,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                     Container(
                       width: 12,
                       height: 12,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.blue,
                         shape: BoxShape.circle,
                       ),
@@ -511,74 +512,71 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Text('Match Statistics', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 8),
-              // Team name headers
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      widget.prediction.homeTeamName,
-                      style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.blue),
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+        child: ListView(
+          children: [
+            const Text('Match Statistics', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            // Team name headers
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    widget.prediction.homeTeamName,
+                    style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.blue),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(width: 60),
-                  Expanded(
-                    child: Text(
-                      widget.prediction.awayTeamName,
-                      style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.orange),
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                ),
+                const SizedBox(width: 60),
+                Expanded(
+                  child: Text(
+                    widget.prediction.awayTeamName,
+                    style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.orange),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ],
-              ),
-              const SizedBox(height: 12),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
 
-              _buildStatSection('⚽ Attack', [
-                _buildStatBarRow('Goals', stats.homeGoals.toString(), stats.awayGoals.toString(), stats.homeGoals.toDouble(), stats.awayGoals.toDouble()),
-                _buildStatBarRow('Shots', stats.homeShots.toString(), stats.awayShots.toString(), stats.homeShots.toDouble(), stats.awayShots.toDouble()),
-                _buildStatBarRow('On Target', stats.homeShotsOnTarget.toString(), stats.awayShotsOnTarget.toString(), stats.homeShotsOnTarget.toDouble(), stats.awayShotsOnTarget.toDouble()),
-                _buildStatBarRow('xG', stats.homeXG.toStringAsFixed(2), stats.awayXG.toStringAsFixed(2), stats.homeXG, stats.awayXG),
-                _buildStatBarRow('Dribbles', stats.homeDribbles.toString(), stats.awayDribbles.toString(), stats.homeDribbles.toDouble(), stats.awayDribbles.toDouble()),
-                _buildStatBarRow('Corners', stats.homeCorners.toString(), stats.awayCorners.toString(), stats.homeCorners.toDouble(), stats.awayCorners.toDouble()),
-              ]),
+            _buildStatSection('⚽ Attack', [
+              _buildStatBarRow('Goals', stats.homeGoals.toString(), stats.awayGoals.toString(), stats.homeGoals.toDouble(), stats.awayGoals.toDouble()),
+              _buildStatBarRow('Shots', stats.homeShots.toString(), stats.awayShots.toString(), stats.homeShots.toDouble(), stats.awayShots.toDouble()),
+              _buildStatBarRow('On Target', stats.homeShotsOnTarget.toString(), stats.awayShotsOnTarget.toString(), stats.homeShotsOnTarget.toDouble(), stats.awayShotsOnTarget.toDouble()),
+              _buildStatBarRow('xG', stats.homeXG.toStringAsFixed(2), stats.awayXG.toStringAsFixed(2), stats.homeXG, stats.awayXG),
+              _buildStatBarRow('Dribbles', stats.homeDribbles.toString(), stats.awayDribbles.toString(), stats.homeDribbles.toDouble(), stats.awayDribbles.toDouble()),
+              _buildStatBarRow('Corners', stats.homeCorners.toString(), stats.awayCorners.toString(), stats.homeCorners.toDouble(), stats.awayCorners.toDouble()),
+            ]),
 
-              const SizedBox(height: 12),
+            const SizedBox(height: 12),
 
-              _buildStatSection('🎯 Possession & Passing', [
-                _buildStatBarRow('Possession', '${stats.homePossession.toStringAsFixed(1)}%', '${stats.awayPossession.toStringAsFixed(1)}%', stats.homePossession, stats.awayPossession),
-                _buildStatBarRow('Passes', stats.homePasses.toString(), stats.awayPasses.toString(), stats.homePasses.toDouble(), stats.awayPasses.toDouble()),
-                _buildStatBarRow('Pass Accuracy', '${stats.homePassAccuracy.toStringAsFixed(1)}%', '${stats.awayPassAccuracy.toStringAsFixed(1)}%', stats.homePassAccuracy, stats.awayPassAccuracy),
-              ]),
+            _buildStatSection('🎯 Possession & Passing', [
+              _buildStatBarRow('Possession', '${stats.homePossession.toStringAsFixed(1)}%', '${stats.awayPossession.toStringAsFixed(1)}%', stats.homePossession, stats.awayPossession),
+              _buildStatBarRow('Passes', stats.homePasses.toString(), stats.awayPasses.toString(), stats.homePasses.toDouble(), stats.awayPasses.toDouble()),
+              _buildStatBarRow('Pass Accuracy', '${stats.homePassAccuracy.toStringAsFixed(1)}%', '${stats.awayPassAccuracy.toStringAsFixed(1)}%', stats.homePassAccuracy, stats.awayPassAccuracy),
+            ]),
 
-              const SizedBox(height: 12),
+            const SizedBox(height: 12),
 
-              _buildStatSection('🛡️ Defence', [
-                _buildStatBarRow('Tackles', stats.homeTackles.toString(), stats.awayTackles.toString(), stats.homeTackles.toDouble(), stats.awayTackles.toDouble()),
-                _buildStatBarRow('Aerial Duels', stats.homeAerialDuels.toString(), stats.awayAerialDuels.toString(), stats.homeAerialDuels.toDouble(), stats.awayAerialDuels.toDouble()),
-                _buildStatBarRow('Fouls', stats.homeFouls.toString(), stats.awayFouls.toString(), stats.homeFouls.toDouble(), stats.awayFouls.toDouble()),
-              ]),
+            _buildStatSection('🛡️ Defence', [
+              _buildStatBarRow('Tackles', stats.homeTackles.toString(), stats.awayTackles.toString(), stats.homeTackles.toDouble(), stats.awayTackles.toDouble()),
+              _buildStatBarRow('Aerial Duels', stats.homeAerialDuels.toString(), stats.awayAerialDuels.toString(), stats.homeAerialDuels.toDouble(), stats.awayAerialDuels.toDouble()),
+              _buildStatBarRow('Fouls', stats.homeFouls.toString(), stats.awayFouls.toString(), stats.homeFouls.toDouble(), stats.awayFouls.toDouble()),
+            ]),
 
-              const SizedBox(height: 12),
+            const SizedBox(height: 12),
 
-              _buildStatSection('🟨 Discipline', [
-                _buildStatBarRow('Yellow Cards', stats.homeYellowCards.toString(), stats.awayYellowCards.toString(), stats.homeYellowCards.toDouble(), stats.awayYellowCards.toDouble()),
-                _buildStatBarRow('Red Cards', stats.homeRedCards.toString(), stats.awayRedCards.toString(), stats.homeRedCards.toDouble(), stats.awayRedCards.toDouble()),
-              ]),
+            _buildStatSection('🟨 Discipline', [
+              _buildStatBarRow('Yellow Cards', stats.homeYellowCards.toString(), stats.awayYellowCards.toString(), stats.homeYellowCards.toDouble(), stats.awayYellowCards.toDouble()),
+              _buildStatBarRow('Red Cards', stats.homeRedCards.toString(), stats.awayRedCards.toString(), stats.homeRedCards.toDouble(), stats.awayRedCards.toDouble()),
+            ]),
 
-              const SizedBox(height: 12),
+            const SizedBox(height: 12),
 
-              _buildRatingSection(stats),
-            ],
-          ),
+            _buildRatingSection(stats),
+          ],
         ),
       ),
     );
@@ -721,70 +719,67 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                '試合実況 - Match Commentary',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 12),
-              ..._buildCommentaryList(),
-              const SizedBox(height: 18),
-              const Divider(thickness: 1.5),
-              const SizedBox(height: 12),
-              const Text(
-                'AI Tactical Analysis',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              FutureBuilder<String>(
-                future: AiMatchAnalyzer.analyzeMatch(widget.prediction),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const SizedBox(
-                      height: 60,
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.deepPurple,
-                          strokeWidth: 2,
-                        ),
-                      ),
-                    );
-                  }
-
-                  if (snapshot.hasError || !snapshot.hasData) {
-                    return const Text(
-                      'Loading analysis...',
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
-                    );
-                  }
-
-                  final analysis = snapshot.data!;
-                  return Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurple.withOpacity(0.05),
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(
-                        color: Colors.deepPurple.withOpacity(0.2),
-                      ),
-                    ),
-                    child: Text(
-                      analysis,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        height: 1.5,
-                        color: Colors.black87,
+        child: ListView(
+          children: [
+            const Text(
+              '試合実況 - Match Commentary',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            ..._buildCommentaryList(),
+            const SizedBox(height: 18),
+            const Divider(thickness: 1.5),
+            const SizedBox(height: 12),
+            const Text(
+              'AI Tactical Analysis',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            FutureBuilder<String>(
+              future: AiMatchAnalyzer.analyzeMatch(widget.prediction),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const SizedBox(
+                    height: 60,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.deepPurple,
+                        strokeWidth: 2,
                       ),
                     ),
                   );
-                },
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
+                }
+
+                if (snapshot.hasError || !snapshot.hasData) {
+                  return const Text(
+                    'Loading analysis...',
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                  );
+                }
+
+                final analysis = snapshot.data!;
+                return Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple.withOpacity(0.05),
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(
+                      color: Colors.deepPurple.withOpacity(0.2),
+                    ),
+                  ),
+                  child: Text(
+                    analysis,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      height: 1.5,
+                      color: Colors.black87,
+                    ),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+          ],
         ),
       ),
     );
