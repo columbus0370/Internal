@@ -39,6 +39,9 @@ jobs:
         working-directory: epl_match_simulator
         run: flutter build web --release --web-renderer html --base-href=/Internal/ --dart-define=CLAUDE_API_KEY=${{ secrets.CLAUDE_API_KEY }}
 
+      - name: List build output
+        run: ls -la epl_match_simulator/build/web || echo "Directory does not exist"
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
