@@ -50,9 +50,9 @@ class _MatchSimulationLoadingState extends State<MatchSimulationLoading>
 
   List<String> _generateEvents() {
     final events = <String>[];
-    for (int i = 0; i < 90; i += 5) {
+    for (int i = 0; i < 90; i += 15) {
       final pattern = _eventPatterns[i % _eventPatterns.length];
-      events.add(pattern.replaceAll('{m}', (i + 5).toString()));
+      events.add(pattern.replaceAll('{m}', (i + 15).toString()));
     }
     return events;
   }
@@ -62,8 +62,8 @@ class _MatchSimulationLoadingState extends State<MatchSimulationLoading>
       setState(() {
         if (_currentMinute < 90) {
           _currentMinute++;
-          if (_currentMinute % 5 == 0) {
-            final index = (_currentMinute ~/ 5) - 1;
+          if (_currentMinute % 15 == 0) {
+            final index = (_currentMinute ~/ 15) - 1;
             if (index < _events.length) {
               _currentEvent = _events[index];
             }
