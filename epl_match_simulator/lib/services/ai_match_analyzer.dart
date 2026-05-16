@@ -7,11 +7,13 @@ class AiMatchAnalyzer {
       defaultValue: '');
   static const String _apiEndpoint =
       'https://api.anthropic.com/v1/messages';
-  static const String _model = 'claude-opus-4-7';
+  static const String _model = 'claude-sonnet-4-6';
   static const String _apiVersion = '2024-06-01';
 
   static Future<String> analyzeMatch(MatchPrediction prediction) async {
+    // Check if API key is configured
     if (_apiKey.isEmpty) {
+      // API key not set - use fallback analysis
       return _generateFallbackAnalysis(prediction);
     }
 
@@ -27,7 +29,7 @@ class AiMatchAnalyzer {
         },
         body: jsonEncode({
           'model': _model,
-          'max_tokens': 1024,
+          'max_tokens': 512,
           'messages': [
             {
               'role': 'user',
