@@ -79,11 +79,11 @@ fi
 
 echo ""
 echo "=== Building Flutter Web ==="
-flutter build web --release --no-fast-start
+flutter build web --release
 
 if [ $? -ne 0 ]; then
   echo "ERROR: Flutter build failed"
-  exit 1
+  exit 64
 fi
 
 echo ""
