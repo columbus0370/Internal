@@ -202,6 +202,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             const Text(
               'Starting Lineup',
@@ -454,24 +456,25 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
   }
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.position == 'GK').first;
+    final gk = team.players.where((p) => p.position == 'GK').toList();
     final defenders = team.players.where((p) => p.position == 'DF').toList();
     final midfielders = team.players.where((p) => p.position == 'MF').toList();
-    final forwards = team.players.where((p) => p.position == 'ST').toList();
+    final forwards = team.players.where((p) => p.position == 'FW').toList();
 
-    return [
-      {'name': gk.name},
-      {'name': defenders.isNotEmpty ? defenders[0].name : ''},
-      {'name': defenders.length > 1 ? defenders[1].name : ''},
-      {'name': defenders.length > 2 ? defenders[2].name : ''},
-      {'name': defenders.length > 3 ? defenders[3].name : ''},
-      {'name': midfielders.isNotEmpty ? midfielders[0].name : ''},
-      {'name': midfielders.length > 1 ? midfielders[1].name : ''},
-      {'name': midfielders.length > 2 ? midfielders[2].name : ''},
-      {'name': forwards.isNotEmpty ? forwards[0].name : ''},
-      {'name': forwards.length > 1 ? forwards[1].name : ''},
-      {'name': forwards.length > 2 ? forwards[2].name : ''},
-    ];
+    final players = <Map<String, String>>[];
+
+    if (gk.isNotEmpty) players.add({'name': gk[0].name});
+    for (int i = 0; i < 4 && i < defenders.length; i++) {
+      players.add({'name': defenders[i].name});
+    }
+    for (int i = 0; i < 3 && i < midfielders.length; i++) {
+      players.add({'name': midfielders[i].name});
+    }
+    for (int i = 0; i < 3 && i < forwards.length; i++) {
+      players.add({'name': forwards[i].name});
+    }
+
+    return players;
   }
 
   List<Map<String, double>> _getHomeHalfPositions() {
@@ -513,6 +516,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             const Text('Match Statistics', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
@@ -720,6 +725,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             const Text(
               '試合実況 - Match Commentary',
@@ -1081,24 +1088,25 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
   });
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.position == 'GK').first;
+    final gk = team.players.where((p) => p.position == 'GK').toList();
     final defenders = team.players.where((p) => p.position == 'DF').toList();
     final midfielders = team.players.where((p) => p.position == 'MF').toList();
-    final forwards = team.players.where((p) => p.position == 'ST').toList();
+    final forwards = team.players.where((p) => p.position == 'FW').toList();
 
-    return [
-      {'name': gk.name},
-      {'name': defenders.isNotEmpty ? defenders[0].name : ''},
-      {'name': defenders.length > 1 ? defenders[1].name : ''},
-      {'name': defenders.length > 2 ? defenders[2].name : ''},
-      {'name': defenders.length > 3 ? defenders[3].name : ''},
-      {'name': midfielders.isNotEmpty ? midfielders[0].name : ''},
-      {'name': midfielders.length > 1 ? midfielders[1].name : ''},
-      {'name': midfielders.length > 2 ? midfielders[2].name : ''},
-      {'name': forwards.isNotEmpty ? forwards[0].name : ''},
-      {'name': forwards.length > 1 ? forwards[1].name : ''},
-      {'name': forwards.length > 2 ? forwards[2].name : ''},
-    ];
+    final players = <Map<String, String>>[];
+
+    if (gk.isNotEmpty) players.add({'name': gk[0].name});
+    for (int i = 0; i < 4 && i < defenders.length; i++) {
+      players.add({'name': defenders[i].name});
+    }
+    for (int i = 0; i < 3 && i < midfielders.length; i++) {
+      players.add({'name': midfielders[i].name});
+    }
+    for (int i = 0; i < 3 && i < forwards.length; i++) {
+      players.add({'name': forwards[i].name});
+    }
+
+    return players;
   }
 
   @override
