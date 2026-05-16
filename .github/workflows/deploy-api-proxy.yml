@@ -1,0 +1,24 @@
+name: Deploy API Proxy to Railway
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'api-proxy/**'
+      - '.github/workflows/deploy-api-proxy.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: |
+          curl -L https://railway.app/install.sh | bash
+          cd api-proxy
+          railway up --detach
