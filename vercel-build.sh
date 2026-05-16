@@ -23,16 +23,38 @@ if ! command -v flutter &> /dev/null; then
 
   if [ ! -d "../_flutter" ]; then
     echo "Downloading Flutter SDK..."
-    # curl を使用してダウンロード（git が使えない場合の代替）
     cd ..
-    curl -L https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.0-stable.tar.xz -o flutter.tar.xz
-    if [ $? -ne 0 ]; then
-      echo "ERROR: Failed to download Flutter SDK"
+
+    # 最新の stable Flutter リリースを取得
+    echo "Fetching latest Flutter stable release..."
+    LATEST_RELEASE=$(curl -s https://api.github.com/repos/flutter/flutter/releases | grep -o '"tag_name": "[^"]*"' | head -1 | cut -d'"' -f4)
+
+    if [ -z "$LATEST_RELEASE" ]; then
+      # API 失敗時のフォールバック
+      echo "Using fallback Flutter version..."
+      LATEST_RELEASE="3.24.0"
+    fi
+
+    echo "Downloading Flutter $LATEST_RELEASE..."
+    DOWNLOAD_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${LATEST_RELEASE}-stable.tar.xz"
+
+    curl -L "$DOWNLOAD_URL" -o flutter.tar.xz 2>&1
+
+    if [ $? -ne 0 ] || [ ! -f "flutter.tar.xz" ]; then
+      echo "ERROR: Failed to download Flutter SDK from $DOWNLOAD_URL"
       exit 1
     fi
+
+    echo "Extracting Flutter SDK..."
     tar -xf flutter.tar.xz
+
+    if [ $? -ne 0 ]; then
+      echo "ERROR: Failed to extract Flutter SDK"
+      exit 1
+    fi
+
     mv flutter _flutter
-    rm flutter.tar.xz
+    rm -f flutter.tar.xz
     cd epl_match_simulator
   fi
 
