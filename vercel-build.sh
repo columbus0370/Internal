@@ -25,18 +25,11 @@ if ! command -v flutter &> /dev/null; then
     echo "Downloading Flutter SDK..."
     cd ..
 
-    # 最新の stable Flutter リリースを取得
-    echo "Fetching latest Flutter stable release..."
-    LATEST_RELEASE=$(curl -s https://api.github.com/repos/flutter/flutter/releases | grep -o '"tag_name": "[^"]*"' | head -1 | cut -d'"' -f4)
+    # Flutter バージョン 3.41.9 を使用（flutter_test との互換性が確認済み）
+    FLUTTER_VERSION="3.41.9"
 
-    if [ -z "$LATEST_RELEASE" ]; then
-      # API 失敗時のフォールバック
-      echo "Using fallback Flutter version..."
-      LATEST_RELEASE="3.24.0"
-    fi
-
-    echo "Downloading Flutter $LATEST_RELEASE..."
-    DOWNLOAD_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${LATEST_RELEASE}-stable.tar.xz"
+    echo "Downloading Flutter $FLUTTER_VERSION..."
+    DOWNLOAD_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
 
     curl -L "$DOWNLOAD_URL" -o flutter.tar.xz 2>&1
 
