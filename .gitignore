@@ -1,0 +1,32 @@
+# Vercel & Build
+.vercel
+build/
+_flutter/
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Flutter
+epl_match_simulator/build/
+epl_match_simulator/.dart_tool/
+epl_match_simulator/.flutter-plugins
+epl_match_simulator/.flutter-plugins-dependencies
+epl_match_simulator/.packages
+epl_match_simulator/pubspec.lock
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local development
+.env.local

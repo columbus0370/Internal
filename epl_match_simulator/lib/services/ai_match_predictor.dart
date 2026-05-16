@@ -1,7 +1,8 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import '../models/match_prediction.dart';
 import '../models/team.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MatchPredictionResult {
   final int homeScore;
@@ -141,16 +142,30 @@ class MatchStats {
 }
 
 class AIMatchPredictor {
-  static const String _proxyEndpoint = String.fromEnvironment('API_PROXY_URL', defaultValue: 'http://localhost:3000');
+  static late final Dio _dio;
+
+  static Future<void> initialize() async {
+    final apiBase = dotenv.env['API_BASE_URL'] ?? '';
+    final baseUrl = apiBase.isEmpty ? '' : apiBase;
+
+    _dio = Dio(
+      BaseOptions(
+        baseUrl: baseUrl,
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 60),
+        sendTimeout: const Duration(seconds: 30),
+        contentType: 'application/json',
+      ),
+    );
+  }
 
   static Future<MatchPredictionResult> predictMatch(Team homeTeam, Team awayTeam) async {
     try {
-      final response = await http.post(
-        Uri.parse('$_proxyEndpoint/api/predict-match'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
+      final url = '/api/predictMatch';
+
+      final response = await _dio.post(
+        url,
+        data: jsonEncode({
           'homeTeam': {
             'name': homeTeam.name,
             'attackPower': homeTeam.attackPower,
@@ -174,15 +189,37 @@ class AIMatchPredictor {
             }).toList(),
           },
         }),
+        options: Options(
+          validateStatus: (status) => status != null && status < 500,
+        ),
       );
 
-      if (response.statusCode == 200) {
-        final matchJson = jsonDecode(response.body);
-        return MatchPredictionResult.fromJson(matchJson);
-      } else {
-        final error = jsonDecode(response.body);
-        throw Exception('API Error: ${error['error'] ?? response.statusCode}');
+      if (response.statusCode != 200) {
+        final errorData = response.data is Map ? response.data : {};
+        throw Exception(
+          'API error: status ${response.statusCode}, message: ${errorData['error'] ?? 'Unknown error'}',
+        );
       }
+
+      if (response.data is! Map) {
+        throw Exception('Invalid response format');
+      }
+
+      final responseData = response.data as Map;
+
+      if (responseData['success'] != true) {
+        throw Exception('API error: ${responseData['error']}');
+      }
+
+      final data = responseData['data'];
+
+      if (data == null) {
+        throw Exception('Empty response data from API');
+      }
+
+      return MatchPredictionResult.fromJson(data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw Exception('Network error: ${e.message}');
     } catch (e) {
       rethrow;
     }
