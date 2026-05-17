@@ -1,0 +1,45 @@
+name: Deploy Flutter Web to GitHub Pages
+
+on:
+  push:
+    branches:
+      - claude/soccer-ai-app-ideas-4ZSuh
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to gh-pages
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          # Create gh-pages branch if it doesn't exist
+          git checkout --orphan gh-pages 2>/dev/null || git checkout gh-pages
+
+          # Remove old files
+          git rm -rf . || true
+
+          # Copy pre-built Flutter Web assets
+          cp -r epl_match_simulator/build/web/* .
+
+          # Add and commit
+          git add .
+          git commit -m "Deploy Flutter Web to GitHub Pages" || echo "No changes to commit"
+
+          # Force push to gh-pages
+          git push -f origin gh-pages
+
+      - name: Enable GitHub Pages
+        run: |
+          echo "GitHub Pages deployment prepared."
+          echo "Go to: Settings > Pages > Source > Deploy from a branch (gh-pages)"
