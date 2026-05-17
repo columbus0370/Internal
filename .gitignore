@@ -1,0 +1,31 @@
+# Vercel & Build
+.vercel
+build/
+_flutter/
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Flutter
+# Ignore all epl_match_simulator directories except build/web
+epl_match_simulator/**
+!epl_match_simulator/build/
+!epl_match_simulator/build/web/
+!epl_match_simulator/build/web/**
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local development
+.env.local
