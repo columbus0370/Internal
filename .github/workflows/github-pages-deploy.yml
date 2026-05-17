@@ -18,28 +18,45 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Verify Flutter Web assets exist
+        run: |
+          if [ ! -d "epl_match_simulator/build/web" ]; then
+            echo "ERROR: Flutter Web assets not found!"
+            exit 1
+          fi
+          echo "✓ Flutter Web assets found"
+          ls -la epl_match_simulator/build/web/ | head -20
+
       - name: Deploy to gh-pages
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
-          # Create gh-pages branch if it doesn't exist
-          git checkout --orphan gh-pages 2>/dev/null || git checkout gh-pages
+          # Copy assets to temporary location
+          mkdir -p /tmp/web-assets
+          cp -r epl_match_simulator/build/web/* /tmp/web-assets/
 
-          # Remove old files
-          git rm -rf . || true
+          # Create and switch to gh-pages branch
+          git checkout --orphan gh-pages
 
-          # Copy pre-built Flutter Web assets
-          cp -r epl_match_simulator/build/web/* .
+          # Remove all files from working directory
+          git rm -rf .
+
+          # Copy assets back
+          cp -r /tmp/web-assets/* .
+
+          # Create .nojekyll to skip Jekyll processing
+          touch .nojekyll
 
           # Add and commit
           git add .
-          git commit -m "Deploy Flutter Web to GitHub Pages" || echo "No changes to commit"
+          git commit -m "Deploy Flutter Web to GitHub Pages [$(date)]"
 
           # Force push to gh-pages
           git push -f origin gh-pages
 
-      - name: Enable GitHub Pages
+      - name: Deployment Summary
         run: |
-          echo "GitHub Pages deployment prepared."
-          echo "Go to: Settings > Pages > Source > Deploy from a branch (gh-pages)"
+          echo "✓ Deployment to gh-pages completed successfully"
+          echo "GitHub Pages URL will be available at:"
+          echo "https://columbus0370.github.io/Internal/"
