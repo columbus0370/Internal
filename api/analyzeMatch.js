@@ -1,6 +1,6 @@
 const CLAUDE_MODEL = "claude-sonnet-4-6";
 const CLAUDE_ENDPOINT = "https://api.anthropic.com/v1/messages";
-const ANTHROPIC_VERSION = "2024-06-01";
+const ANTHROPIC_VERSION = "2023-06-01";
 
 const SYSTEM_PROMPT = `あなたはサッカー試合分析の専門家です。試合予測データを受け取り、JSON形式で試合の詳細な分析を日本語で生成します。
 
