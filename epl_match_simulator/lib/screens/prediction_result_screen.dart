@@ -801,10 +801,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
           );
         }
 
-        final result = snapshot.data!;
-        final analysis = result['analysis'] as Map<String, dynamic>?;
-
-        if (analysis == null) {
+        final result = snapshot.data;
+        if (result == null || result['analysis'] == null) {
           return const Card(
             child: Padding(
               padding: EdgeInsets.all(16),
@@ -812,6 +810,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
             ),
           );
         }
+
+        final analysis = result['analysis'] as Map<String, dynamic>;
 
         return Card(
           child: Padding(
@@ -825,21 +825,45 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection('要約', analysis['summary'] as String?),
+                _buildAnalysisSection(
+                  '要約',
+                  _safeGetString(analysis, 'summary'),
+                ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection('ホームチーム分析', analysis['homeTeamAnalysis'] as String?),
+                _buildAnalysisSection(
+                  'ホームチーム分析',
+                  _safeGetString(analysis, 'homeTeamAnalysis'),
+                ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection('アウェイチーム分析', analysis['awayTeamAnalysis'] as String?),
+                _buildAnalysisSection(
+                  'アウェイチーム分析',
+                  _safeGetString(analysis, 'awayTeamAnalysis'),
+                ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection('戦術的ポイント', analysis['tacticalPoints'] as String?),
+                _buildAnalysisSection(
+                  '戦術的ポイント',
+                  _safeGetString(analysis, 'tacticalPoints'),
+                ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection('注目選手', analysis['keyPlayers'] as String?),
+                _buildAnalysisSection(
+                  '注目選手',
+                  _safeGetString(analysis, 'keyPlayers'),
+                ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection('ボール保持率分析', analysis['possessionAnalysis'] as String?),
+                _buildAnalysisSection(
+                  'ボール保持率分析',
+                  _safeGetString(analysis, 'possessionAnalysis'),
+                ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection('予測', analysis['prediction'] as String?),
+                _buildAnalysisSection(
+                  '予測',
+                  _safeGetString(analysis, 'prediction'),
+                ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection('リスク要因', analysis['risks'] as String?),
+                _buildAnalysisSection(
+                  'リスク要因',
+                  _safeGetString(analysis, 'risks'),
+                ),
                 const SizedBox(height: 16),
               ],
             ),
@@ -847,6 +871,12 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         );
       },
     );
+  }
+
+  String? _safeGetString(Map<String, dynamic> map, String key) {
+    final value = map[key];
+    if (value == null) return null;
+    return value is String ? value : value.toString();
   }
 
   Widget _buildAnalysisSection(String title, String? content) {

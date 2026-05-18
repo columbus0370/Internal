@@ -4,15 +4,21 @@ import 'dart:async';
 import '../models/match_prediction.dart';
 
 class MatchAnalysisService {
+  // ローカル開発用
   static const String _apiBaseUrl = 'http://localhost:3000';
-  static const String _productionUrl = 'https://epl-match-simulator.vercel.app';
+  // 本番環境用
+  static const String _productionUrl =
+      'https://epl-match-simulator.vercel.app';
   static const Duration _timeout = Duration(seconds: 60);
 
+  // 本番環境かどうかを判定（Vercel デプロイ時は VERCEL 環境変数が設定される）
+  static bool get _isProduction {
+    const isVercel = String.fromEnvironment('VERCEL', defaultValue: '');
+    return isVercel.isNotEmpty;
+  }
+
   static String get _apiUrl {
-    // ローカル環境では localhost:3000 を使用
-    // 本番環境では Vercel URL を使用
-    const isProduction = String.fromEnvironment('FLUTTER_APP_ENV') == 'production';
-    return isProduction ? _productionUrl : _apiBaseUrl;
+    return _isProduction ? _productionUrl : _apiBaseUrl;
   }
 
   static Future<Map<String, dynamic>> analyzeMatch(MatchPrediction prediction) async {
