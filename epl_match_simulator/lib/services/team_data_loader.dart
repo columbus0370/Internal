@@ -16,6 +16,7 @@ class TeamDataLoader {
           return Player(
             name: playerData['name'] as String,
             position: playerData['position'] as String,
+            subPosition: playerData['subPosition'] as String? ?? playerData['position'] as String,
             overallRating: playerData['overallRating'] as int,
             attackRating: playerData['attackRating'] as int,
             defenseRating: playerData['defenseRating'] as int,

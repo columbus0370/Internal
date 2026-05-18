@@ -25,6 +25,7 @@ class Team {
 class Player {
   final String name;
   final String position;
+  final String subPosition;
   final int overallRating;
   final int attackRating;
   final int defenseRating;
@@ -33,6 +34,7 @@ class Player {
   Player({
     required this.name,
     required this.position,
+    required this.subPosition,
     required this.overallRating,
     required this.attackRating,
     required this.defenseRating,

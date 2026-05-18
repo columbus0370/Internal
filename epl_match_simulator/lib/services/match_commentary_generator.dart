@@ -159,6 +159,7 @@ class MatchCommentaryGenerator {
               orElse: () => Player(
                 name: 'GK',
                 position: 'GK',
+                subPosition: 'GK',
                 overallRating: 80,
                 attackRating: 20,
                 defenseRating: 80,
@@ -170,6 +171,7 @@ class MatchCommentaryGenerator {
               orElse: () => Player(
                 name: 'GK',
                 position: 'GK',
+                subPosition: 'GK',
                 overallRating: 80,
                 attackRating: 20,
                 defenseRating: 80,
