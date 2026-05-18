@@ -32,7 +32,6 @@ echo "Flutter version:"
 flutter --version
 
 echo "Building Flutter Web..."
-cd epl_match_simulator
 flutter clean
 flutter pub get
 flutter build web --release
