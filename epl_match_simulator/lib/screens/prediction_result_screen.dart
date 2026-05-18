@@ -456,22 +456,55 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
   }
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.position == 'GK').toList();
-    final defenders = team.players.where((p) => p.position == 'DF').toList();
-    final midfielders = team.players.where((p) => p.position == 'MF').toList();
-    final forwards = team.players.where((p) => p.position == 'FW').toList();
+    final gk = team.players.where((p) => p.subPosition == 'GK').toList();
+    final cb = team.players.where((p) => p.subPosition == 'CB').toList();
+    final rb = team.players.where((p) => p.subPosition == 'RB').toList();
+    final lb = team.players.where((p) => p.subPosition == 'LB').toList();
+    final cdm = team.players.where((p) => p.subPosition == 'CDM').toList();
+    final cm = team.players.where((p) => p.subPosition == 'CM').toList();
+    final cam = team.players.where((p) => p.subPosition == 'CAM').toList();
+    final st = team.players.where((p) => p.subPosition == 'ST').toList();
+    final rw = team.players.where((p) => p.subPosition == 'RW').toList();
+    final lw = team.players.where((p) => p.subPosition == 'LW').toList();
 
     final players = <Map<String, String>>[];
 
-    if (gk.isNotEmpty) players.add({'name': gk[0].name});
-    for (int i = 0; i < 4 && i < defenders.length; i++) {
-      players.add({'name': defenders[i].name});
+    if (gk.isNotEmpty) players.add({'name': gk[0].name, 'position': 'GK'});
+
+    // Defenders: 2 CB, 1 RB, 1 LB
+    for (int i = 0; i < 2 && i < cb.length; i++) {
+      players.add({'name': cb[i].name, 'position': 'CB'});
     }
-    for (int i = 0; i < 3 && i < midfielders.length; i++) {
-      players.add({'name': midfielders[i].name});
+    if (rb.isNotEmpty) {
+      players.add({'name': rb[0].name, 'position': 'RB'});
     }
-    for (int i = 0; i < 3 && i < forwards.length; i++) {
-      players.add({'name': forwards[i].name});
+    if (lb.isNotEmpty) {
+      players.add({'name': lb[0].name, 'position': 'LB'});
+    }
+
+    // Midfielders: 1 CDM, 1 CM, 1 CAM
+    if (cdm.isNotEmpty) {
+      players.add({'name': cdm[0].name, 'position': 'CDM'});
+    } else if (cm.isNotEmpty) {
+      players.add({'name': cm[0].name, 'position': 'CM'});
+    }
+    if (cm.isNotEmpty) {
+      players.add({'name': cm[0].name, 'position': 'CM'});
+    }
+    if (cam.isNotEmpty) {
+      players.add({'name': cam[0].name, 'position': 'CAM'});
+    } else if (cm.length > 1) {
+      players.add({'name': cm[1].name, 'position': 'CM'});
+    }
+
+    // Forwards: 1 ST, 1 RW or LW
+    if (st.isNotEmpty) {
+      players.add({'name': st[0].name, 'position': 'ST'});
+    }
+    if (rw.isNotEmpty) {
+      players.add({'name': rw[0].name, 'position': 'RW'});
+    } else if (lw.isNotEmpty) {
+      players.add({'name': lw[0].name, 'position': 'LW'});
     }
 
     return players;
@@ -1133,22 +1166,55 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
   });
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.position == 'GK').toList();
-    final defenders = team.players.where((p) => p.position == 'DF').toList();
-    final midfielders = team.players.where((p) => p.position == 'MF').toList();
-    final forwards = team.players.where((p) => p.position == 'FW').toList();
+    final gk = team.players.where((p) => p.subPosition == 'GK').toList();
+    final cb = team.players.where((p) => p.subPosition == 'CB').toList();
+    final rb = team.players.where((p) => p.subPosition == 'RB').toList();
+    final lb = team.players.where((p) => p.subPosition == 'LB').toList();
+    final cdm = team.players.where((p) => p.subPosition == 'CDM').toList();
+    final cm = team.players.where((p) => p.subPosition == 'CM').toList();
+    final cam = team.players.where((p) => p.subPosition == 'CAM').toList();
+    final st = team.players.where((p) => p.subPosition == 'ST').toList();
+    final rw = team.players.where((p) => p.subPosition == 'RW').toList();
+    final lw = team.players.where((p) => p.subPosition == 'LW').toList();
 
     final players = <Map<String, String>>[];
 
-    if (gk.isNotEmpty) players.add({'name': gk[0].name});
-    for (int i = 0; i < 4 && i < defenders.length; i++) {
-      players.add({'name': defenders[i].name});
+    if (gk.isNotEmpty) players.add({'name': gk[0].name, 'position': 'GK'});
+
+    // Defenders: 2 CB, 1 RB, 1 LB
+    for (int i = 0; i < 2 && i < cb.length; i++) {
+      players.add({'name': cb[i].name, 'position': 'CB'});
     }
-    for (int i = 0; i < 3 && i < midfielders.length; i++) {
-      players.add({'name': midfielders[i].name});
+    if (rb.isNotEmpty) {
+      players.add({'name': rb[0].name, 'position': 'RB'});
     }
-    for (int i = 0; i < 3 && i < forwards.length; i++) {
-      players.add({'name': forwards[i].name});
+    if (lb.isNotEmpty) {
+      players.add({'name': lb[0].name, 'position': 'LB'});
+    }
+
+    // Midfielders: 1 CDM, 1 CM, 1 CAM
+    if (cdm.isNotEmpty) {
+      players.add({'name': cdm[0].name, 'position': 'CDM'});
+    } else if (cm.isNotEmpty) {
+      players.add({'name': cm[0].name, 'position': 'CM'});
+    }
+    if (cm.isNotEmpty) {
+      players.add({'name': cm[0].name, 'position': 'CM'});
+    }
+    if (cam.isNotEmpty) {
+      players.add({'name': cam[0].name, 'position': 'CAM'});
+    } else if (cm.length > 1) {
+      players.add({'name': cm[1].name, 'position': 'CM'});
+    }
+
+    // Forwards: 1 ST, 1 RW or LW
+    if (st.isNotEmpty) {
+      players.add({'name': st[0].name, 'position': 'ST'});
+    }
+    if (rw.isNotEmpty) {
+      players.add({'name': rw[0].name, 'position': 'RW'});
+    } else if (lw.isNotEmpty) {
+      players.add({'name': lw[0].name, 'position': 'LW'});
     }
 
     return players;
