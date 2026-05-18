@@ -1,0 +1,13 @@
+{
+  "name": "epl-match-simulator",
+  "version": "1.0.0",
+  "description": "EPL Match Simulator with Claude AI analysis",
+  "scripts": {
+    "build": "bash vercel-build.sh",
+    "vercel-build": "bash vercel-build.sh",
+    "dev": "vercel dev"
+  },
+  "keywords": ["flutter", "vercel", "serverless"],
+  "author": "",
+  "license": "ISC"
+}

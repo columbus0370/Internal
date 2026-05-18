@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="120" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- White background -->
+  <rect width="100" height="120" fill="white"/>
+
+  <!-- Navy circle background -->
+  <circle cx="50" cy="45" r="38" fill="#132257"/>
+
+  <!-- Cockerel (rooster) on top of ball -->
+  <g transform="translate(50, 35)">
+    <!-- Ball -->
+    <circle cx="0" cy="10" r="6" fill="white" stroke="#132257" stroke-width="0.5"/>
+    <path d="M -3 10 Q 0 8 3 10 M -3 10 Q 0 12 3 10" stroke="#132257" stroke-width="0.5" fill="none"/>
+
+    <!-- Rooster body -->
+    <ellipse cx="0" cy="-2" rx="4" ry="5" fill="white"/>
+    <!-- Rooster head -->
+    <circle cx="0" cy="-8" r="3" fill="white"/>
+    <!-- Rooster comb -->
+    <path d="M -1 -11 L -2 -14 L 0 -13 L 2 -14 L 1 -11 Z" fill="white"/>
+    <!-- Beak -->
+    <polygon points="2,-8 5,-7 2,-6" fill="white"/>
+    <!-- Tail feathers -->
+    <path d="M -3 -1 Q -7 -5 -6 2" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M -2 0 Q -8 -2 -7 5" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Text -->
+  <text x="50" y="105" font-size="10" font-weight="bold" text-anchor="middle" fill="#132257" font-family="Arial">TOTTENHAM</text>
+  <text x="50" y="117" font-size="9" font-weight="bold" text-anchor="middle" fill="#132257" font-family="Arial">HOTSPUR</text>
+</svg>
