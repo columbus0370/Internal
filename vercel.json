@@ -4,7 +4,7 @@
   "installCommand": "npm install",
   "functions": {
     "api/**": {
-      "runtime": "nodejs@20",
+      "runtime": "now-nodejs@20",
       "maxDuration": 60,
       "memory": 512
     }
