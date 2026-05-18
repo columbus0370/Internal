@@ -4,7 +4,7 @@
   "installCommand": "npm install",
   "functions": {
     "api/**": {
-      "runtime": "nodejs20.x"
+      "runtime": "nodejs@20"
     }
   },
   "env": {
