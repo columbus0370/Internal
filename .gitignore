@@ -10,7 +10,7 @@ node_modules/
 .env.*.local
 
 # Flutter
-# Ignore all epl_match_simulator directories except build/web, lib/services, and lib/screens
+# Ignore all epl_match_simulator directories except build/web, lib/*, assets, and models
 epl_match_simulator/**
 !epl_match_simulator/build/
 !epl_match_simulator/build/web/
@@ -20,6 +20,15 @@ epl_match_simulator/**
 !epl_match_simulator/lib/services/**
 !epl_match_simulator/lib/screens/
 !epl_match_simulator/lib/screens/**
+!epl_match_simulator/lib/data/
+!epl_match_simulator/lib/data/**
+!epl_match_simulator/lib/models/
+!epl_match_simulator/lib/models/**
+!epl_match_simulator/assets/
+!epl_match_simulator/assets/**
+!epl_match_simulator/pubspec.yaml
+!epl_match_simulator/pubspec.lock
+!epl_match_simulator/lib/main.dart
 
 # IDE
 .vscode/
