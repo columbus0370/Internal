@@ -1,6 +1,6 @@
 {
   "buildCommand": "bash vercel-build.sh",
-  "outputDirectory": "build/web",
+  "outputDirectory": "epl_match_simulator/build/web",
   "installCommand": "npm install",
   "env": {
     "FLUTTER_BUILD_MODE": "release"
