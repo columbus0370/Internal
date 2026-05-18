@@ -43,7 +43,7 @@ class MatchAnalysisService {
           'mom': prediction.mom,
           'goals': prediction.goals.map((g) => {
             'minute': g.minute,
-            'player': g.player,
+            'scorer': g.scorer,
             'team': g.team,
           }).toList(),
         }
