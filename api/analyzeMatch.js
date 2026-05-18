@@ -58,11 +58,42 @@ function generateFallbackAnalysis(prediction) {
   };
 }
 
+// レート制限用: IPごとのリクエスト数を記録（メモリ内・再起動でリセット）
+const requestCounts = new Map();
+const RATE_LIMIT = 20;       // 1分間の最大リクエスト数
+const RATE_WINDOW_MS = 60000;
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = requestCounts.get(ip) || { count: 0, resetAt: now + RATE_WINDOW_MS };
+  if (now > entry.resetAt) {
+    entry.count = 0;
+    entry.resetAt = now + RATE_WINDOW_MS;
+  }
+  entry.count++;
+  requestCounts.set(ip, entry);
+  return entry.count > RATE_LIMIT;
+}
+
 module.exports = async (req, res) => {
-  // CORS ヘッダー設定
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  // CORS: 本番URLのみ許可（開発時はlocalhostも許可）
+  const allowedOrigins = [
+    "https://epl-match-simulator.vercel.app",
+    "http://localhost:8080",
+    "http://localhost:3000",
+  ];
+  const origin = req.headers.origin || "";
+  const corsOrigin = allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+  res.setHeader("Access-Control-Allow-Origin", corsOrigin);
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Vary", "Origin");
+
+  // レート制限チェック
+  const clientIp = req.headers["x-forwarded-for"]?.split(",")[0] || req.socket?.remoteAddress || "unknown";
+  if (isRateLimited(clientIp)) {
+    return res.status(429).json({ success: false, error: "Too many requests. Please wait a moment." });
+  }
 
   // プリフライトリクエスト対応
   if (req.method === "OPTIONS") {

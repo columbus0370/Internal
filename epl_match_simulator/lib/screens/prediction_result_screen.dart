@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import '../models/match_prediction.dart';
 import '../models/team.dart';
+import '../models/match_commentary.dart';
 import '../models/match_stats.dart';
+import '../services/match_commentary_generator.dart';
 import '../services/match_stats_generator.dart';
 import '../services/match_analysis_service.dart';
 import '../services/preference_service.dart';
-import 'player_detail_screen.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
@@ -328,56 +329,32 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
           spacing: 8,
           runSpacing: 8,
           children: team.players.map((player) {
-            return GestureDetector(
-              onTap: () {
-                try {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PlayerDetailScreen(
-                        player: player,
-                        teamName: team.name,
-                        teamColor: color,
-                      ),
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.1),
+                border: Border.all(color: color, width: 1),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    player.name,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Error loading player details: $e'),
-                      backgroundColor: Colors.red,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '${player.position} • ${player.subPosition}',
+                    style: const TextStyle(
+                      fontSize: 9,
+                      color: Colors.grey,
                     ),
-                  );
-                  print('Error navigating to player detail: $e');
-                }
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
-                  border: Border.all(color: color, width: 1),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      player.name,
-                      style: const TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      '${player.position} • ${player.subPosition}',
-                      style: const TextStyle(
-                        fontSize: 9,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           }).toList(),
@@ -546,92 +523,62 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
   }
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.subPosition == 'GK').toList();
-    final cb = team.players.where((p) => p.subPosition == 'CB').toList();
-    final rb = team.players.where((p) => p.subPosition == 'RB').toList();
-    final lb = team.players.where((p) => p.subPosition == 'LB').toList();
-    final cdm = team.players.where((p) => p.subPosition == 'CDM').toList();
-    final cm = team.players.where((p) => p.subPosition == 'CM').toList();
-    final cam = team.players.where((p) => p.subPosition == 'CAM').toList();
-    final st = team.players.where((p) => p.subPosition == 'ST').toList();
-    final rw = team.players.where((p) => p.subPosition == 'RW').toList();
-    final lw = team.players.where((p) => p.subPosition == 'LW').toList();
-    final mf = team.players.where((p) => p.position == 'MF').toList();
-    final fw = team.players.where((p) => p.position == 'FW').toList();
+    final gks  = team.players.where((p) => p.subPosition == 'GK').toList();
+    final cbs  = team.players.where((p) => p.subPosition == 'CB').toList();
+    final rbs  = team.players.where((p) => p.subPosition == 'RB').toList();
+    final cdms = team.players.where((p) => p.subPosition == 'CDM').toList();
+    final cms  = team.players.where((p) => p.subPosition == 'CM').toList();
+    final cams = team.players.where((p) => p.subPosition == 'CAM').toList();
+    final sts  = team.players.where((p) => p.subPosition == 'ST').toList();
+    final rws  = team.players.where((p) => p.subPosition == 'RW').toList();
 
-    final players = <Map<String, String>>[];
+    // LB/LW はJSONに存在しないため、position='DF'/'MF'/'FW' をフォールバックに使用
+    final allDefs = team.players.where((p) => p.position == 'DF').toList();
+    final allMids = team.players.where((p) => p.position == 'MF').toList();
+    final allFwds = team.players.where((p) => p.position == 'FW').toList();
 
-    // GK (1)
-    if (gk.isNotEmpty) {
-      players.add({'name': gk[0].name, 'position': 'GK'});
-    }
+    final result = <Map<String, String>>[];
+    final used = <String>{};
 
-    // Defenders: 2 CB, 1 RB, 1 LB = 4
-    for (int i = 0; i < 2 && i < cb.length; i++) {
-      players.add({'name': cb[i].name, 'position': 'CB'});
-    }
-    if (rb.isNotEmpty) {
-      players.add({'name': rb[0].name, 'position': 'RB'});
-    } else if (mf.isNotEmpty) {
-      players.add({'name': mf[0].name, 'position': 'RB'});
-    }
-    if (lb.isNotEmpty) {
-      players.add({'name': lb[0].name, 'position': 'LB'});
-    } else if (mf.length > 1) {
-      players.add({'name': mf[1].name, 'position': 'LB'});
-    }
-
-    // Midfielders: 1 CDM, 1 CM, 1 CAM = 3
-    if (cdm.isNotEmpty) {
-      players.add({'name': cdm[0].name, 'position': 'CDM'});
-    } else if (cm.isNotEmpty) {
-      players.add({'name': cm[0].name, 'position': 'CDM'});
-    } else if (mf.isNotEmpty) {
-      players.add({'name': mf[2 < mf.length ? 2 : 0].name, 'position': 'CDM'});
-    }
-    if (cm.length > (cdm.isNotEmpty ? 0 : 1)) {
-      players.add({'name': cm[cdm.isNotEmpty ? 0 : 1].name, 'position': 'CM'});
-    } else if (mf.length > 2) {
-      players.add({'name': mf[2].name, 'position': 'CM'});
-    }
-    if (cam.isNotEmpty) {
-      players.add({'name': cam[0].name, 'position': 'CAM'});
-    } else if (cm.length > 1) {
-      players.add({'name': cm[1].name, 'position': 'CAM'});
-    } else if (mf.length > 3) {
-      players.add({'name': mf[3].name, 'position': 'CAM'});
-    }
-
-    // Forwards: 1 ST, 1 RW or LW = 2
-    if (st.isNotEmpty) {
-      players.add({'name': st[0].name, 'position': 'ST'});
-    } else if (fw.isNotEmpty) {
-      players.add({'name': fw[0].name, 'position': 'ST'});
-    } else if (mf.isNotEmpty) {
-      players.add({'name': mf[mf.length - 1].name, 'position': 'ST'});
-    }
-    if (rw.isNotEmpty) {
-      players.add({'name': rw[0].name, 'position': 'RW'});
-    } else if (lw.isNotEmpty) {
-      players.add({'name': lw[0].name, 'position': 'LW'});
-    } else if (fw.length > 1) {
-      players.add({'name': fw[1].name, 'position': 'RW'});
-    } else if (mf.isNotEmpty) {
-      players.add({'name': mf[0].name, 'position': 'RW'});
-    }
-
-    // Ensure exactly 11 players
-    while (players.length < 11 && team.players.isNotEmpty) {
-      for (var p in team.players) {
-        if (players.length >= 11) break;
-        if (!players.any((pl) => pl['name'] == p.name)) {
-          players.add({'name': p.name, 'position': p.position});
-        }
+    void add(String name, String pos) {
+      if (!used.contains(name)) {
+        result.add({'name': name, 'position': pos});
+        used.add(name);
       }
-      if (players.length < 11) break;
     }
 
-    return players.take(11).toList();
+    Player? pick(List<Player> pool) =>
+        pool.where((p) => !used.contains(p.name)).firstOrNull;
+
+    // GK
+    if (gks.isNotEmpty) add(gks[0].name, 'GK');
+
+    // Defenders (4): CB×2 + RB + LB
+    for (int i = 0; i < 2 && i < cbs.length; i++) add(cbs[i].name, 'CB');
+    final rb = rbs.isNotEmpty ? rbs[0] : pick(allDefs);
+    if (rb != null) add(rb.name, 'RB');
+    // LB: 2枚目のRB → 3枚目のCB → 余ったDF
+    final lb = rbs.length > 1 ? rbs[1] : cbs.length > 2 ? cbs[2] : pick(allDefs);
+    if (lb != null) add(lb.name, 'LB');
+
+    // Midfielders (3): CDM + CM + CAM
+    final cdm = cdms.isNotEmpty ? cdms[0] : pick(allMids);
+    if (cdm != null) add(cdm.name, cdms.isNotEmpty ? 'CDM' : 'CM');
+    final cm = cms.isNotEmpty ? cms[0] : pick(allMids);
+    if (cm != null) add(cm.name, 'CM');
+    final cam = cams.isNotEmpty ? cams[0] : cms.length > 1 ? cms[1] : pick(allMids);
+    if (cam != null) add(cam.name, cams.isNotEmpty ? 'CAM' : 'CM');
+
+    // Forwards (3): ST + RW + LW
+    final st = sts.isNotEmpty ? sts[0] : pick(allFwds);
+    if (st != null) add(st.name, 'ST');
+    final rw = rws.isNotEmpty ? rws[0] : pick(allFwds);
+    if (rw != null) add(rw.name, 'RW');
+    // LW: 2枚目のRW → 余ったFW
+    final lw = rws.length > 1 ? rws[1] : pick(allFwds);
+    if (lw != null) add(lw.name, 'LW');
+
+    return result;
   }
 
   List<Map<String, double>> _getHomeHalfPositions() {
@@ -660,9 +607,9 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       {'x': 0.2, 'y': 0.32},
       {'x': 0.5, 'y': 0.32},
       {'x': 0.8, 'y': 0.32},
-      {'x': 0.25, 'y': 0.45},
-      {'x': 0.5, 'y': 0.49},
-      {'x': 0.75, 'y': 0.45},
+      {'x': 0.25, 'y': 0.48},
+      {'x': 0.5, 'y': 0.38},
+      {'x': 0.75, 'y': 0.48},
     ];
   }
 
@@ -909,7 +856,6 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         }
 
         if (snapshot.hasError) {
-          final errorMsg = snapshot.error?.toString() ?? 'Unknown error';
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -938,17 +884,11 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'API通信に失敗しました。フォールバック解説を表示します。\n\nエラー詳細: $errorMsg',
+                    snapshot.error.toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
-                      height: 1.4,
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  ElevatedButton(
-                    onPressed: () => setState(() {}),
-                    child: const Text('リトライ'),
                   ),
                 ],
               ),
@@ -976,7 +916,6 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         }
 
         final analysis = result['analysis'] as Map<String, dynamic>;
-        final narrativeSegments = analysis['narrative_segments'] as List<dynamic>?;
 
         return Card(
           child: Padding(
@@ -986,25 +925,49 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 const Text(
-                  '🎙️ 試合実況',
+                  '🤖 AI 試合分析',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
-                if (narrativeSegments != null && narrativeSegments.isNotEmpty)
-                  _buildNarrativeSegmentsSection(narrativeSegments)
-                else
-                  _buildAnalysisSection(
-                    '実況中継',
-                    _safeGetString(analysis, 'narrative'),
-                  ),
-                const SizedBox(height: 12),
                 _buildAnalysisSection(
-                  '総括',
-                  _safeGetString(analysis, 'overall_summary') ??
-                      _safeGetString(analysis, 'summary'),
+                  '要約',
+                  _safeGetString(analysis, 'summary'),
                 ),
                 const SizedBox(height: 12),
-                _buildKeyMomentsSection(analysis),
+                _buildAnalysisSection(
+                  'ホームチーム分析',
+                  _safeGetString(analysis, 'homeTeamAnalysis'),
+                ),
+                const SizedBox(height: 12),
+                _buildAnalysisSection(
+                  'アウェイチーム分析',
+                  _safeGetString(analysis, 'awayTeamAnalysis'),
+                ),
+                const SizedBox(height: 12),
+                _buildAnalysisSection(
+                  '戦術的ポイント',
+                  _safeGetString(analysis, 'tacticalPoints'),
+                ),
+                const SizedBox(height: 12),
+                _buildAnalysisSection(
+                  '注目選手',
+                  _safeGetString(analysis, 'keyPlayers'),
+                ),
+                const SizedBox(height: 12),
+                _buildAnalysisSection(
+                  'ボール保持率分析',
+                  _safeGetString(analysis, 'possessionAnalysis'),
+                ),
+                const SizedBox(height: 12),
+                _buildAnalysisSection(
+                  '予測',
+                  _safeGetString(analysis, 'prediction'),
+                ),
+                const SizedBox(height: 12),
+                _buildAnalysisSection(
+                  'リスク要因',
+                  _safeGetString(analysis, 'risks'),
+                ),
                 const SizedBox(height: 16),
               ],
             ),
@@ -1053,230 +1016,6 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               color: Colors.black87,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNarrativeSegmentsSection(List<dynamic> segments) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ...segments.map((seg) {
-          final segment = seg as Map<String, dynamic>;
-          final quarter = segment['quarter'] ?? '?';
-          final minuteRange = segment['minute_range'] ?? '';
-          final quarterSummary = segment['quarter_summary']?.toString() ?? '';
-          final events = segment['events'] as List<dynamic>?;
-
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple.withOpacity(0.1),
-                  border: Border(
-                    left: BorderSide(
-                      color: Colors.deepPurple,
-                      width: 3,
-                    ),
-                  ),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text(
-                            'Q$quarter ($minuteRange分)',
-                            style: const TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      quarterSummary,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        height: 1.4,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    if (events != null && events.isNotEmpty) ...[
-                      const SizedBox(height: 8),
-                      ...events.map((evt) {
-                        final event = evt as Map<String, dynamic>;
-                        final minute = event['minute']?.toString() ?? '?';
-                        final team = event['team']?.toString() ?? '';
-                        final eventType = event['event_type']?.toString() ?? '';
-                        final description = event['description']?.toString() ?? '';
-
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 6),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 30,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[300],
-                                  borderRadius: BorderRadius.circular(3),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    minute,
-                                    style: const TextStyle(
-                                      fontSize: 9,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 6),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '$team - $eventType',
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black87,
-                                      ),
-                                    ),
-                                    Text(
-                                      description,
-                                      style: const TextStyle(
-                                        fontSize: 9,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }).toList(),
-                    ],
-                  ],
-                ),
-              ),
-              const SizedBox(height: 8),
-            ],
-          );
-        }).toList(),
-      ],
-    );
-  }
-
-  Widget _buildKeyMomentsSection(Map<String, dynamic> analysis) {
-    final keyMoments = analysis['keyMoments'] as List<dynamic>? ??
-        analysis['key_moments'] as List<dynamic>?;
-    if (keyMoments == null || keyMoments.isEmpty) {
-      return const SizedBox.shrink();
-    }
-
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        border: Border(
-          left: BorderSide(
-            color: Colors.deepPurple,
-            width: 3,
-          ),
-        ),
-        color: Colors.deepPurple.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            '重要な場面',
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: Colors.deepPurple,
-            ),
-          ),
-          const SizedBox(height: 8),
-          ...keyMoments.map((moment) {
-            final m = moment as Map<String, dynamic>;
-            final minute = m['minute']?.toString() ?? '?';
-            final event = m['event']?.toString() ?? 'イベント';
-            final team = m['team']?.toString() ?? '';
-            final description = m['description']?.toString() ?? '';
-
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 24,
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurple,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Center(
-                      child: Text(
-                        minute,
-                        style: const TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '$team - $event',
-                          style: const TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        Text(
-                          description,
-                          style: const TextStyle(
-                            fontSize: 10,
-                            color: Colors.grey,
-                            height: 1.3,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }).toList(),
         ],
       ),
     );
@@ -1498,58 +1237,62 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
   });
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.subPosition == 'GK').toList();
-    final cb = team.players.where((p) => p.subPosition == 'CB').toList();
-    final rb = team.players.where((p) => p.subPosition == 'RB').toList();
-    final lb = team.players.where((p) => p.subPosition == 'LB').toList();
-    final cdm = team.players.where((p) => p.subPosition == 'CDM').toList();
-    final cm = team.players.where((p) => p.subPosition == 'CM').toList();
-    final cam = team.players.where((p) => p.subPosition == 'CAM').toList();
-    final st = team.players.where((p) => p.subPosition == 'ST').toList();
-    final rw = team.players.where((p) => p.subPosition == 'RW').toList();
-    final lw = team.players.where((p) => p.subPosition == 'LW').toList();
+    final gks  = team.players.where((p) => p.subPosition == 'GK').toList();
+    final cbs  = team.players.where((p) => p.subPosition == 'CB').toList();
+    final rbs  = team.players.where((p) => p.subPosition == 'RB').toList();
+    final cdms = team.players.where((p) => p.subPosition == 'CDM').toList();
+    final cms  = team.players.where((p) => p.subPosition == 'CM').toList();
+    final cams = team.players.where((p) => p.subPosition == 'CAM').toList();
+    final sts  = team.players.where((p) => p.subPosition == 'ST').toList();
+    final rws  = team.players.where((p) => p.subPosition == 'RW').toList();
 
-    final players = <Map<String, String>>[];
+    // LB/LW はJSONに存在しないため、position='DF'/'MF'/'FW' をフォールバックに使用
+    final allDefs = team.players.where((p) => p.position == 'DF').toList();
+    final allMids = team.players.where((p) => p.position == 'MF').toList();
+    final allFwds = team.players.where((p) => p.position == 'FW').toList();
 
-    if (gk.isNotEmpty) players.add({'name': gk[0].name, 'position': 'GK'});
+    final result = <Map<String, String>>[];
+    final used = <String>{};
 
-    // Defenders: 2 CB, 1 RB, 1 LB
-    for (int i = 0; i < 2 && i < cb.length; i++) {
-      players.add({'name': cb[i].name, 'position': 'CB'});
-    }
-    if (rb.isNotEmpty) {
-      players.add({'name': rb[0].name, 'position': 'RB'});
-    }
-    if (lb.isNotEmpty) {
-      players.add({'name': lb[0].name, 'position': 'LB'});
+    void add(String name, String pos) {
+      if (!used.contains(name)) {
+        result.add({'name': name, 'position': pos});
+        used.add(name);
+      }
     }
 
-    // Midfielders: 1 CDM, 1 CM, 1 CAM
-    if (cdm.isNotEmpty) {
-      players.add({'name': cdm[0].name, 'position': 'CDM'});
-    } else if (cm.isNotEmpty) {
-      players.add({'name': cm[0].name, 'position': 'CM'});
-    }
-    if (cm.isNotEmpty) {
-      players.add({'name': cm[0].name, 'position': 'CM'});
-    }
-    if (cam.isNotEmpty) {
-      players.add({'name': cam[0].name, 'position': 'CAM'});
-    } else if (cm.length > 1) {
-      players.add({'name': cm[1].name, 'position': 'CM'});
-    }
+    Player? pick(List<Player> pool) =>
+        pool.where((p) => !used.contains(p.name)).firstOrNull;
 
-    // Forwards: 1 ST, 1 RW or LW
-    if (st.isNotEmpty) {
-      players.add({'name': st[0].name, 'position': 'ST'});
-    }
-    if (rw.isNotEmpty) {
-      players.add({'name': rw[0].name, 'position': 'RW'});
-    } else if (lw.isNotEmpty) {
-      players.add({'name': lw[0].name, 'position': 'LW'});
-    }
+    // GK
+    if (gks.isNotEmpty) add(gks[0].name, 'GK');
 
-    return players;
+    // Defenders (4): CB×2 + RB + LB
+    for (int i = 0; i < 2 && i < cbs.length; i++) add(cbs[i].name, 'CB');
+    final rb = rbs.isNotEmpty ? rbs[0] : pick(allDefs);
+    if (rb != null) add(rb.name, 'RB');
+    // LB: 2枚目のRB → 3枚目のCB → 余ったDF
+    final lb = rbs.length > 1 ? rbs[1] : cbs.length > 2 ? cbs[2] : pick(allDefs);
+    if (lb != null) add(lb.name, 'LB');
+
+    // Midfielders (3): CDM + CM + CAM
+    final cdm = cdms.isNotEmpty ? cdms[0] : pick(allMids);
+    if (cdm != null) add(cdm.name, cdms.isNotEmpty ? 'CDM' : 'CM');
+    final cm = cms.isNotEmpty ? cms[0] : pick(allMids);
+    if (cm != null) add(cm.name, 'CM');
+    final cam = cams.isNotEmpty ? cams[0] : cms.length > 1 ? cms[1] : pick(allMids);
+    if (cam != null) add(cam.name, cams.isNotEmpty ? 'CAM' : 'CM');
+
+    // Forwards (3): ST + RW + LW
+    final st = sts.isNotEmpty ? sts[0] : pick(allFwds);
+    if (st != null) add(st.name, 'ST');
+    final rw = rws.isNotEmpty ? rws[0] : pick(allFwds);
+    if (rw != null) add(rw.name, 'RW');
+    // LW: 2枚目のRW → 余ったFW
+    final lw = rws.length > 1 ? rws[1] : pick(allFwds);
+    if (lw != null) add(lw.name, 'LW');
+
+    return result;
   }
 
   Color _getPositionColor(String? position) {
