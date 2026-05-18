@@ -4,6 +4,9 @@ set -e
 
 echo "=== Flutter Web Build for Vercel ==="
 
+# Navigate to Flutter project directory
+cd epl_match_simulator
+
 # Check if Flutter is installed
 if ! command -v flutter &> /dev/null; then
     echo "Installing Flutter SDK..."

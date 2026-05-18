@@ -2,7 +2,7 @@ name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
-    branches: [ main, claude/soccer-ai-app-ideas-4ZSuh ]
+    branches: [ main ]
     paths:
       - 'epl_match_simulator/**'
       - '.github/workflows/deploy-flutter-web.yml'
