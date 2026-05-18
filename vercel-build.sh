@@ -10,6 +10,9 @@ if [ ! -d "epl_match_simulator" ]; then
     exit 1
 fi
 
+# Navigate to Flutter project directory
+cd epl_match_simulator
+
 # Check if Flutter SDK is installed or needs update (idempotent)
 if [ ! -d "$HOME/.flutter-vercel" ]; then
     echo "Installing Flutter SDK..."

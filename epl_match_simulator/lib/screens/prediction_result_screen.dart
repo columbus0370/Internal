@@ -288,6 +288,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                 ),
               ],
             ),
+            const SizedBox(height: 16),
+            _buildPositionLegend(),
             const SizedBox(height: 32),
             _buildTeamRoster(widget.prediction.awayTeam, Colors.orange),
             const SizedBox(height: 24),
@@ -334,7 +336,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    player.position,
+                    '${player.position} • ${player.subPosition}',
                     style: const TextStyle(
                       fontSize: 9,
                       color: Colors.grey,
@@ -342,6 +344,59 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   ),
                 ],
               ),
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPositionLegend() {
+    final positions = [
+      ('GK', Colors.purple, 'Goalkeeper'),
+      ('CB/RB/LB', Colors.red, 'Defenders'),
+      ('CDM/CM', Colors.amber, 'Midfielders'),
+      ('CAM', Colors.green, 'Attacking Mid'),
+      ('ST/RW/LW', Colors.teal, 'Forwards'),
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Position Legend',
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 12,
+          runSpacing: 8,
+          children: positions.map((pos) {
+            return Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    color: pos.$2,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.grey, width: 1),
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  '${pos.$1} - ${pos.$3}',
+                  style: const TextStyle(
+                    fontSize: 11,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
             );
           }).toList(),
         ),
@@ -456,22 +511,55 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
   }
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.position == 'GK').toList();
-    final defenders = team.players.where((p) => p.position == 'DF').toList();
-    final midfielders = team.players.where((p) => p.position == 'MF').toList();
-    final forwards = team.players.where((p) => p.position == 'FW').toList();
+    final gk = team.players.where((p) => p.subPosition == 'GK').toList();
+    final cb = team.players.where((p) => p.subPosition == 'CB').toList();
+    final rb = team.players.where((p) => p.subPosition == 'RB').toList();
+    final lb = team.players.where((p) => p.subPosition == 'LB').toList();
+    final cdm = team.players.where((p) => p.subPosition == 'CDM').toList();
+    final cm = team.players.where((p) => p.subPosition == 'CM').toList();
+    final cam = team.players.where((p) => p.subPosition == 'CAM').toList();
+    final st = team.players.where((p) => p.subPosition == 'ST').toList();
+    final rw = team.players.where((p) => p.subPosition == 'RW').toList();
+    final lw = team.players.where((p) => p.subPosition == 'LW').toList();
 
     final players = <Map<String, String>>[];
 
-    if (gk.isNotEmpty) players.add({'name': gk[0].name});
-    for (int i = 0; i < 4 && i < defenders.length; i++) {
-      players.add({'name': defenders[i].name});
+    if (gk.isNotEmpty) players.add({'name': gk[0].name, 'position': 'GK'});
+
+    // Defenders: 2 CB, 1 RB, 1 LB
+    for (int i = 0; i < 2 && i < cb.length; i++) {
+      players.add({'name': cb[i].name, 'position': 'CB'});
     }
-    for (int i = 0; i < 3 && i < midfielders.length; i++) {
-      players.add({'name': midfielders[i].name});
+    if (rb.isNotEmpty) {
+      players.add({'name': rb[0].name, 'position': 'RB'});
     }
-    for (int i = 0; i < 3 && i < forwards.length; i++) {
-      players.add({'name': forwards[i].name});
+    if (lb.isNotEmpty) {
+      players.add({'name': lb[0].name, 'position': 'LB'});
+    }
+
+    // Midfielders: 1 CDM, 1 CM, 1 CAM
+    if (cdm.isNotEmpty) {
+      players.add({'name': cdm[0].name, 'position': 'CDM'});
+    } else if (cm.isNotEmpty) {
+      players.add({'name': cm[0].name, 'position': 'CM'});
+    }
+    if (cm.isNotEmpty) {
+      players.add({'name': cm[0].name, 'position': 'CM'});
+    }
+    if (cam.isNotEmpty) {
+      players.add({'name': cam[0].name, 'position': 'CAM'});
+    } else if (cm.length > 1) {
+      players.add({'name': cm[1].name, 'position': 'CM'});
+    }
+
+    // Forwards: 1 ST, 1 RW or LW
+    if (st.isNotEmpty) {
+      players.add({'name': st[0].name, 'position': 'ST'});
+    }
+    if (rw.isNotEmpty) {
+      players.add({'name': rw[0].name, 'position': 'RW'});
+    } else if (lw.isNotEmpty) {
+      players.add({'name': lw[0].name, 'position': 'LW'});
     }
 
     return players;
@@ -1133,25 +1221,80 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
   });
 
   List<Map<String, String>> _getFormationPlayers(Team team) {
-    final gk = team.players.where((p) => p.position == 'GK').toList();
-    final defenders = team.players.where((p) => p.position == 'DF').toList();
-    final midfielders = team.players.where((p) => p.position == 'MF').toList();
-    final forwards = team.players.where((p) => p.position == 'FW').toList();
+    final gk = team.players.where((p) => p.subPosition == 'GK').toList();
+    final cb = team.players.where((p) => p.subPosition == 'CB').toList();
+    final rb = team.players.where((p) => p.subPosition == 'RB').toList();
+    final lb = team.players.where((p) => p.subPosition == 'LB').toList();
+    final cdm = team.players.where((p) => p.subPosition == 'CDM').toList();
+    final cm = team.players.where((p) => p.subPosition == 'CM').toList();
+    final cam = team.players.where((p) => p.subPosition == 'CAM').toList();
+    final st = team.players.where((p) => p.subPosition == 'ST').toList();
+    final rw = team.players.where((p) => p.subPosition == 'RW').toList();
+    final lw = team.players.where((p) => p.subPosition == 'LW').toList();
 
     final players = <Map<String, String>>[];
 
-    if (gk.isNotEmpty) players.add({'name': gk[0].name});
-    for (int i = 0; i < 4 && i < defenders.length; i++) {
-      players.add({'name': defenders[i].name});
+    if (gk.isNotEmpty) players.add({'name': gk[0].name, 'position': 'GK'});
+
+    // Defenders: 2 CB, 1 RB, 1 LB
+    for (int i = 0; i < 2 && i < cb.length; i++) {
+      players.add({'name': cb[i].name, 'position': 'CB'});
     }
-    for (int i = 0; i < 3 && i < midfielders.length; i++) {
-      players.add({'name': midfielders[i].name});
+    if (rb.isNotEmpty) {
+      players.add({'name': rb[0].name, 'position': 'RB'});
     }
-    for (int i = 0; i < 3 && i < forwards.length; i++) {
-      players.add({'name': forwards[i].name});
+    if (lb.isNotEmpty) {
+      players.add({'name': lb[0].name, 'position': 'LB'});
+    }
+
+    // Midfielders: 1 CDM, 1 CM, 1 CAM
+    if (cdm.isNotEmpty) {
+      players.add({'name': cdm[0].name, 'position': 'CDM'});
+    } else if (cm.isNotEmpty) {
+      players.add({'name': cm[0].name, 'position': 'CM'});
+    }
+    if (cm.isNotEmpty) {
+      players.add({'name': cm[0].name, 'position': 'CM'});
+    }
+    if (cam.isNotEmpty) {
+      players.add({'name': cam[0].name, 'position': 'CAM'});
+    } else if (cm.length > 1) {
+      players.add({'name': cm[1].name, 'position': 'CM'});
+    }
+
+    // Forwards: 1 ST, 1 RW or LW
+    if (st.isNotEmpty) {
+      players.add({'name': st[0].name, 'position': 'ST'});
+    }
+    if (rw.isNotEmpty) {
+      players.add({'name': rw[0].name, 'position': 'RW'});
+    } else if (lw.isNotEmpty) {
+      players.add({'name': lw[0].name, 'position': 'LW'});
     }
 
     return players;
+  }
+
+  Color _getPositionColor(String? position) {
+    switch (position) {
+      case 'GK':
+        return Colors.purple;
+      case 'CB':
+      case 'RB':
+      case 'LB':
+        return Colors.red;
+      case 'CDM':
+      case 'CM':
+        return Colors.amber;
+      case 'CAM':
+        return Colors.green;
+      case 'ST':
+      case 'RW':
+      case 'LW':
+        return Colors.teal;
+      default:
+        return Colors.grey;
+    }
   }
 
   @override
@@ -1224,32 +1367,48 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
       return Positioned(
         left: pixelX - 25,
         top: pixelY - 25,
-        child: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            color: isHome ? Colors.blue : Colors.orange,
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.white,
-              width: 2,
-            ),
-          ),
-          child: Center(
-            child: Center(
-              child: Text(
-                player['name']!.split(' ').last,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 9,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                color: _getPositionColor(player['position']),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: isHome ? Colors.blue : Colors.orange,
+                  width: 3,
                 ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              ),
+              child: Center(
+                child: Text(
+                  player['name']!.split(' ').last,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 9,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-          ),
+            Container(
+              padding: const EdgeInsets.only(top: 2),
+              child: Text(
+                player['position'] ?? 'GK',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: _getPositionColor(player['position']),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 7,
+                  backgroundColor: Colors.white.withOpacity(0.8),
+                ),
+              ),
+            ),
+          ],
         ),
       );
     });
