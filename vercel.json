@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "bash vercel-build.sh",
+  "buildCommand": "exit 0",
   "outputDirectory": "epl_match_simulator/build/web",
   "installCommand": "npm install",
   "functions": {
@@ -10,7 +10,8 @@
     }
   },
   "env": {
-    "FLUTTER_BUILD_MODE": "release"
+    "FLUTTER_BUILD_MODE": "release",
+    "ANTHROPIC_API_VERSION": "2023-06-01"
   },
   "rewrites": [
     {
