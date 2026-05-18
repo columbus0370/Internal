@@ -288,6 +288,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                 ),
               ],
             ),
+            const SizedBox(height: 16),
+            _buildPositionLegend(),
             const SizedBox(height: 32),
             _buildTeamRoster(widget.prediction.awayTeam, Colors.orange),
             const SizedBox(height: 24),
@@ -334,7 +336,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    player.position,
+                    '${player.position} • ${player.subPosition}',
                     style: const TextStyle(
                       fontSize: 9,
                       color: Colors.grey,
@@ -342,6 +344,59 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   ),
                 ],
               ),
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPositionLegend() {
+    final positions = [
+      ('GK', Colors.purple, 'Goalkeeper'),
+      ('CB/RB/LB', Colors.red, 'Defenders'),
+      ('CDM/CM', Colors.amber, 'Midfielders'),
+      ('CAM', Colors.green, 'Attacking Mid'),
+      ('ST/RW/LW', Colors.teal, 'Forwards'),
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Position Legend',
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 12,
+          runSpacing: 8,
+          children: positions.map((pos) {
+            return Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    color: pos.$2,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.grey, width: 1),
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  '${pos.$1} - ${pos.$3}',
+                  style: const TextStyle(
+                    fontSize: 11,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
             );
           }).toList(),
         ),
@@ -1220,6 +1275,28 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
     return players;
   }
 
+  Color _getPositionColor(String? position) {
+    switch (position) {
+      case 'GK':
+        return Colors.purple;
+      case 'CB':
+      case 'RB':
+      case 'LB':
+        return Colors.red;
+      case 'CDM':
+      case 'CM':
+        return Colors.amber;
+      case 'CAM':
+        return Colors.green;
+      case 'ST':
+      case 'RW':
+      case 'LW':
+        return Colors.teal;
+      default:
+        return Colors.grey;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1290,32 +1367,48 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
       return Positioned(
         left: pixelX - 25,
         top: pixelY - 25,
-        child: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            color: isHome ? Colors.blue : Colors.orange,
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.white,
-              width: 2,
-            ),
-          ),
-          child: Center(
-            child: Center(
-              child: Text(
-                player['name']!.split(' ').last,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 9,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                color: _getPositionColor(player['position']),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: isHome ? Colors.blue : Colors.orange,
+                  width: 3,
                 ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              ),
+              child: Center(
+                child: Text(
+                  player['name']!.split(' ').last,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 9,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-          ),
+            Container(
+              padding: const EdgeInsets.only(top: 2),
+              child: Text(
+                player['position'] ?? 'GK',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: _getPositionColor(player['position']),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 7,
+                  backgroundColor: Colors.white.withOpacity(0.8),
+                ),
+              ),
+            ),
+          ],
         ),
       );
     });
