@@ -5,11 +5,6 @@
   "env": {
     "FLUTTER_BUILD_MODE": "release"
   },
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs@18"
-    }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
