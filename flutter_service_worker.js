@@ -25,7 +25,7 @@ const RESOURCES = {"assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8
 "assets/assets/emblems/tottenham_hotspur.svg": "5e262021bc2d7e61d315e6851a6da7f1",
 "assets/assets/emblems/leeds_united.svg": "e1aabcf553e95ee928159b2d400030c1",
 "assets/assets/emblems/fulham.svg": "3b33ba03ef622368ea1273204bd5952a",
-"assets/assets/pl_2025_26_teams.json": "e263db99bebe6e18c91fd74127286258",
+"assets/assets/pl_2025_26_teams.json": "0a3ce60b5c0cfbef302bee702668acaa",
 "assets/fonts/MaterialIcons-Regular.otf": "ce9274e837d40a4f0224695d7a436d4d",
 "assets/AssetManifest.bin": "5dc5ecc4a1eb28efa8e69f16bdc57a72",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
@@ -52,9 +52,9 @@ const RESOURCES = {"assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8
 "canvaskit/skwasm.worker.js": "bfb704a6c714a75da9ef320991e88b03",
 "canvaskit/canvaskit.js": "5fda3f1af7d6433d53b24083e2219fa0",
 "canvaskit/skwasm.wasm": "9f0c0c02b82a910d12ce0543ec130e60",
-"flutter_bootstrap.js": "325cbd093280f7731643e4990aa62a88",
+"flutter_bootstrap.js": "7af638d287379a65a65b0846cb55ac3c",
 "manifest.json": "1ff418429f34899dca72ddb610b337ee",
-"main.dart.js": "7600c3d53c70e24574a402a251ec0462"};
+"main.dart.js": "457eba3fa4509f0d143cec491a3598ac"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",

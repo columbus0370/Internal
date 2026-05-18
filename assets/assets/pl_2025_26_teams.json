@@ -8,7 +8,7 @@
       "attackPower": 95,
       "defensePower": 93,
       "ballControl": 86,
-      "formation": "4-3-3",
+      "formation": "3-2-5",
       "players": [
         {
           "name": "Gianluigi Donnarumma",
@@ -20,7 +20,7 @@
           "subPosition": "GK"
         },
         {
-          "name": "R\u00faben Dias",
+          "name": "Rúben Dias",
           "position": "DF",
           "overallRating": 88,
           "attackRating": 62,
@@ -38,7 +38,7 @@
           "subPosition": "CB"
         },
         {
-          "name": "Jo\u0161ko Gvardiol",
+          "name": "Joško Gvardiol",
           "position": "DF",
           "overallRating": 87,
           "attackRating": 68,
@@ -47,7 +47,7 @@
           "subPosition": "CB"
         },
         {
-          "name": "Nathan Ak\u00e9",
+          "name": "Nathan Aké",
           "position": "DF",
           "overallRating": 85,
           "attackRating": 66,
@@ -56,7 +56,7 @@
           "subPosition": "CB"
         },
         {
-          "name": "Rodri Hern\u00e1ndez",
+          "name": "Rodri Hernández",
           "position": "MF",
           "overallRating": 92,
           "attackRating": 79,
@@ -155,7 +155,7 @@
       "attackPower": 93,
       "defensePower": 91,
       "ballControl": 85,
-      "formation": "4-3-3",
+      "formation": "4-2-3-1",
       "players": [
         {
           "name": "David Raya",
@@ -176,7 +176,7 @@
           "subPosition": "CB"
         },
         {
-          "name": "Gabriel Magalh\u00e3es",
+          "name": "Gabriel Magalhães",
           "position": "DF",
           "overallRating": 88,
           "attackRating": 72,
@@ -203,7 +203,7 @@
           "subPosition": "RB"
         },
         {
-          "name": "Martin \u00d8degaard",
+          "name": "Martin Ødegaard",
           "position": "MF",
           "overallRating": 91,
           "attackRating": 88,
@@ -239,7 +239,7 @@
           "subPosition": "ST"
         },
         {
-          "name": "Viktor Gy\u00f6keres",
+          "name": "Viktor Gyökeres",
           "position": "FW",
           "overallRating": 88,
           "attackRating": 89,
@@ -323,7 +323,7 @@
           "subPosition": "CB"
         },
         {
-          "name": "Ibrahima Konat\u00e9",
+          "name": "Ibrahima Konaté",
           "position": "DF",
           "overallRating": 87,
           "attackRating": 67,
@@ -449,10 +449,10 @@
       "attackPower": 88,
       "defensePower": 87,
       "ballControl": 82,
-      "formation": "4-3-3",
+      "formation": "3-4-3",
       "players": [
         {
-          "name": "Robert S\u00e1nchez",
+          "name": "Robert Sánchez",
           "position": "GK",
           "overallRating": 87,
           "attackRating": 22,
@@ -497,7 +497,7 @@
           "subPosition": "RB"
         },
         {
-          "name": "Enzo Fern\u00e1ndez",
+          "name": "Enzo Fernández",
           "position": "MF",
           "overallRating": 88,
           "attackRating": 77,
@@ -551,7 +551,7 @@
           "subPosition": "ST"
         },
         {
-          "name": "Jo\u00e3o Pedro",
+          "name": "João Pedro",
           "position": "FW",
           "overallRating": 84,
           "attackRating": 83,
@@ -560,7 +560,7 @@
           "subPosition": "ST"
         },
         {
-          "name": "Est\u00eav\u00e3o Willian",
+          "name": "Estêvão Willian",
           "position": "FW",
           "overallRating": 83,
           "attackRating": 82,
@@ -596,7 +596,7 @@
       "attackPower": 85,
       "defensePower": 84,
       "ballControl": 80,
-      "formation": "4-3-3",
+      "formation": "4-2-3-1",
       "players": [
         {
           "name": "Bart Verbruggen",
@@ -644,7 +644,7 @@
           "subPosition": "CB"
         },
         {
-          "name": "Mois\u00e9s Caicedo",
+          "name": "Moisés Caicedo",
           "position": "MF",
           "overallRating": 86,
           "attackRating": 73,
@@ -698,7 +698,7 @@
           "subPosition": "ST"
         },
         {
-          "name": "Jo\u00ebl Veltman",
+          "name": "Joël Veltman",
           "position": "DF",
           "overallRating": 80,
           "attackRating": 60,
@@ -743,7 +743,7 @@
       "attackPower": 86,
       "defensePower": 85,
       "ballControl": 79,
-      "formation": "4-3-3",
+      "formation": "4-1-4-1",
       "players": [
         {
           "name": "Emi Martinez",
@@ -1037,10 +1037,10 @@
       "attackPower": 85,
       "defensePower": 83,
       "ballControl": 78,
-      "formation": "4-3-3",
+      "formation": "4-2-3-1",
       "players": [
         {
-          "name": "Altay Bay\u0131nd\u0131r",
+          "name": "Altay Bayındır",
           "position": "GK",
           "overallRating": 84,
           "attackRating": 23,
@@ -1076,7 +1076,7 @@
           "subPosition": "CB"
         },
         {
-          "name": "Lisandro Mart\u00ednez",
+          "name": "Lisandro Martínez",
           "position": "DF",
           "overallRating": 85,
           "attackRating": 68,
@@ -1130,7 +1130,7 @@
           "subPosition": "ST"
         },
         {
-          "name": "Benjamin \u0160e\u0161ko",
+          "name": "Benjamin Šeško",
           "position": "FW",
           "overallRating": 86,
           "attackRating": 87,
@@ -1331,7 +1331,7 @@
       "attackPower": 81,
       "defensePower": 79,
       "ballControl": 75,
-      "formation": "4-3-3",
+      "formation": "4-2-3-1",
       "players": [
         {
           "name": "Alphonse Areola",
@@ -1478,7 +1478,7 @@
       "attackPower": 79,
       "defensePower": 77,
       "ballControl": 72,
-      "formation": "4-3-3",
+      "formation": "4-2-3-1",
       "players": [
         {
           "name": "Jordan Pickford",
@@ -1625,7 +1625,7 @@
       "attackPower": 80,
       "defensePower": 78,
       "ballControl": 74,
-      "formation": "4-3-3",
+      "formation": "4-1-4-1",
       "players": [
         {
           "name": "Bernd Leno",
@@ -1772,7 +1772,7 @@
       "attackPower": 79,
       "defensePower": 77,
       "ballControl": 72,
-      "formation": "4-3-3",
+      "formation": "4-2-3-1",
       "players": [
         {
           "name": "Kepa Arrizabalaga",
@@ -1919,7 +1919,7 @@
       "attackPower": 80,
       "defensePower": 77,
       "ballControl": 74,
-      "formation": "4-3-3",
+      "formation": "3-5-2",
       "players": [
         {
           "name": "Mark Flekken",
@@ -2213,7 +2213,7 @@
       "attackPower": 78,
       "defensePower": 75,
       "ballControl": 71,
-      "formation": "4-3-3",
+      "formation": "4-2-3-1",
       "players": [
         {
           "name": "Matz Sels",
@@ -2360,7 +2360,7 @@
       "attackPower": 75,
       "defensePower": 73,
       "ballControl": 68,
-      "formation": "4-3-3",
+      "formation": "4-2-3-1",
       "players": [
         {
           "name": "Bartosz Bialkowski",
@@ -2654,7 +2654,7 @@
       "attackPower": 74,
       "defensePower": 71,
       "ballControl": 67,
-      "formation": "4-3-3",
+      "formation": "3-5-2",
       "players": [
         {
           "name": "Jose Sa",
@@ -2801,7 +2801,7 @@
       "attackPower": 73,
       "defensePower": 70,
       "ballControl": 65,
-      "formation": "4-3-3",
+      "formation": "4-4-2",
       "players": [
         {
           "name": "Gavin Bazunu",
