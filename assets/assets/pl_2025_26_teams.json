@@ -10,21 +10,141 @@
       "ballControl": 86,
       "formation": "4-3-3",
       "players": [
-        {"name": "Gianluigi Donnarumma", "position": "GK", "overallRating": 89, "attackRating": 25, "defenseRating": 89, "passingRating": 88},
-        {"name": "Rúben Dias", "position": "DF", "overallRating": 88, "attackRating": 62, "defenseRating": 91, "passingRating": 87},
-        {"name": "John Stones", "position": "DF", "overallRating": 87, "attackRating": 65, "defenseRating": 89, "passingRating": 86},
-        {"name": "Joško Gvardiol", "position": "DF", "overallRating": 87, "attackRating": 68, "defenseRating": 89, "passingRating": 88},
-        {"name": "Nathan Aké", "position": "DF", "overallRating": 85, "attackRating": 66, "defenseRating": 86, "passingRating": 85},
-        {"name": "Rodri Hernández", "position": "MF", "overallRating": 92, "attackRating": 79, "defenseRating": 87, "passingRating": 94},
-        {"name": "Phil Foden", "position": "MF", "overallRating": 91, "attackRating": 90, "defenseRating": 65, "passingRating": 90},
-        {"name": "Bernardo Silva", "position": "MF", "overallRating": 88, "attackRating": 86, "defenseRating": 63, "passingRating": 89},
-        {"name": "Erling Haaland", "position": "FW", "overallRating": 95, "attackRating": 96, "defenseRating": 42, "passingRating": 79},
-        {"name": "Jeremy Doku", "position": "MF", "overallRating": 84, "attackRating": 83, "defenseRating": 60, "passingRating": 82},
-        {"name": "Savinho", "position": "MF", "overallRating": 83, "attackRating": 84, "defenseRating": 57, "passingRating": 85},
-        {"name": "Matheus Nunes", "position": "MF", "overallRating": 84, "attackRating": 77, "defenseRating": 81, "passingRating": 87},
-        {"name": "Aymeric Laporte", "position": "DF", "overallRating": 86, "attackRating": 64, "defenseRating": 88, "passingRating": 86},
-        {"name": "James McAtee", "position": "MF", "overallRating": 80, "attackRating": 78, "defenseRating": 62, "passingRating": 83},
-        {"name": "Oscar Bobb", "position": "FW", "overallRating": 79, "attackRating": 78, "defenseRating": 54, "passingRating": 80}
+        {
+          "name": "Gianluigi Donnarumma",
+          "position": "GK",
+          "overallRating": 89,
+          "attackRating": 25,
+          "defenseRating": 89,
+          "passingRating": 88,
+          "subPosition": "GK"
+        },
+        {
+          "name": "R\u00faben Dias",
+          "position": "DF",
+          "overallRating": 88,
+          "attackRating": 62,
+          "defenseRating": 91,
+          "passingRating": 87,
+          "subPosition": "CB"
+        },
+        {
+          "name": "John Stones",
+          "position": "DF",
+          "overallRating": 87,
+          "attackRating": 65,
+          "defenseRating": 89,
+          "passingRating": 86,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Jo\u0161ko Gvardiol",
+          "position": "DF",
+          "overallRating": 87,
+          "attackRating": 68,
+          "defenseRating": 89,
+          "passingRating": 88,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Nathan Ak\u00e9",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 66,
+          "defenseRating": 86,
+          "passingRating": 85,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Rodri Hern\u00e1ndez",
+          "position": "MF",
+          "overallRating": 92,
+          "attackRating": 79,
+          "defenseRating": 87,
+          "passingRating": 94,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Phil Foden",
+          "position": "MF",
+          "overallRating": 91,
+          "attackRating": 90,
+          "defenseRating": 65,
+          "passingRating": 90,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Bernardo Silva",
+          "position": "MF",
+          "overallRating": 88,
+          "attackRating": 86,
+          "defenseRating": 63,
+          "passingRating": 89,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Erling Haaland",
+          "position": "FW",
+          "overallRating": 95,
+          "attackRating": 96,
+          "defenseRating": 42,
+          "passingRating": 79,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jeremy Doku",
+          "position": "MF",
+          "overallRating": 84,
+          "attackRating": 83,
+          "defenseRating": 60,
+          "passingRating": 82,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Savinho",
+          "position": "MF",
+          "overallRating": 83,
+          "attackRating": 84,
+          "defenseRating": 57,
+          "passingRating": 85,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Matheus Nunes",
+          "position": "MF",
+          "overallRating": 84,
+          "attackRating": 77,
+          "defenseRating": 81,
+          "passingRating": 87,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Aymeric Laporte",
+          "position": "DF",
+          "overallRating": 86,
+          "attackRating": 64,
+          "defenseRating": 88,
+          "passingRating": 86,
+          "subPosition": "CB"
+        },
+        {
+          "name": "James McAtee",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 78,
+          "defenseRating": 62,
+          "passingRating": 83,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Oscar Bobb",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 78,
+          "defenseRating": 54,
+          "passingRating": 80,
+          "subPosition": "ST"
+        }
       ]
     },
     {
@@ -37,21 +157,141 @@
       "ballControl": 85,
       "formation": "4-3-3",
       "players": [
-        {"name": "David Raya", "position": "GK", "overallRating": 88, "attackRating": 22, "defenseRating": 88, "passingRating": 87},
-        {"name": "William Saliba", "position": "DF", "overallRating": 90, "attackRating": 65, "defenseRating": 92, "passingRating": 87},
-        {"name": "Gabriel Magalhães", "position": "DF", "overallRating": 88, "attackRating": 72, "defenseRating": 91, "passingRating": 83},
-        {"name": "Ben White", "position": "DF", "overallRating": 89, "attackRating": 77, "defenseRating": 90, "passingRating": 88},
-        {"name": "Jurrien Timber", "position": "DF", "overallRating": 86, "attackRating": 75, "defenseRating": 87, "passingRating": 87},
-        {"name": "Martin Ødegaard", "position": "MF", "overallRating": 91, "attackRating": 88, "defenseRating": 70, "passingRating": 93},
-        {"name": "Bukayo Saka", "position": "MF", "overallRating": 90, "attackRating": 89, "defenseRating": 70, "passingRating": 87},
-        {"name": "Declan Rice", "position": "MF", "overallRating": 90, "attackRating": 73, "defenseRating": 91, "passingRating": 89},
-        {"name": "Gabriel Jesus", "position": "FW", "overallRating": 87, "attackRating": 86, "defenseRating": 62, "passingRating": 83},
-        {"name": "Viktor Gyökeres", "position": "FW", "overallRating": 88, "attackRating": 89, "defenseRating": 59, "passingRating": 81},
-        {"name": "Gabriel Martinelli", "position": "FW", "overallRating": 87, "attackRating": 88, "defenseRating": 65, "passingRating": 83},
-        {"name": "Kai Havertz", "position": "FW", "overallRating": 88, "attackRating": 87, "defenseRating": 66, "passingRating": 88},
-        {"name": "Leandro Trossard", "position": "MF", "overallRating": 85, "attackRating": 83, "defenseRating": 64, "passingRating": 86},
-        {"name": "Mikel Merino", "position": "MF", "overallRating": 84, "attackRating": 79, "defenseRating": 80, "passingRating": 85},
-        {"name": "Riccardo Calafiori", "position": "DF", "overallRating": 83, "attackRating": 68, "defenseRating": 85, "passingRating": 82}
+        {
+          "name": "David Raya",
+          "position": "GK",
+          "overallRating": 88,
+          "attackRating": 22,
+          "defenseRating": 88,
+          "passingRating": 87,
+          "subPosition": "GK"
+        },
+        {
+          "name": "William Saliba",
+          "position": "DF",
+          "overallRating": 90,
+          "attackRating": 65,
+          "defenseRating": 92,
+          "passingRating": 87,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Gabriel Magalh\u00e3es",
+          "position": "DF",
+          "overallRating": 88,
+          "attackRating": 72,
+          "defenseRating": 91,
+          "passingRating": 83,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Ben White",
+          "position": "DF",
+          "overallRating": 89,
+          "attackRating": 77,
+          "defenseRating": 90,
+          "passingRating": 88,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Jurrien Timber",
+          "position": "DF",
+          "overallRating": 86,
+          "attackRating": 75,
+          "defenseRating": 87,
+          "passingRating": 87,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Martin \u00d8degaard",
+          "position": "MF",
+          "overallRating": 91,
+          "attackRating": 88,
+          "defenseRating": 70,
+          "passingRating": 93,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Bukayo Saka",
+          "position": "MF",
+          "overallRating": 90,
+          "attackRating": 89,
+          "defenseRating": 70,
+          "passingRating": 87,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Declan Rice",
+          "position": "MF",
+          "overallRating": 90,
+          "attackRating": 73,
+          "defenseRating": 91,
+          "passingRating": 89,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Gabriel Jesus",
+          "position": "FW",
+          "overallRating": 87,
+          "attackRating": 86,
+          "defenseRating": 62,
+          "passingRating": 83,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Viktor Gy\u00f6keres",
+          "position": "FW",
+          "overallRating": 88,
+          "attackRating": 89,
+          "defenseRating": 59,
+          "passingRating": 81,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Gabriel Martinelli",
+          "position": "FW",
+          "overallRating": 87,
+          "attackRating": 88,
+          "defenseRating": 65,
+          "passingRating": 83,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Kai Havertz",
+          "position": "FW",
+          "overallRating": 88,
+          "attackRating": 87,
+          "defenseRating": 66,
+          "passingRating": 88,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Leandro Trossard",
+          "position": "MF",
+          "overallRating": 85,
+          "attackRating": 83,
+          "defenseRating": 64,
+          "passingRating": 86,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Mikel Merino",
+          "position": "MF",
+          "overallRating": 84,
+          "attackRating": 79,
+          "defenseRating": 80,
+          "passingRating": 85,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Riccardo Calafiori",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 68,
+          "defenseRating": 85,
+          "passingRating": 82,
+          "subPosition": "CB"
+        }
       ]
     },
     {
@@ -64,21 +304,141 @@
       "ballControl": 84,
       "formation": "4-3-3",
       "players": [
-        {"name": "Alisson Becker", "position": "GK", "overallRating": 90, "attackRating": 23, "defenseRating": 90, "passingRating": 89},
-        {"name": "Virgil van Dijk", "position": "DF", "overallRating": 91, "attackRating": 69, "defenseRating": 93, "passingRating": 88},
-        {"name": "Ibrahima Konaté", "position": "DF", "overallRating": 87, "attackRating": 67, "defenseRating": 89, "passingRating": 82},
-        {"name": "Andy Robertson", "position": "DF", "overallRating": 89, "attackRating": 81, "defenseRating": 87, "passingRating": 87},
-        {"name": "Jeremie Frimpong", "position": "DF", "overallRating": 86, "attackRating": 79, "defenseRating": 84, "passingRating": 84},
-        {"name": "Mohamed Salah", "position": "FW", "overallRating": 93, "attackRating": 93, "defenseRating": 66, "passingRating": 88},
-        {"name": "Alexander Isak", "position": "FW", "overallRating": 89, "attackRating": 91, "defenseRating": 60, "passingRating": 82},
-        {"name": "Florian Wirtz", "position": "MF", "overallRating": 89, "attackRating": 88, "defenseRating": 68, "passingRating": 90},
-        {"name": "Dominik Szoboszlai", "position": "MF", "overallRating": 86, "attackRating": 81, "defenseRating": 73, "passingRating": 88},
-        {"name": "Cody Gakpo", "position": "FW", "overallRating": 87, "attackRating": 87, "defenseRating": 64, "passingRating": 85},
-        {"name": "Ryan Gravenberch", "position": "MF", "overallRating": 87, "attackRating": 78, "defenseRating": 85, "passingRating": 90},
-        {"name": "Alexis Mac Allister", "position": "MF", "overallRating": 87, "attackRating": 77, "defenseRating": 80, "passingRating": 89},
-        {"name": "Wataru Endo", "position": "MF", "overallRating": 83, "attackRating": 71, "defenseRating": 82, "passingRating": 85},
-        {"name": "Curtis Jones", "position": "MF", "overallRating": 81, "attackRating": 77, "defenseRating": 71, "passingRating": 84},
-        {"name": "Hugo Ekitike", "position": "FW", "overallRating": 84, "attackRating": 85, "defenseRating": 58, "passingRating": 79}
+        {
+          "name": "Alisson Becker",
+          "position": "GK",
+          "overallRating": 90,
+          "attackRating": 23,
+          "defenseRating": 90,
+          "passingRating": 89,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Virgil van Dijk",
+          "position": "DF",
+          "overallRating": 91,
+          "attackRating": 69,
+          "defenseRating": 93,
+          "passingRating": 88,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ibrahima Konat\u00e9",
+          "position": "DF",
+          "overallRating": 87,
+          "attackRating": 67,
+          "defenseRating": 89,
+          "passingRating": 82,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Andy Robertson",
+          "position": "DF",
+          "overallRating": 89,
+          "attackRating": 81,
+          "defenseRating": 87,
+          "passingRating": 87,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Jeremie Frimpong",
+          "position": "DF",
+          "overallRating": 86,
+          "attackRating": 79,
+          "defenseRating": 84,
+          "passingRating": 84,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Mohamed Salah",
+          "position": "FW",
+          "overallRating": 93,
+          "attackRating": 93,
+          "defenseRating": 66,
+          "passingRating": 88,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Alexander Isak",
+          "position": "FW",
+          "overallRating": 89,
+          "attackRating": 91,
+          "defenseRating": 60,
+          "passingRating": 82,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Florian Wirtz",
+          "position": "MF",
+          "overallRating": 89,
+          "attackRating": 88,
+          "defenseRating": 68,
+          "passingRating": 90,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Dominik Szoboszlai",
+          "position": "MF",
+          "overallRating": 86,
+          "attackRating": 81,
+          "defenseRating": 73,
+          "passingRating": 88,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Cody Gakpo",
+          "position": "FW",
+          "overallRating": 87,
+          "attackRating": 87,
+          "defenseRating": 64,
+          "passingRating": 85,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Ryan Gravenberch",
+          "position": "MF",
+          "overallRating": 87,
+          "attackRating": 78,
+          "defenseRating": 85,
+          "passingRating": 90,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Alexis Mac Allister",
+          "position": "MF",
+          "overallRating": 87,
+          "attackRating": 77,
+          "defenseRating": 80,
+          "passingRating": 89,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Wataru Endo",
+          "position": "MF",
+          "overallRating": 83,
+          "attackRating": 71,
+          "defenseRating": 82,
+          "passingRating": 85,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Curtis Jones",
+          "position": "MF",
+          "overallRating": 81,
+          "attackRating": 77,
+          "defenseRating": 71,
+          "passingRating": 84,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Hugo Ekitike",
+          "position": "FW",
+          "overallRating": 84,
+          "attackRating": 85,
+          "defenseRating": 58,
+          "passingRating": 79,
+          "subPosition": "ST"
+        }
       ]
     },
     {
@@ -91,21 +451,141 @@
       "ballControl": 82,
       "formation": "4-3-3",
       "players": [
-        {"name": "Robert Sánchez", "position": "GK", "overallRating": 87, "attackRating": 22, "defenseRating": 87, "passingRating": 86},
-        {"name": "Levi Colwill", "position": "DF", "overallRating": 85, "attackRating": 64, "defenseRating": 87, "passingRating": 84},
-        {"name": "Wesley Fofana", "position": "DF", "overallRating": 84, "attackRating": 62, "defenseRating": 85, "passingRating": 82},
-        {"name": "Axel Disasi", "position": "DF", "overallRating": 83, "attackRating": 61, "defenseRating": 84, "passingRating": 81},
-        {"name": "Marc Cucurella", "position": "DF", "overallRating": 84, "attackRating": 73, "defenseRating": 82, "passingRating": 85},
-        {"name": "Enzo Fernández", "position": "MF", "overallRating": 88, "attackRating": 77, "defenseRating": 83, "passingRating": 91},
-        {"name": "Cole Palmer", "position": "MF", "overallRating": 89, "attackRating": 88, "defenseRating": 62, "passingRating": 89},
-        {"name": "Moises Caicedo", "position": "MF", "overallRating": 87, "attackRating": 74, "defenseRating": 86, "passingRating": 88},
-        {"name": "Dominic Solanke", "position": "FW", "overallRating": 85, "attackRating": 84, "defenseRating": 57, "passingRating": 79},
-        {"name": "Pedro Neto", "position": "FW", "overallRating": 85, "attackRating": 84, "defenseRating": 62, "passingRating": 84},
-        {"name": "Jadon Sancho", "position": "FW", "overallRating": 85, "attackRating": 86, "defenseRating": 63, "passingRating": 83},
-        {"name": "João Pedro", "position": "FW", "overallRating": 84, "attackRating": 83, "defenseRating": 60, "passingRating": 81},
-        {"name": "Estêvão Willian", "position": "FW", "overallRating": 83, "attackRating": 82, "defenseRating": 59, "passingRating": 80},
-        {"name": "Renato Veiga", "position": "MF", "overallRating": 80, "attackRating": 72, "defenseRating": 78, "passingRating": 82},
-        {"name": "Tosin Adarabioyo", "position": "DF", "overallRating": 81, "attackRating": 59, "defenseRating": 83, "passingRating": 81}
+        {
+          "name": "Robert S\u00e1nchez",
+          "position": "GK",
+          "overallRating": 87,
+          "attackRating": 22,
+          "defenseRating": 87,
+          "passingRating": 86,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Levi Colwill",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 64,
+          "defenseRating": 87,
+          "passingRating": 84,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Wesley Fofana",
+          "position": "DF",
+          "overallRating": 84,
+          "attackRating": 62,
+          "defenseRating": 85,
+          "passingRating": 82,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Axel Disasi",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 61,
+          "defenseRating": 84,
+          "passingRating": 81,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Marc Cucurella",
+          "position": "DF",
+          "overallRating": 84,
+          "attackRating": 73,
+          "defenseRating": 82,
+          "passingRating": 85,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Enzo Fern\u00e1ndez",
+          "position": "MF",
+          "overallRating": 88,
+          "attackRating": 77,
+          "defenseRating": 83,
+          "passingRating": 91,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Cole Palmer",
+          "position": "MF",
+          "overallRating": 89,
+          "attackRating": 88,
+          "defenseRating": 62,
+          "passingRating": 89,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Moises Caicedo",
+          "position": "MF",
+          "overallRating": 87,
+          "attackRating": 74,
+          "defenseRating": 86,
+          "passingRating": 88,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Dominic Solanke",
+          "position": "FW",
+          "overallRating": 85,
+          "attackRating": 84,
+          "defenseRating": 57,
+          "passingRating": 79,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Pedro Neto",
+          "position": "FW",
+          "overallRating": 85,
+          "attackRating": 84,
+          "defenseRating": 62,
+          "passingRating": 84,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jadon Sancho",
+          "position": "FW",
+          "overallRating": 85,
+          "attackRating": 86,
+          "defenseRating": 63,
+          "passingRating": 83,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jo\u00e3o Pedro",
+          "position": "FW",
+          "overallRating": 84,
+          "attackRating": 83,
+          "defenseRating": 60,
+          "passingRating": 81,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Est\u00eav\u00e3o Willian",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 82,
+          "defenseRating": 59,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Renato Veiga",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 72,
+          "defenseRating": 78,
+          "passingRating": 82,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Tosin Adarabioyo",
+          "position": "DF",
+          "overallRating": 81,
+          "attackRating": 59,
+          "defenseRating": 83,
+          "passingRating": 81,
+          "subPosition": "CB"
+        }
       ]
     },
     {
@@ -118,21 +598,141 @@
       "ballControl": 80,
       "formation": "4-3-3",
       "players": [
-        {"name": "Bart Verbruggen", "position": "GK", "overallRating": 84, "attackRating": 20, "defenseRating": 84, "passingRating": 83},
-        {"name": "Tariq Lamptey", "position": "DF", "overallRating": 83, "attackRating": 76, "defenseRating": 81, "passingRating": 82},
-        {"name": "Adam Webster", "position": "DF", "overallRating": 82, "attackRating": 61, "defenseRating": 84, "passingRating": 80},
-        {"name": "Igor Julio", "position": "DF", "overallRating": 82, "attackRating": 62, "defenseRating": 84, "passingRating": 79},
-        {"name": "Pervis Estupinan", "position": "DF", "overallRating": 81, "attackRating": 70, "defenseRating": 79, "passingRating": 81},
-        {"name": "Moisés Caicedo", "position": "MF", "overallRating": 86, "attackRating": 73, "defenseRating": 85, "passingRating": 87},
-        {"name": "Alexis Mac Allister", "position": "MF", "overallRating": 86, "attackRating": 76, "defenseRating": 79, "passingRating": 88},
-        {"name": "Billy Gilmour", "position": "MF", "overallRating": 82, "attackRating": 74, "defenseRating": 75, "passingRating": 86},
-        {"name": "Solly March", "position": "FW", "overallRating": 81, "attackRating": 80, "defenseRating": 62, "passingRating": 78},
-        {"name": "Ansu Fati", "position": "FW", "overallRating": 83, "attackRating": 82, "defenseRating": 58, "passingRating": 81},
-        {"name": "Evan Ferguson", "position": "FW", "overallRating": 80, "attackRating": 79, "defenseRating": 54, "passingRating": 75},
-        {"name": "Joël Veltman", "position": "DF", "overallRating": 80, "attackRating": 60, "defenseRating": 81, "passingRating": 79},
-        {"name": "Jack Hinshelwood", "position": "DF", "overallRating": 78, "attackRating": 58, "defenseRating": 79, "passingRating": 77},
-        {"name": "Carlos Baleba", "position": "MF", "overallRating": 79, "attackRating": 70, "defenseRating": 77, "passingRating": 81},
-        {"name": "Mats Wieffer", "position": "MF", "overallRating": 81, "attackRating": 72, "defenseRating": 80, "passingRating": 84}
+        {
+          "name": "Bart Verbruggen",
+          "position": "GK",
+          "overallRating": 84,
+          "attackRating": 20,
+          "defenseRating": 84,
+          "passingRating": 83,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Tariq Lamptey",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 76,
+          "defenseRating": 81,
+          "passingRating": 82,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Adam Webster",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 61,
+          "defenseRating": 84,
+          "passingRating": 80,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Igor Julio",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 62,
+          "defenseRating": 84,
+          "passingRating": 79,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Pervis Estupinan",
+          "position": "DF",
+          "overallRating": 81,
+          "attackRating": 70,
+          "defenseRating": 79,
+          "passingRating": 81,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Mois\u00e9s Caicedo",
+          "position": "MF",
+          "overallRating": 86,
+          "attackRating": 73,
+          "defenseRating": 85,
+          "passingRating": 87,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Alexis Mac Allister",
+          "position": "MF",
+          "overallRating": 86,
+          "attackRating": 76,
+          "defenseRating": 79,
+          "passingRating": 88,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Billy Gilmour",
+          "position": "MF",
+          "overallRating": 82,
+          "attackRating": 74,
+          "defenseRating": 75,
+          "passingRating": 86,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Solly March",
+          "position": "FW",
+          "overallRating": 81,
+          "attackRating": 80,
+          "defenseRating": 62,
+          "passingRating": 78,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Ansu Fati",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 82,
+          "defenseRating": 58,
+          "passingRating": 81,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Evan Ferguson",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 79,
+          "defenseRating": 54,
+          "passingRating": 75,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jo\u00ebl Veltman",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 60,
+          "defenseRating": 81,
+          "passingRating": 79,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Jack Hinshelwood",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 58,
+          "defenseRating": 79,
+          "passingRating": 77,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Carlos Baleba",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 70,
+          "defenseRating": 77,
+          "passingRating": 81,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Mats Wieffer",
+          "position": "MF",
+          "overallRating": 81,
+          "attackRating": 72,
+          "defenseRating": 80,
+          "passingRating": 84,
+          "subPosition": "CDM"
+        }
       ]
     },
     {
@@ -145,21 +745,141 @@
       "ballControl": 79,
       "formation": "4-3-3",
       "players": [
-        {"name": "Emi Martinez", "position": "GK", "overallRating": 87, "attackRating": 24, "defenseRating": 88, "passingRating": 86},
-        {"name": "Matty Cash", "position": "DF", "overallRating": 83, "attackRating": 75, "defenseRating": 82, "passingRating": 80},
-        {"name": "Pau Torres", "position": "DF", "overallRating": 85, "attackRating": 64, "defenseRating": 87, "passingRating": 85},
-        {"name": "Ezri Konsa", "position": "DF", "overallRating": 84, "attackRating": 63, "defenseRating": 86, "passingRating": 81},
-        {"name": "Lucas Digne", "position": "DF", "overallRating": 83, "attackRating": 74, "defenseRating": 81, "passingRating": 84},
-        {"name": "Youri Tielemans", "position": "MF", "overallRating": 85, "attackRating": 78, "defenseRating": 79, "passingRating": 87},
-        {"name": "Boubacar Kamara", "position": "MF", "overallRating": 83, "attackRating": 70, "defenseRating": 84, "passingRating": 83},
-        {"name": "John McGinn", "position": "MF", "overallRating": 84, "attackRating": 80, "defenseRating": 76, "passingRating": 84},
-        {"name": "Morgan Rogers", "position": "FW", "overallRating": 83, "attackRating": 82, "defenseRating": 59, "passingRating": 80},
-        {"name": "Ollie Watkins", "position": "FW", "overallRating": 86, "attackRating": 85, "defenseRating": 61, "passingRating": 82},
-        {"name": "Leon Bailey", "position": "FW", "overallRating": 82, "attackRating": 81, "defenseRating": 57, "passingRating": 77},
-        {"name": "Tyrone Mings", "position": "DF", "overallRating": 80, "attackRating": 59, "defenseRating": 81, "passingRating": 78},
-        {"name": "Kadan Young", "position": "DF", "overallRating": 76, "attackRating": 68, "defenseRating": 74, "passingRating": 74},
-        {"name": "Ross Barkley", "position": "MF", "overallRating": 80, "attackRating": 76, "defenseRating": 72, "passingRating": 81},
-        {"name": "Jacob Ramsey", "position": "MF", "overallRating": 81, "attackRating": 77, "defenseRating": 74, "passingRating": 82}
+        {
+          "name": "Emi Martinez",
+          "position": "GK",
+          "overallRating": 87,
+          "attackRating": 24,
+          "defenseRating": 88,
+          "passingRating": 86,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Matty Cash",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 75,
+          "defenseRating": 82,
+          "passingRating": 80,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Pau Torres",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 64,
+          "defenseRating": 87,
+          "passingRating": 85,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ezri Konsa",
+          "position": "DF",
+          "overallRating": 84,
+          "attackRating": 63,
+          "defenseRating": 86,
+          "passingRating": 81,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Lucas Digne",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 74,
+          "defenseRating": 81,
+          "passingRating": 84,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Youri Tielemans",
+          "position": "MF",
+          "overallRating": 85,
+          "attackRating": 78,
+          "defenseRating": 79,
+          "passingRating": 87,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Boubacar Kamara",
+          "position": "MF",
+          "overallRating": 83,
+          "attackRating": 70,
+          "defenseRating": 84,
+          "passingRating": 83,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "John McGinn",
+          "position": "MF",
+          "overallRating": 84,
+          "attackRating": 80,
+          "defenseRating": 76,
+          "passingRating": 84,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Morgan Rogers",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 82,
+          "defenseRating": 59,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Ollie Watkins",
+          "position": "FW",
+          "overallRating": 86,
+          "attackRating": 85,
+          "defenseRating": 61,
+          "passingRating": 82,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Leon Bailey",
+          "position": "FW",
+          "overallRating": 82,
+          "attackRating": 81,
+          "defenseRating": 57,
+          "passingRating": 77,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Tyrone Mings",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 59,
+          "defenseRating": 81,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Kadan Young",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 68,
+          "defenseRating": 74,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ross Barkley",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 76,
+          "defenseRating": 72,
+          "passingRating": 81,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Jacob Ramsey",
+          "position": "MF",
+          "overallRating": 81,
+          "attackRating": 77,
+          "defenseRating": 74,
+          "passingRating": 82,
+          "subPosition": "CM"
+        }
       ]
     },
     {
@@ -172,21 +892,141 @@
       "ballControl": 78,
       "formation": "4-3-3",
       "players": [
-        {"name": "Nick Pope", "position": "GK", "overallRating": 86, "attackRating": 23, "defenseRating": 86, "passingRating": 84},
-        {"name": "Kieran Trippier", "position": "DF", "overallRating": 85, "attackRating": 77, "defenseRating": 84, "passingRating": 86},
-        {"name": "Sven Botman", "position": "DF", "overallRating": 84, "attackRating": 63, "defenseRating": 86, "passingRating": 82},
-        {"name": "Jamaal Lascelles", "position": "DF", "overallRating": 83, "attackRating": 61, "defenseRating": 85, "passingRating": 80},
-        {"name": "Dan Burn", "position": "DF", "overallRating": 82, "attackRating": 68, "defenseRating": 84, "passingRating": 79},
-        {"name": "Bruno Guimaraes", "position": "MF", "overallRating": 87, "attackRating": 80, "defenseRating": 82, "passingRating": 89},
-        {"name": "Jonjo Shelvey", "position": "MF", "overallRating": 83, "attackRating": 75, "defenseRating": 77, "passingRating": 86},
-        {"name": "Sean Longstaff", "position": "MF", "overallRating": 81, "attackRating": 72, "defenseRating": 78, "passingRating": 83},
-        {"name": "Anthony Gordon", "position": "FW", "overallRating": 84, "attackRating": 83, "defenseRating": 62, "passingRating": 80},
-        {"name": "Alexander Isak", "position": "FW", "overallRating": 87, "attackRating": 86, "defenseRating": 58, "passingRating": 81},
-        {"name": "Joelinton", "position": "FW", "overallRating": 83, "attackRating": 80, "defenseRating": 72, "passingRating": 81},
-        {"name": "Tino Livramento", "position": "DF", "overallRating": 79, "attackRating": 71, "defenseRating": 78, "passingRating": 79},
-        {"name": "Emil Krafth", "position": "DF", "overallRating": 78, "attackRating": 65, "defenseRating": 77, "passingRating": 77},
-        {"name": "Harvey Elliott", "position": "MF", "overallRating": 80, "attackRating": 77, "defenseRating": 72, "passingRating": 82},
-        {"name": "Jamal Lewis", "position": "DF", "overallRating": 77, "attackRating": 68, "defenseRating": 76, "passingRating": 76}
+        {
+          "name": "Nick Pope",
+          "position": "GK",
+          "overallRating": 86,
+          "attackRating": 23,
+          "defenseRating": 86,
+          "passingRating": 84,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Kieran Trippier",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 77,
+          "defenseRating": 84,
+          "passingRating": 86,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Sven Botman",
+          "position": "DF",
+          "overallRating": 84,
+          "attackRating": 63,
+          "defenseRating": 86,
+          "passingRating": 82,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Jamaal Lascelles",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 61,
+          "defenseRating": 85,
+          "passingRating": 80,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Dan Burn",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 68,
+          "defenseRating": 84,
+          "passingRating": 79,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Bruno Guimaraes",
+          "position": "MF",
+          "overallRating": 87,
+          "attackRating": 80,
+          "defenseRating": 82,
+          "passingRating": 89,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Jonjo Shelvey",
+          "position": "MF",
+          "overallRating": 83,
+          "attackRating": 75,
+          "defenseRating": 77,
+          "passingRating": 86,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Sean Longstaff",
+          "position": "MF",
+          "overallRating": 81,
+          "attackRating": 72,
+          "defenseRating": 78,
+          "passingRating": 83,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Anthony Gordon",
+          "position": "FW",
+          "overallRating": 84,
+          "attackRating": 83,
+          "defenseRating": 62,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Alexander Isak",
+          "position": "FW",
+          "overallRating": 87,
+          "attackRating": 86,
+          "defenseRating": 58,
+          "passingRating": 81,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Joelinton",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 80,
+          "defenseRating": 72,
+          "passingRating": 81,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Tino Livramento",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 71,
+          "defenseRating": 78,
+          "passingRating": 79,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Emil Krafth",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 65,
+          "defenseRating": 77,
+          "passingRating": 77,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Harvey Elliott",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 77,
+          "defenseRating": 72,
+          "passingRating": 82,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Jamal Lewis",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 68,
+          "defenseRating": 76,
+          "passingRating": 76,
+          "subPosition": "CB"
+        }
       ]
     },
     {
@@ -199,21 +1039,141 @@
       "ballControl": 78,
       "formation": "4-3-3",
       "players": [
-        {"name": "Altay Bayındır", "position": "GK", "overallRating": 84, "attackRating": 23, "defenseRating": 84, "passingRating": 85},
-        {"name": "Diogo Dalot", "position": "DF", "overallRating": 84, "attackRating": 76, "defenseRating": 82, "passingRating": 83},
-        {"name": "Noussair Mazraoui", "position": "DF", "overallRating": 85, "attackRating": 75, "defenseRating": 86, "passingRating": 84},
-        {"name": "Matthijs de Ligt", "position": "DF", "overallRating": 86, "attackRating": 70, "defenseRating": 88, "passingRating": 85},
-        {"name": "Lisandro Martínez", "position": "DF", "overallRating": 85, "attackRating": 68, "defenseRating": 86, "passingRating": 84},
-        {"name": "Bruno Fernandes", "position": "MF", "overallRating": 89, "attackRating": 87, "defenseRating": 68, "passingRating": 92},
-        {"name": "Manuel Ugarte", "position": "MF", "overallRating": 83, "attackRating": 72, "defenseRating": 85, "passingRating": 84},
-        {"name": "Mason Mount", "position": "MF", "overallRating": 82, "attackRating": 79, "defenseRating": 71, "passingRating": 85},
-        {"name": "Joshua Zirkzee", "position": "FW", "overallRating": 84, "attackRating": 84, "defenseRating": 58, "passingRating": 79},
-        {"name": "Matheus Cunha", "position": "FW", "overallRating": 85, "attackRating": 86, "defenseRating": 62, "passingRating": 82},
-        {"name": "Benjamin Šeško", "position": "FW", "overallRating": 86, "attackRating": 87, "defenseRating": 61, "passingRating": 80},
-        {"name": "Luke Shaw", "position": "DF", "overallRating": 83, "attackRating": 72, "defenseRating": 82, "passingRating": 83},
-        {"name": "Harry Maguire", "position": "DF", "overallRating": 83, "attackRating": 62, "defenseRating": 85, "passingRating": 80},
-        {"name": "Leny Yoro", "position": "DF", "overallRating": 82, "attackRating": 61, "defenseRating": 84, "passingRating": 79},
-        {"name": "Casemiro", "position": "MF", "overallRating": 86, "attackRating": 74, "defenseRating": 87, "passingRating": 86}
+        {
+          "name": "Altay Bay\u0131nd\u0131r",
+          "position": "GK",
+          "overallRating": 84,
+          "attackRating": 23,
+          "defenseRating": 84,
+          "passingRating": 85,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Diogo Dalot",
+          "position": "DF",
+          "overallRating": 84,
+          "attackRating": 76,
+          "defenseRating": 82,
+          "passingRating": 83,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Noussair Mazraoui",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 75,
+          "defenseRating": 86,
+          "passingRating": 84,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Matthijs de Ligt",
+          "position": "DF",
+          "overallRating": 86,
+          "attackRating": 70,
+          "defenseRating": 88,
+          "passingRating": 85,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Lisandro Mart\u00ednez",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 68,
+          "defenseRating": 86,
+          "passingRating": 84,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Bruno Fernandes",
+          "position": "MF",
+          "overallRating": 89,
+          "attackRating": 87,
+          "defenseRating": 68,
+          "passingRating": 92,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Manuel Ugarte",
+          "position": "MF",
+          "overallRating": 83,
+          "attackRating": 72,
+          "defenseRating": 85,
+          "passingRating": 84,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Mason Mount",
+          "position": "MF",
+          "overallRating": 82,
+          "attackRating": 79,
+          "defenseRating": 71,
+          "passingRating": 85,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Joshua Zirkzee",
+          "position": "FW",
+          "overallRating": 84,
+          "attackRating": 84,
+          "defenseRating": 58,
+          "passingRating": 79,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Matheus Cunha",
+          "position": "FW",
+          "overallRating": 85,
+          "attackRating": 86,
+          "defenseRating": 62,
+          "passingRating": 82,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Benjamin \u0160e\u0161ko",
+          "position": "FW",
+          "overallRating": 86,
+          "attackRating": 87,
+          "defenseRating": 61,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Luke Shaw",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 72,
+          "defenseRating": 82,
+          "passingRating": 83,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Harry Maguire",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 62,
+          "defenseRating": 85,
+          "passingRating": 80,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Leny Yoro",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 61,
+          "defenseRating": 84,
+          "passingRating": 79,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Casemiro",
+          "position": "MF",
+          "overallRating": 86,
+          "attackRating": 74,
+          "defenseRating": 87,
+          "passingRating": 86,
+          "subPosition": "CDM"
+        }
       ]
     },
     {
@@ -226,21 +1186,141 @@
       "ballControl": 78,
       "formation": "4-3-3",
       "players": [
-        {"name": "Guglielmo Vicario", "position": "GK", "overallRating": 85, "attackRating": 21, "defenseRating": 85, "passingRating": 85},
-        {"name": "Pedro Porro", "position": "DF", "overallRating": 84, "attackRating": 77, "defenseRating": 82, "passingRating": 83},
-        {"name": "Cristian Romero", "position": "DF", "overallRating": 85, "attackRating": 68, "defenseRating": 87, "passingRating": 82},
-        {"name": "Micky van de Ven", "position": "DF", "overallRating": 83, "attackRating": 66, "defenseRating": 85, "passingRating": 82},
-        {"name": "Destiny Udogie", "position": "DF", "overallRating": 82, "attackRating": 72, "defenseRating": 81, "passingRating": 81},
-        {"name": "James Maddison", "position": "MF", "overallRating": 85, "attackRating": 82, "defenseRating": 68, "passingRating": 88},
-        {"name": "Rodrigo Bentancur", "position": "MF", "overallRating": 83, "attackRating": 75, "defenseRating": 80, "passingRating": 84},
-        {"name": "Dejan Kulusevski", "position": "MF", "overallRating": 84, "attackRating": 81, "defenseRating": 70, "passingRating": 84},
-        {"name": "Richarlison", "position": "FW", "overallRating": 84, "attackRating": 84, "defenseRating": 66, "passingRating": 81},
-        {"name": "Mathys Tel", "position": "FW", "overallRating": 83, "attackRating": 83, "defenseRating": 60, "passingRating": 80},
-        {"name": "Dominic Solanke", "position": "FW", "overallRating": 82, "attackRating": 81, "defenseRating": 58, "passingRating": 78},
-        {"name": "Ben Davies", "position": "DF", "overallRating": 80, "attackRating": 63, "defenseRating": 81, "passingRating": 80},
-        {"name": "Yves Bissouma", "position": "MF", "overallRating": 82, "attackRating": 74, "defenseRating": 82, "passingRating": 85},
-        {"name": "Pape Matar Sarr", "position": "MF", "overallRating": 80, "attackRating": 72, "defenseRating": 78, "passingRating": 82},
-        {"name": "Mohammed Kudus", "position": "FW", "overallRating": 83, "attackRating": 82, "defenseRating": 61, "passingRating": 81}
+        {
+          "name": "Guglielmo Vicario",
+          "position": "GK",
+          "overallRating": 85,
+          "attackRating": 21,
+          "defenseRating": 85,
+          "passingRating": 85,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Pedro Porro",
+          "position": "DF",
+          "overallRating": 84,
+          "attackRating": 77,
+          "defenseRating": 82,
+          "passingRating": 83,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Cristian Romero",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 68,
+          "defenseRating": 87,
+          "passingRating": 82,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Micky van de Ven",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 66,
+          "defenseRating": 85,
+          "passingRating": 82,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Destiny Udogie",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 72,
+          "defenseRating": 81,
+          "passingRating": 81,
+          "subPosition": "RB"
+        },
+        {
+          "name": "James Maddison",
+          "position": "MF",
+          "overallRating": 85,
+          "attackRating": 82,
+          "defenseRating": 68,
+          "passingRating": 88,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Rodrigo Bentancur",
+          "position": "MF",
+          "overallRating": 83,
+          "attackRating": 75,
+          "defenseRating": 80,
+          "passingRating": 84,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Dejan Kulusevski",
+          "position": "MF",
+          "overallRating": 84,
+          "attackRating": 81,
+          "defenseRating": 70,
+          "passingRating": 84,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Richarlison",
+          "position": "FW",
+          "overallRating": 84,
+          "attackRating": 84,
+          "defenseRating": 66,
+          "passingRating": 81,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Mathys Tel",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 83,
+          "defenseRating": 60,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Dominic Solanke",
+          "position": "FW",
+          "overallRating": 82,
+          "attackRating": 81,
+          "defenseRating": 58,
+          "passingRating": 78,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Ben Davies",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 63,
+          "defenseRating": 81,
+          "passingRating": 80,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Yves Bissouma",
+          "position": "MF",
+          "overallRating": 82,
+          "attackRating": 74,
+          "defenseRating": 82,
+          "passingRating": 85,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Pape Matar Sarr",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 72,
+          "defenseRating": 78,
+          "passingRating": 82,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Mohammed Kudus",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 82,
+          "defenseRating": 61,
+          "passingRating": 81,
+          "subPosition": "ST"
+        }
       ]
     },
     {
@@ -253,21 +1333,141 @@
       "ballControl": 75,
       "formation": "4-3-3",
       "players": [
-        {"name": "Alphonse Areola", "position": "GK", "overallRating": 83, "attackRating": 20, "defenseRating": 83, "passingRating": 82},
-        {"name": "Aaron Cresswell", "position": "DF", "overallRating": 80, "attackRating": 68, "defenseRating": 79, "passingRating": 80},
-        {"name": "Kurt Zouma", "position": "DF", "overallRating": 82, "attackRating": 61, "defenseRating": 83, "passingRating": 78},
-        {"name": "Nayef Aguerd", "position": "DF", "overallRating": 81, "attackRating": 60, "defenseRating": 82, "passingRating": 77},
-        {"name": "Vladimir Coufal", "position": "DF", "overallRating": 80, "attackRating": 70, "defenseRating": 79, "passingRating": 79},
-        {"name": "Tomas Soucek", "position": "MF", "overallRating": 82, "attackRating": 75, "defenseRating": 80, "passingRating": 81},
-        {"name": "Declan Rice", "position": "MF", "overallRating": 85, "attackRating": 72, "defenseRating": 84, "passingRating": 86},
-        {"name": "James Ward-Prowse", "position": "MF", "overallRating": 82, "attackRating": 76, "defenseRating": 76, "passingRating": 86},
-        {"name": "Jarrod Bowen", "position": "FW", "overallRating": 83, "attackRating": 82, "defenseRating": 62, "passingRating": 80},
-        {"name": "Michail Antonio", "position": "FW", "overallRating": 80, "attackRating": 79, "defenseRating": 58, "passingRating": 76},
-        {"name": "Mohammed Kudus", "position": "FW", "overallRating": 82, "attackRating": 81, "defenseRating": 60, "passingRating": 81},
-        {"name": "Emerson Palmieri", "position": "DF", "overallRating": 78, "attackRating": 66, "defenseRating": 77, "passingRating": 78},
-        {"name": "Ben Johnson", "position": "DF", "overallRating": 77, "attackRating": 64, "defenseRating": 76, "passingRating": 76},
-        {"name": "Gianluca Scamacca", "position": "FW", "overallRating": 79, "attackRating": 78, "defenseRating": 54, "passingRating": 75},
-        {"name": "Lucas Paqueta", "position": "MF", "overallRating": 80, "attackRating": 76, "defenseRating": 72, "passingRating": 82}
+        {
+          "name": "Alphonse Areola",
+          "position": "GK",
+          "overallRating": 83,
+          "attackRating": 20,
+          "defenseRating": 83,
+          "passingRating": 82,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Aaron Cresswell",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 68,
+          "defenseRating": 79,
+          "passingRating": 80,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Kurt Zouma",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 61,
+          "defenseRating": 83,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Nayef Aguerd",
+          "position": "DF",
+          "overallRating": 81,
+          "attackRating": 60,
+          "defenseRating": 82,
+          "passingRating": 77,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Vladimir Coufal",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 70,
+          "defenseRating": 79,
+          "passingRating": 79,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Tomas Soucek",
+          "position": "MF",
+          "overallRating": 82,
+          "attackRating": 75,
+          "defenseRating": 80,
+          "passingRating": 81,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Declan Rice",
+          "position": "MF",
+          "overallRating": 85,
+          "attackRating": 72,
+          "defenseRating": 84,
+          "passingRating": 86,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "James Ward-Prowse",
+          "position": "MF",
+          "overallRating": 82,
+          "attackRating": 76,
+          "defenseRating": 76,
+          "passingRating": 86,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Jarrod Bowen",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 82,
+          "defenseRating": 62,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Michail Antonio",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 79,
+          "defenseRating": 58,
+          "passingRating": 76,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Mohammed Kudus",
+          "position": "FW",
+          "overallRating": 82,
+          "attackRating": 81,
+          "defenseRating": 60,
+          "passingRating": 81,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Emerson Palmieri",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 66,
+          "defenseRating": 77,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ben Johnson",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 64,
+          "defenseRating": 76,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Gianluca Scamacca",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 78,
+          "defenseRating": 54,
+          "passingRating": 75,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Lucas Paqueta",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 76,
+          "defenseRating": 72,
+          "passingRating": 82,
+          "subPosition": "CM"
+        }
       ]
     },
     {
@@ -280,21 +1480,141 @@
       "ballControl": 72,
       "formation": "4-3-3",
       "players": [
-        {"name": "Jordan Pickford", "position": "GK", "overallRating": 83, "attackRating": 20, "defenseRating": 83, "passingRating": 82},
-        {"name": "Seamus Coleman", "position": "DF", "overallRating": 81, "attackRating": 72, "defenseRating": 81, "passingRating": 80},
-        {"name": "Jarrad Branthwaite", "position": "DF", "overallRating": 80, "attackRating": 60, "defenseRating": 81, "passingRating": 77},
-        {"name": "James Tarkowski", "position": "DF", "overallRating": 80, "attackRating": 59, "defenseRating": 81, "passingRating": 76},
-        {"name": "Ashley Young", "position": "DF", "overallRating": 78, "attackRating": 68, "defenseRating": 77, "passingRating": 78},
-        {"name": "Abdoulaye Doucoure", "position": "MF", "overallRating": 79, "attackRating": 71, "defenseRating": 77, "passingRating": 79},
-        {"name": "Idrissa Gueye", "position": "MF", "overallRating": 80, "attackRating": 68, "defenseRating": 80, "passingRating": 80},
-        {"name": "Alex Iwobi", "position": "MF", "overallRating": 79, "attackRating": 74, "defenseRating": 71, "passingRating": 79},
-        {"name": "Dwight McNeil", "position": "FW", "overallRating": 79, "attackRating": 77, "defenseRating": 62, "passingRating": 80},
-        {"name": "Dominic Calvert-Lewin", "position": "FW", "overallRating": 78, "attackRating": 76, "defenseRating": 56, "passingRating": 74},
-        {"name": "Neal Maupay", "position": "FW", "overallRating": 77, "attackRating": 75, "defenseRating": 54, "passingRating": 73},
-        {"name": "Vitaliy Mykolenko", "position": "DF", "overallRating": 77, "attackRating": 65, "defenseRating": 75, "passingRating": 76},
-        {"name": "Michael Keane", "position": "DF", "overallRating": 76, "attackRating": 57, "defenseRating": 77, "passingRating": 74},
-        {"name": "Harrison Reed", "position": "MF", "overallRating": 75, "attackRating": 65, "defenseRating": 74, "passingRating": 77},
-        {"name": "James Garner", "position": "MF", "overallRating": 76, "attackRating": 68, "defenseRating": 72, "passingRating": 78}
+        {
+          "name": "Jordan Pickford",
+          "position": "GK",
+          "overallRating": 83,
+          "attackRating": 20,
+          "defenseRating": 83,
+          "passingRating": 82,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Seamus Coleman",
+          "position": "DF",
+          "overallRating": 81,
+          "attackRating": 72,
+          "defenseRating": 81,
+          "passingRating": 80,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Jarrad Branthwaite",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 60,
+          "defenseRating": 81,
+          "passingRating": 77,
+          "subPosition": "CB"
+        },
+        {
+          "name": "James Tarkowski",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 59,
+          "defenseRating": 81,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ashley Young",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 68,
+          "defenseRating": 77,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Abdoulaye Doucoure",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 71,
+          "defenseRating": 77,
+          "passingRating": 79,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Idrissa Gueye",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 68,
+          "defenseRating": 80,
+          "passingRating": 80,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Alex Iwobi",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 74,
+          "defenseRating": 71,
+          "passingRating": 79,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Dwight McNeil",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 77,
+          "defenseRating": 62,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Dominic Calvert-Lewin",
+          "position": "FW",
+          "overallRating": 78,
+          "attackRating": 76,
+          "defenseRating": 56,
+          "passingRating": 74,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Neal Maupay",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 75,
+          "defenseRating": 54,
+          "passingRating": 73,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Vitaliy Mykolenko",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 65,
+          "defenseRating": 75,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Michael Keane",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 57,
+          "defenseRating": 77,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Harrison Reed",
+          "position": "MF",
+          "overallRating": 75,
+          "attackRating": 65,
+          "defenseRating": 74,
+          "passingRating": 77,
+          "subPosition": "CM"
+        },
+        {
+          "name": "James Garner",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 68,
+          "defenseRating": 72,
+          "passingRating": 78,
+          "subPosition": "CM"
+        }
       ]
     },
     {
@@ -307,21 +1627,141 @@
       "ballControl": 74,
       "formation": "4-3-3",
       "players": [
-        {"name": "Bernd Leno", "position": "GK", "overallRating": 83, "attackRating": 20, "defenseRating": 83, "passingRating": 83},
-        {"name": "Calvin Bassey", "position": "DF", "overallRating": 80, "attackRating": 63, "defenseRating": 81, "passingRating": 78},
-        {"name": "Tosin Adarabioyo", "position": "DF", "overallRating": 80, "attackRating": 58, "defenseRating": 82, "passingRating": 80},
-        {"name": "Issa Diop", "position": "DF", "overallRating": 79, "attackRating": 57, "defenseRating": 80, "passingRating": 77},
-        {"name": "Antonee Robinson", "position": "DF", "overallRating": 80, "attackRating": 70, "defenseRating": 81, "passingRating": 78},
-        {"name": "Andreas Pereira", "position": "MF", "overallRating": 80, "attackRating": 74, "defenseRating": 75, "passingRating": 82},
-        {"name": "Harrison Reed", "position": "MF", "overallRating": 79, "attackRating": 70, "defenseRating": 79, "passingRating": 81},
-        {"name": "Emile Smith Rowe", "position": "MF", "overallRating": 80, "attackRating": 78, "defenseRating": 68, "passingRating": 81},
-        {"name": "Willian", "position": "FW", "overallRating": 78, "attackRating": 76, "defenseRating": 61, "passingRating": 80},
-        {"name": "Raul Jimenez", "position": "FW", "overallRating": 79, "attackRating": 77, "defenseRating": 57, "passingRating": 77},
-        {"name": "Aleksander Mitrovic", "position": "FW", "overallRating": 80, "attackRating": 79, "defenseRating": 56, "passingRating": 75},
-        {"name": "Tyrone Mings", "position": "DF", "overallRating": 78, "attackRating": 59, "defenseRating": 79, "passingRating": 76},
-        {"name": "Nestor Asprilla", "position": "FW", "overallRating": 75, "attackRating": 73, "defenseRating": 52, "passingRating": 72},
-        {"name": "Sander Berge", "position": "MF", "overallRating": 78, "attackRating": 72, "defenseRating": 77, "passingRating": 80},
-        {"name": "Fabio Carvalho", "position": "FW", "overallRating": 77, "attackRating": 75, "defenseRating": 60, "passingRating": 78}
+        {
+          "name": "Bernd Leno",
+          "position": "GK",
+          "overallRating": 83,
+          "attackRating": 20,
+          "defenseRating": 83,
+          "passingRating": 83,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Calvin Bassey",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 63,
+          "defenseRating": 81,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Tosin Adarabioyo",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 58,
+          "defenseRating": 82,
+          "passingRating": 80,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Issa Diop",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 57,
+          "defenseRating": 80,
+          "passingRating": 77,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Antonee Robinson",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 70,
+          "defenseRating": 81,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Andreas Pereira",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 74,
+          "defenseRating": 75,
+          "passingRating": 82,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Harrison Reed",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 70,
+          "defenseRating": 79,
+          "passingRating": 81,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Emile Smith Rowe",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 78,
+          "defenseRating": 68,
+          "passingRating": 81,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Willian",
+          "position": "FW",
+          "overallRating": 78,
+          "attackRating": 76,
+          "defenseRating": 61,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Raul Jimenez",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 77,
+          "defenseRating": 57,
+          "passingRating": 77,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Aleksander Mitrovic",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 79,
+          "defenseRating": 56,
+          "passingRating": 75,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Tyrone Mings",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 59,
+          "defenseRating": 79,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Nestor Asprilla",
+          "position": "FW",
+          "overallRating": 75,
+          "attackRating": 73,
+          "defenseRating": 52,
+          "passingRating": 72,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Sander Berge",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 72,
+          "defenseRating": 77,
+          "passingRating": 80,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Fabio Carvalho",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 75,
+          "defenseRating": 60,
+          "passingRating": 78,
+          "subPosition": "ST"
+        }
       ]
     },
     {
@@ -334,21 +1774,141 @@
       "ballControl": 72,
       "formation": "4-3-3",
       "players": [
-        {"name": "Kepa Arrizabalaga", "position": "GK", "overallRating": 82, "attackRating": 19, "defenseRating": 82, "passingRating": 82},
-        {"name": "Lloyd Kelly", "position": "DF", "overallRating": 78, "attackRating": 60, "defenseRating": 78, "passingRating": 76},
-        {"name": "Ilya Zabarnyi", "position": "DF", "overallRating": 79, "attackRating": 59, "defenseRating": 80, "passingRating": 77},
-        {"name": "Adam Smith", "position": "DF", "overallRating": 77, "attackRating": 61, "defenseRating": 77, "passingRating": 75},
-        {"name": "Milos Kerkez", "position": "DF", "overallRating": 76, "attackRating": 66, "defenseRating": 74, "passingRating": 75},
-        {"name": "Lewis Cook", "position": "MF", "overallRating": 79, "attackRating": 70, "defenseRating": 77, "passingRating": 81},
-        {"name": "Philip Billing", "position": "MF", "overallRating": 78, "attackRating": 69, "defenseRating": 76, "passingRating": 79},
-        {"name": "Ryan Christie", "position": "MF", "overallRating": 77, "attackRating": 72, "defenseRating": 70, "passingRating": 78},
-        {"name": "Antoine Semenyo", "position": "FW", "overallRating": 79, "attackRating": 78, "defenseRating": 61, "passingRating": 77},
-        {"name": "Dominic Solanke", "position": "FW", "overallRating": 80, "attackRating": 79, "defenseRating": 58, "passingRating": 76},
-        {"name": "Justin Kluivert", "position": "FW", "overallRating": 77, "attackRating": 76, "defenseRating": 57, "passingRating": 74},
-        {"name": "Chris Mepham", "position": "DF", "overallRating": 76, "attackRating": 58, "defenseRating": 76, "passingRating": 74},
-        {"name": "Julio Soler", "position": "DF", "overallRating": 75, "attackRating": 64, "defenseRating": 73, "passingRating": 74},
-        {"name": "David Brooks", "position": "MF", "overallRating": 76, "attackRating": 74, "defenseRating": 65, "passingRating": 76},
-        {"name": "Cameron Carter-Vickers", "position": "DF", "overallRating": 74, "attackRating": 56, "defenseRating": 74, "passingRating": 72}
+        {
+          "name": "Kepa Arrizabalaga",
+          "position": "GK",
+          "overallRating": 82,
+          "attackRating": 19,
+          "defenseRating": 82,
+          "passingRating": 82,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Lloyd Kelly",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 60,
+          "defenseRating": 78,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ilya Zabarnyi",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 59,
+          "defenseRating": 80,
+          "passingRating": 77,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Adam Smith",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 61,
+          "defenseRating": 77,
+          "passingRating": 75,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Milos Kerkez",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 66,
+          "defenseRating": 74,
+          "passingRating": 75,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Lewis Cook",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 70,
+          "defenseRating": 77,
+          "passingRating": 81,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Philip Billing",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 69,
+          "defenseRating": 76,
+          "passingRating": 79,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Ryan Christie",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 72,
+          "defenseRating": 70,
+          "passingRating": 78,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Antoine Semenyo",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 78,
+          "defenseRating": 61,
+          "passingRating": 77,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Dominic Solanke",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 79,
+          "defenseRating": 58,
+          "passingRating": 76,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Justin Kluivert",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 76,
+          "defenseRating": 57,
+          "passingRating": 74,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Chris Mepham",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 58,
+          "defenseRating": 76,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Julio Soler",
+          "position": "DF",
+          "overallRating": 75,
+          "attackRating": 64,
+          "defenseRating": 73,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "David Brooks",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 74,
+          "defenseRating": 65,
+          "passingRating": 76,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Cameron Carter-Vickers",
+          "position": "DF",
+          "overallRating": 74,
+          "attackRating": 56,
+          "defenseRating": 74,
+          "passingRating": 72,
+          "subPosition": "CB"
+        }
       ]
     },
     {
@@ -361,21 +1921,141 @@
       "ballControl": 74,
       "formation": "4-3-3",
       "players": [
-        {"name": "Mark Flekken", "position": "GK", "overallRating": 82, "attackRating": 19, "defenseRating": 82, "passingRating": 81},
-        {"name": "Kristoffer Ajer", "position": "DF", "overallRating": 79, "attackRating": 62, "defenseRating": 80, "passingRating": 78},
-        {"name": "Ben Mee", "position": "DF", "overallRating": 79, "attackRating": 59, "defenseRating": 80, "passingRating": 77},
-        {"name": "Mads Roerslev", "position": "DF", "overallRating": 78, "attackRating": 68, "defenseRating": 77, "passingRating": 76},
-        {"name": "Rico Henry", "position": "DF", "overallRating": 77, "attackRating": 67, "defenseRating": 76, "passingRating": 76},
-        {"name": "Saman Ghoddos", "position": "MF", "overallRating": 78, "attackRating": 72, "defenseRating": 73, "passingRating": 79},
-        {"name": "Mathias Jensen", "position": "MF", "overallRating": 79, "attackRating": 71, "defenseRating": 76, "passingRating": 82},
-        {"name": "Ryan Ledson", "position": "MF", "overallRating": 77, "attackRating": 69, "defenseRating": 75, "passingRating": 78},
-        {"name": "Yoane Wissa", "position": "FW", "overallRating": 79, "attackRating": 78, "defenseRating": 62, "passingRating": 76},
-        {"name": "Bryan Toney", "position": "FW", "overallRating": 80, "attackRating": 79, "defenseRating": 59, "passingRating": 76},
-        {"name": "Bryan Mbeumo", "position": "FW", "overallRating": 79, "attackRating": 77, "defenseRating": 61, "passingRating": 78},
-        {"name": "Ethan Pinnock", "position": "DF", "overallRating": 77, "attackRating": 57, "defenseRating": 78, "passingRating": 75},
-        {"name": "Vitaly Janelt", "position": "MF", "overallRating": 76, "attackRating": 68, "defenseRating": 74, "passingRating": 77},
-        {"name": "Mikkel Damsgaard", "position": "FW", "overallRating": 77, "attackRating": 75, "defenseRating": 59, "passingRating": 77},
-        {"name": "Aaron Hickey", "position": "DF", "overallRating": 75, "attackRating": 66, "defenseRating": 74, "passingRating": 75}
+        {
+          "name": "Mark Flekken",
+          "position": "GK",
+          "overallRating": 82,
+          "attackRating": 19,
+          "defenseRating": 82,
+          "passingRating": 81,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Kristoffer Ajer",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 62,
+          "defenseRating": 80,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ben Mee",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 59,
+          "defenseRating": 80,
+          "passingRating": 77,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Mads Roerslev",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 68,
+          "defenseRating": 77,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Rico Henry",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 67,
+          "defenseRating": 76,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Saman Ghoddos",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 72,
+          "defenseRating": 73,
+          "passingRating": 79,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Mathias Jensen",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 71,
+          "defenseRating": 76,
+          "passingRating": 82,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Ryan Ledson",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 69,
+          "defenseRating": 75,
+          "passingRating": 78,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Yoane Wissa",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 78,
+          "defenseRating": 62,
+          "passingRating": 76,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Bryan Toney",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 79,
+          "defenseRating": 59,
+          "passingRating": 76,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Bryan Mbeumo",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 77,
+          "defenseRating": 61,
+          "passingRating": 78,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Ethan Pinnock",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 57,
+          "defenseRating": 78,
+          "passingRating": 75,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Vitaly Janelt",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 68,
+          "defenseRating": 74,
+          "passingRating": 77,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Mikkel Damsgaard",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 75,
+          "defenseRating": 59,
+          "passingRating": 77,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Aaron Hickey",
+          "position": "DF",
+          "overallRating": 75,
+          "attackRating": 66,
+          "defenseRating": 74,
+          "passingRating": 75,
+          "subPosition": "CB"
+        }
       ]
     },
     {
@@ -388,21 +2068,141 @@
       "ballControl": 71,
       "formation": "4-3-3",
       "players": [
-        {"name": "Sam Johnstone", "position": "GK", "overallRating": 81, "attackRating": 19, "defenseRating": 81, "passingRating": 80},
-        {"name": "Trevoh Chalobah", "position": "DF", "overallRating": 77, "attackRating": 59, "defenseRating": 78, "passingRating": 76},
-        {"name": "Marc Guehi", "position": "DF", "overallRating": 78, "attackRating": 60, "defenseRating": 79, "passingRating": 76},
-        {"name": "Joel Ward", "position": "DF", "overallRating": 76, "attackRating": 61, "defenseRating": 76, "passingRating": 74},
-        {"name": "Tyrick Mitchell", "position": "DF", "overallRating": 75, "attackRating": 63, "defenseRating": 74, "passingRating": 74},
-        {"name": "Eberechi Eze", "position": "MF", "overallRating": 78, "attackRating": 76, "defenseRating": 68, "passingRating": 80},
-        {"name": "Cheick Doucoure", "position": "MF", "overallRating": 77, "attackRating": 70, "defenseRating": 76, "passingRating": 77},
-        {"name": "Will Hughes", "position": "MF", "overallRating": 76, "attackRating": 68, "defenseRating": 73, "passingRating": 78},
-        {"name": "Michael Olise", "position": "FW", "overallRating": 79, "attackRating": 78, "defenseRating": 62, "passingRating": 79},
-        {"name": "Jean-Philippe Mateta", "position": "FW", "overallRating": 77, "attackRating": 75, "defenseRating": 56, "passingRating": 73},
-        {"name": "Jeffrey Schlupp", "position": "FW", "overallRating": 75, "attackRating": 73, "defenseRating": 59, "passingRating": 74},
-        {"name": "Nathaniel Clyne", "position": "DF", "overallRating": 73, "attackRating": 58, "defenseRating": 72, "passingRating": 72},
-        {"name": "Jairo Riedewald", "position": "MF", "overallRating": 75, "attackRating": 66, "defenseRating": 74, "passingRating": 76},
-        {"name": "Daniel Munoz", "position": "DF", "overallRating": 74, "attackRating": 62, "defenseRating": 73, "passingRating": 73},
-        {"name": "Nicola Wilian", "position": "FW", "overallRating": 73, "attackRating": 70, "defenseRating": 54, "passingRating": 71}
+        {
+          "name": "Sam Johnstone",
+          "position": "GK",
+          "overallRating": 81,
+          "attackRating": 19,
+          "defenseRating": 81,
+          "passingRating": 80,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Trevoh Chalobah",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 59,
+          "defenseRating": 78,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Marc Guehi",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 60,
+          "defenseRating": 79,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Joel Ward",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 61,
+          "defenseRating": 76,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Tyrick Mitchell",
+          "position": "DF",
+          "overallRating": 75,
+          "attackRating": 63,
+          "defenseRating": 74,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Eberechi Eze",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 76,
+          "defenseRating": 68,
+          "passingRating": 80,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Cheick Doucoure",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 70,
+          "defenseRating": 76,
+          "passingRating": 77,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Will Hughes",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 68,
+          "defenseRating": 73,
+          "passingRating": 78,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Michael Olise",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 78,
+          "defenseRating": 62,
+          "passingRating": 79,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jean-Philippe Mateta",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 75,
+          "defenseRating": 56,
+          "passingRating": 73,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jeffrey Schlupp",
+          "position": "FW",
+          "overallRating": 75,
+          "attackRating": 73,
+          "defenseRating": 59,
+          "passingRating": 74,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Nathaniel Clyne",
+          "position": "DF",
+          "overallRating": 73,
+          "attackRating": 58,
+          "defenseRating": 72,
+          "passingRating": 72,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Jairo Riedewald",
+          "position": "MF",
+          "overallRating": 75,
+          "attackRating": 66,
+          "defenseRating": 74,
+          "passingRating": 76,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Daniel Munoz",
+          "position": "DF",
+          "overallRating": 74,
+          "attackRating": 62,
+          "defenseRating": 73,
+          "passingRating": 73,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Nicola Wilian",
+          "position": "FW",
+          "overallRating": 73,
+          "attackRating": 70,
+          "defenseRating": 54,
+          "passingRating": 71,
+          "subPosition": "ST"
+        }
       ]
     },
     {
@@ -415,21 +2215,141 @@
       "ballControl": 71,
       "formation": "4-3-3",
       "players": [
-        {"name": "Matz Sels", "position": "GK", "overallRating": 80, "attackRating": 18, "defenseRating": 80, "passingRating": 79},
-        {"name": "Neco Williams", "position": "DF", "overallRating": 76, "attackRating": 68, "defenseRating": 75, "passingRating": 75},
-        {"name": "Nikola Milenkovic", "position": "DF", "overallRating": 77, "attackRating": 60, "defenseRating": 78, "passingRating": 75},
-        {"name": "Joe Worrall", "position": "DF", "overallRating": 76, "attackRating": 59, "defenseRating": 76, "passingRating": 73},
-        {"name": "Harry Toffolo", "position": "DF", "overallRating": 75, "attackRating": 65, "defenseRating": 74, "passingRating": 74},
-        {"name": "Elliot Anderson", "position": "MF", "overallRating": 76, "attackRating": 71, "defenseRating": 72, "passingRating": 77},
-        {"name": "Ryan Yates", "position": "MF", "overallRating": 76, "attackRating": 68, "defenseRating": 75, "passingRating": 76},
-        {"name": "Ibrahim Sangare", "position": "MF", "overallRating": 77, "attackRating": 70, "defenseRating": 77, "passingRating": 78},
-        {"name": "Callum Hudson-Odoi", "position": "FW", "overallRating": 77, "attackRating": 76, "defenseRating": 61, "passingRating": 77},
-        {"name": "Taiwo Awoniyi", "position": "FW", "overallRating": 76, "attackRating": 74, "defenseRating": 55, "passingRating": 72},
-        {"name": "Chris Wood", "position": "FW", "overallRating": 76, "attackRating": 74, "defenseRating": 57, "passingRating": 71},
-        {"name": "Scott McKenna", "position": "DF", "overallRating": 74, "attackRating": 57, "defenseRating": 74, "passingRating": 72},
-        {"name": "Serge Aurier", "position": "DF", "overallRating": 74, "attackRating": 65, "defenseRating": 74, "passingRating": 72},
-        {"name": "Romain Esse", "position": "MF", "overallRating": 74, "attackRating": 65, "defenseRating": 73, "passingRating": 75},
-        {"name": "Morgan Gibbs-White", "position": "FW", "overallRating": 75, "attackRating": 73, "defenseRating": 58, "passingRating": 76}
+        {
+          "name": "Matz Sels",
+          "position": "GK",
+          "overallRating": 80,
+          "attackRating": 18,
+          "defenseRating": 80,
+          "passingRating": 79,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Neco Williams",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 68,
+          "defenseRating": 75,
+          "passingRating": 75,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Nikola Milenkovic",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 60,
+          "defenseRating": 78,
+          "passingRating": 75,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Joe Worrall",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 59,
+          "defenseRating": 76,
+          "passingRating": 73,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Harry Toffolo",
+          "position": "DF",
+          "overallRating": 75,
+          "attackRating": 65,
+          "defenseRating": 74,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Elliot Anderson",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 71,
+          "defenseRating": 72,
+          "passingRating": 77,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Ryan Yates",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 68,
+          "defenseRating": 75,
+          "passingRating": 76,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Ibrahim Sangare",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 70,
+          "defenseRating": 77,
+          "passingRating": 78,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Callum Hudson-Odoi",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 76,
+          "defenseRating": 61,
+          "passingRating": 77,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Taiwo Awoniyi",
+          "position": "FW",
+          "overallRating": 76,
+          "attackRating": 74,
+          "defenseRating": 55,
+          "passingRating": 72,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Chris Wood",
+          "position": "FW",
+          "overallRating": 76,
+          "attackRating": 74,
+          "defenseRating": 57,
+          "passingRating": 71,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Scott McKenna",
+          "position": "DF",
+          "overallRating": 74,
+          "attackRating": 57,
+          "defenseRating": 74,
+          "passingRating": 72,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Serge Aurier",
+          "position": "DF",
+          "overallRating": 74,
+          "attackRating": 65,
+          "defenseRating": 74,
+          "passingRating": 72,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Romain Esse",
+          "position": "MF",
+          "overallRating": 74,
+          "attackRating": 65,
+          "defenseRating": 73,
+          "passingRating": 75,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Morgan Gibbs-White",
+          "position": "FW",
+          "overallRating": 75,
+          "attackRating": 73,
+          "defenseRating": 58,
+          "passingRating": 76,
+          "subPosition": "ST"
+        }
       ]
     },
     {
@@ -442,21 +2362,141 @@
       "ballControl": 68,
       "formation": "4-3-3",
       "players": [
-        {"name": "Bartosz Bialkowski", "position": "GK", "overallRating": 78, "attackRating": 17, "defenseRating": 78, "passingRating": 77},
-        {"name": "Ben Johnson", "position": "DF", "overallRating": 73, "attackRating": 60, "defenseRating": 72, "passingRating": 71},
-        {"name": "Luke Woolfenden", "position": "DF", "overallRating": 73, "attackRating": 57, "defenseRating": 73, "passingRating": 71},
-        {"name": "Dara O'Shea", "position": "DF", "overallRating": 72, "attackRating": 56, "defenseRating": 71, "passingRating": 70},
-        {"name": "Cameron Burgess", "position": "DF", "overallRating": 71, "attackRating": 55, "defenseRating": 70, "passingRating": 69},
-        {"name": "Omari Hutchinson", "position": "MF", "overallRating": 73, "attackRating": 70, "defenseRating": 66, "passingRating": 73},
-        {"name": "Sam Morsy", "position": "MF", "overallRating": 73, "attackRating": 65, "defenseRating": 72, "passingRating": 74},
-        {"name": "Massimo Luongo", "position": "MF", "overallRating": 72, "attackRating": 64, "defenseRating": 69, "passingRating": 74},
-        {"name": "Liam Delap", "position": "FW", "overallRating": 74, "attackRating": 72, "defenseRating": 52, "passingRating": 69},
-        {"name": "Wes Burns", "position": "FW", "overallRating": 71, "attackRating": 69, "defenseRating": 54, "passingRating": 68},
-        {"name": "George Hirst", "position": "FW", "overallRating": 70, "attackRating": 68, "defenseRating": 51, "passingRating": 67},
-        {"name": "Axel Tuanzebe", "position": "DF", "overallRating": 70, "attackRating": 54, "defenseRating": 70, "passingRating": 68},
-        {"name": "Janoi Donacien", "position": "DF", "overallRating": 69, "attackRating": 56, "defenseRating": 68, "passingRating": 67},
-        {"name": "Kieffer Moore", "position": "FW", "overallRating": 70, "attackRating": 68, "defenseRating": 50, "passingRating": 65},
-        {"name": "Jon Nolan", "position": "MF", "overallRating": 69, "attackRating": 62, "defenseRating": 66, "passingRating": 70}
+        {
+          "name": "Bartosz Bialkowski",
+          "position": "GK",
+          "overallRating": 78,
+          "attackRating": 17,
+          "defenseRating": 78,
+          "passingRating": 77,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Ben Johnson",
+          "position": "DF",
+          "overallRating": 73,
+          "attackRating": 60,
+          "defenseRating": 72,
+          "passingRating": 71,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Luke Woolfenden",
+          "position": "DF",
+          "overallRating": 73,
+          "attackRating": 57,
+          "defenseRating": 73,
+          "passingRating": 71,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Dara O'Shea",
+          "position": "DF",
+          "overallRating": 72,
+          "attackRating": 56,
+          "defenseRating": 71,
+          "passingRating": 70,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Cameron Burgess",
+          "position": "DF",
+          "overallRating": 71,
+          "attackRating": 55,
+          "defenseRating": 70,
+          "passingRating": 69,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Omari Hutchinson",
+          "position": "MF",
+          "overallRating": 73,
+          "attackRating": 70,
+          "defenseRating": 66,
+          "passingRating": 73,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Sam Morsy",
+          "position": "MF",
+          "overallRating": 73,
+          "attackRating": 65,
+          "defenseRating": 72,
+          "passingRating": 74,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Massimo Luongo",
+          "position": "MF",
+          "overallRating": 72,
+          "attackRating": 64,
+          "defenseRating": 69,
+          "passingRating": 74,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Liam Delap",
+          "position": "FW",
+          "overallRating": 74,
+          "attackRating": 72,
+          "defenseRating": 52,
+          "passingRating": 69,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Wes Burns",
+          "position": "FW",
+          "overallRating": 71,
+          "attackRating": 69,
+          "defenseRating": 54,
+          "passingRating": 68,
+          "subPosition": "ST"
+        },
+        {
+          "name": "George Hirst",
+          "position": "FW",
+          "overallRating": 70,
+          "attackRating": 68,
+          "defenseRating": 51,
+          "passingRating": 67,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Axel Tuanzebe",
+          "position": "DF",
+          "overallRating": 70,
+          "attackRating": 54,
+          "defenseRating": 70,
+          "passingRating": 68,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Janoi Donacien",
+          "position": "DF",
+          "overallRating": 69,
+          "attackRating": 56,
+          "defenseRating": 68,
+          "passingRating": 67,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Kieffer Moore",
+          "position": "FW",
+          "overallRating": 70,
+          "attackRating": 68,
+          "defenseRating": 50,
+          "passingRating": 65,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jon Nolan",
+          "position": "MF",
+          "overallRating": 69,
+          "attackRating": 62,
+          "defenseRating": 66,
+          "passingRating": 70,
+          "subPosition": "CM"
+        }
       ]
     },
     {
@@ -469,21 +2509,141 @@
       "ballControl": 68,
       "formation": "4-3-3",
       "players": [
-        {"name": "Danny Ward", "position": "GK", "overallRating": 77, "attackRating": 17, "defenseRating": 77, "passingRating": 76},
-        {"name": "Conor Coady", "position": "DF", "overallRating": 71, "attackRating": 55, "defenseRating": 71, "passingRating": 70},
-        {"name": "Wout Faes", "position": "DF", "overallRating": 72, "attackRating": 56, "defenseRating": 72, "passingRating": 70},
-        {"name": "Jannik Vestergaard", "position": "DF", "overallRating": 71, "attackRating": 55, "defenseRating": 71, "passingRating": 69},
-        {"name": "James Justin", "position": "DF", "overallRating": 70, "attackRating": 60, "defenseRating": 69, "passingRating": 68},
-        {"name": "Hamza Choudhury", "position": "MF", "overallRating": 71, "attackRating": 62, "defenseRating": 70, "passingRating": 71},
-        {"name": "Wilfred Ndidi", "position": "MF", "overallRating": 72, "attackRating": 64, "defenseRating": 72, "passingRating": 72},
-        {"name": "Boubakary Soumare", "position": "MF", "overallRating": 71, "attackRating": 63, "defenseRating": 70, "passingRating": 71},
-        {"name": "Harvey Barnes", "position": "FW", "overallRating": 72, "attackRating": 70, "defenseRating": 58, "passingRating": 71},
-        {"name": "Jamie Vardy", "position": "FW", "overallRating": 73, "attackRating": 71, "defenseRating": 51, "passingRating": 68},
-        {"name": "Stephy Mavididi", "position": "FW", "overallRating": 71, "attackRating": 69, "defenseRating": 54, "passingRating": 68},
-        {"name": "Callum Doyle", "position": "DF", "overallRating": 68, "attackRating": 53, "defenseRating": 68, "passingRating": 66},
-        {"name": "Papy Mendy", "position": "DF", "overallRating": 69, "attackRating": 54, "defenseRating": 69, "passingRating": 67},
-        {"name": "Kiernan Dewsbury-Hall", "position": "MF", "overallRating": 70, "attackRating": 66, "defenseRating": 63, "passingRating": 72},
-        {"name": "Ayoze Perez", "position": "FW", "overallRating": 69, "attackRating": 67, "defenseRating": 52, "passingRating": 66}
+        {
+          "name": "Danny Ward",
+          "position": "GK",
+          "overallRating": 77,
+          "attackRating": 17,
+          "defenseRating": 77,
+          "passingRating": 76,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Conor Coady",
+          "position": "DF",
+          "overallRating": 71,
+          "attackRating": 55,
+          "defenseRating": 71,
+          "passingRating": 70,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Wout Faes",
+          "position": "DF",
+          "overallRating": 72,
+          "attackRating": 56,
+          "defenseRating": 72,
+          "passingRating": 70,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Jannik Vestergaard",
+          "position": "DF",
+          "overallRating": 71,
+          "attackRating": 55,
+          "defenseRating": 71,
+          "passingRating": 69,
+          "subPosition": "CB"
+        },
+        {
+          "name": "James Justin",
+          "position": "DF",
+          "overallRating": 70,
+          "attackRating": 60,
+          "defenseRating": 69,
+          "passingRating": 68,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Hamza Choudhury",
+          "position": "MF",
+          "overallRating": 71,
+          "attackRating": 62,
+          "defenseRating": 70,
+          "passingRating": 71,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Wilfred Ndidi",
+          "position": "MF",
+          "overallRating": 72,
+          "attackRating": 64,
+          "defenseRating": 72,
+          "passingRating": 72,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Boubakary Soumare",
+          "position": "MF",
+          "overallRating": 71,
+          "attackRating": 63,
+          "defenseRating": 70,
+          "passingRating": 71,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Harvey Barnes",
+          "position": "FW",
+          "overallRating": 72,
+          "attackRating": 70,
+          "defenseRating": 58,
+          "passingRating": 71,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jamie Vardy",
+          "position": "FW",
+          "overallRating": 73,
+          "attackRating": 71,
+          "defenseRating": 51,
+          "passingRating": 68,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Stephy Mavididi",
+          "position": "FW",
+          "overallRating": 71,
+          "attackRating": 69,
+          "defenseRating": 54,
+          "passingRating": 68,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Callum Doyle",
+          "position": "DF",
+          "overallRating": 68,
+          "attackRating": 53,
+          "defenseRating": 68,
+          "passingRating": 66,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Papy Mendy",
+          "position": "DF",
+          "overallRating": 69,
+          "attackRating": 54,
+          "defenseRating": 69,
+          "passingRating": 67,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Kiernan Dewsbury-Hall",
+          "position": "MF",
+          "overallRating": 70,
+          "attackRating": 66,
+          "defenseRating": 63,
+          "passingRating": 72,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Ayoze Perez",
+          "position": "FW",
+          "overallRating": 69,
+          "attackRating": 67,
+          "defenseRating": 52,
+          "passingRating": 66,
+          "subPosition": "ST"
+        }
       ]
     },
     {
@@ -496,21 +2656,141 @@
       "ballControl": 67,
       "formation": "4-3-3",
       "players": [
-        {"name": "Jose Sa", "position": "GK", "overallRating": 77, "attackRating": 18, "defenseRating": 77, "passingRating": 76},
-        {"name": "Romain Saiss", "position": "DF", "overallRating": 70, "attackRating": 57, "defenseRating": 70, "passingRating": 69},
-        {"name": "Max Kilman", "position": "DF", "overallRating": 71, "attackRating": 57, "defenseRating": 71, "passingRating": 69},
-        {"name": "Craig Dawson", "position": "DF", "overallRating": 70, "attackRating": 55, "defenseRating": 70, "passingRating": 68},
-        {"name": "Hugo Bueno", "position": "DF", "overallRating": 69, "attackRating": 59, "defenseRating": 68, "passingRating": 67},
-        {"name": "Conor Coady", "position": "MF", "overallRating": 70, "attackRating": 60, "defenseRating": 69, "passingRating": 70},
-        {"name": "Ruben Neves", "position": "MF", "overallRating": 72, "attackRating": 66, "defenseRating": 71, "passingRating": 74},
-        {"name": "Matheus Cunha", "position": "MF", "overallRating": 71, "attackRating": 67, "defenseRating": 62, "passingRating": 71},
-        {"name": "Goncalo Guedes", "position": "FW", "overallRating": 71, "attackRating": 69, "defenseRating": 57, "passingRating": 70},
-        {"name": "Hee-chan Hwang", "position": "FW", "overallRating": 71, "attackRating": 69, "defenseRating": 54, "passingRating": 68},
-        {"name": "Raul Jimenez", "position": "FW", "overallRating": 70, "attackRating": 68, "defenseRating": 52, "passingRating": 66},
-        {"name": "Santiago Bueno", "position": "DF", "overallRating": 67, "attackRating": 53, "defenseRating": 67, "passingRating": 65},
-        {"name": "Willy Boly", "position": "DF", "overallRating": 68, "attackRating": 54, "defenseRating": 68, "passingRating": 65},
-        {"name": "Pedro Neto", "position": "FW", "overallRating": 70, "attackRating": 68, "defenseRating": 56, "passingRating": 69},
-        {"name": "Toti Gomes", "position": "DF", "overallRating": 66, "attackRating": 52, "defenseRating": 66, "passingRating": 64}
+        {
+          "name": "Jose Sa",
+          "position": "GK",
+          "overallRating": 77,
+          "attackRating": 18,
+          "defenseRating": 77,
+          "passingRating": 76,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Romain Saiss",
+          "position": "DF",
+          "overallRating": 70,
+          "attackRating": 57,
+          "defenseRating": 70,
+          "passingRating": 69,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Max Kilman",
+          "position": "DF",
+          "overallRating": 71,
+          "attackRating": 57,
+          "defenseRating": 71,
+          "passingRating": 69,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Craig Dawson",
+          "position": "DF",
+          "overallRating": 70,
+          "attackRating": 55,
+          "defenseRating": 70,
+          "passingRating": 68,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Hugo Bueno",
+          "position": "DF",
+          "overallRating": 69,
+          "attackRating": 59,
+          "defenseRating": 68,
+          "passingRating": 67,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Conor Coady",
+          "position": "MF",
+          "overallRating": 70,
+          "attackRating": 60,
+          "defenseRating": 69,
+          "passingRating": 70,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Ruben Neves",
+          "position": "MF",
+          "overallRating": 72,
+          "attackRating": 66,
+          "defenseRating": 71,
+          "passingRating": 74,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Matheus Cunha",
+          "position": "MF",
+          "overallRating": 71,
+          "attackRating": 67,
+          "defenseRating": 62,
+          "passingRating": 71,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Goncalo Guedes",
+          "position": "FW",
+          "overallRating": 71,
+          "attackRating": 69,
+          "defenseRating": 57,
+          "passingRating": 70,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Hee-chan Hwang",
+          "position": "FW",
+          "overallRating": 71,
+          "attackRating": 69,
+          "defenseRating": 54,
+          "passingRating": 68,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Raul Jimenez",
+          "position": "FW",
+          "overallRating": 70,
+          "attackRating": 68,
+          "defenseRating": 52,
+          "passingRating": 66,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Santiago Bueno",
+          "position": "DF",
+          "overallRating": 67,
+          "attackRating": 53,
+          "defenseRating": 67,
+          "passingRating": 65,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Willy Boly",
+          "position": "DF",
+          "overallRating": 68,
+          "attackRating": 54,
+          "defenseRating": 68,
+          "passingRating": 65,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Pedro Neto",
+          "position": "FW",
+          "overallRating": 70,
+          "attackRating": 68,
+          "defenseRating": 56,
+          "passingRating": 69,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Toti Gomes",
+          "position": "DF",
+          "overallRating": 66,
+          "attackRating": 52,
+          "defenseRating": 66,
+          "passingRating": 64,
+          "subPosition": "CB"
+        }
       ]
     },
     {
@@ -523,21 +2803,141 @@
       "ballControl": 65,
       "formation": "4-3-3",
       "players": [
-        {"name": "Gavin Bazunu", "position": "GK", "overallRating": 76, "attackRating": 16, "defenseRating": 76, "passingRating": 75},
-        {"name": "Kyle Walker-Peters", "position": "DF", "overallRating": 69, "attackRating": 58, "defenseRating": 68, "passingRating": 67},
-        {"name": "Jan Bednarek", "position": "DF", "overallRating": 70, "attackRating": 55, "defenseRating": 70, "passingRating": 68},
-        {"name": "Taylor Harwood-Bellis", "position": "DF", "overallRating": 68, "attackRating": 53, "defenseRating": 68, "passingRating": 66},
-        {"name": "Romain Perraud", "position": "DF", "overallRating": 67, "attackRating": 56, "defenseRating": 66, "passingRating": 65},
-        {"name": "James Ward-Prowse", "position": "MF", "overallRating": 70, "attackRating": 62, "defenseRating": 67, "passingRating": 73},
-        {"name": "Romeo Lavia", "position": "MF", "overallRating": 69, "attackRating": 60, "defenseRating": 68, "passingRating": 70},
-        {"name": "Stuart Armstrong", "position": "MF", "overallRating": 68, "attackRating": 61, "defenseRating": 64, "passingRating": 70},
-        {"name": "Moussa Djenepo", "position": "FW", "overallRating": 68, "attackRating": 66, "defenseRating": 54, "passingRating": 66},
-        {"name": "Che Adams", "position": "FW", "overallRating": 68, "attackRating": 66, "defenseRating": 52, "passingRating": 64},
-        {"name": "Sekou Mara", "position": "FW", "overallRating": 67, "attackRating": 65, "defenseRating": 51, "passingRating": 63},
-        {"name": "Jack Stephens", "position": "DF", "overallRating": 66, "attackRating": 52, "defenseRating": 66, "passingRating": 64},
-        {"name": "Yukinari Sugawara", "position": "DF", "overallRating": 65, "attackRating": 54, "defenseRating": 64, "passingRating": 63},
-        {"name": "Mislav Orsic", "position": "FW", "overallRating": 67, "attackRating": 65, "defenseRating": 52, "passingRating": 65},
-        {"name": "Will Smallbone", "position": "MF", "overallRating": 66, "attackRating": 59, "defenseRating": 62, "passingRating": 67}
+        {
+          "name": "Gavin Bazunu",
+          "position": "GK",
+          "overallRating": 76,
+          "attackRating": 16,
+          "defenseRating": 76,
+          "passingRating": 75,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Kyle Walker-Peters",
+          "position": "DF",
+          "overallRating": 69,
+          "attackRating": 58,
+          "defenseRating": 68,
+          "passingRating": 67,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Jan Bednarek",
+          "position": "DF",
+          "overallRating": 70,
+          "attackRating": 55,
+          "defenseRating": 70,
+          "passingRating": 68,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Taylor Harwood-Bellis",
+          "position": "DF",
+          "overallRating": 68,
+          "attackRating": 53,
+          "defenseRating": 68,
+          "passingRating": 66,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Romain Perraud",
+          "position": "DF",
+          "overallRating": 67,
+          "attackRating": 56,
+          "defenseRating": 66,
+          "passingRating": 65,
+          "subPosition": "CB"
+        },
+        {
+          "name": "James Ward-Prowse",
+          "position": "MF",
+          "overallRating": 70,
+          "attackRating": 62,
+          "defenseRating": 67,
+          "passingRating": 73,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Romeo Lavia",
+          "position": "MF",
+          "overallRating": 69,
+          "attackRating": 60,
+          "defenseRating": 68,
+          "passingRating": 70,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Stuart Armstrong",
+          "position": "MF",
+          "overallRating": 68,
+          "attackRating": 61,
+          "defenseRating": 64,
+          "passingRating": 70,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Moussa Djenepo",
+          "position": "FW",
+          "overallRating": 68,
+          "attackRating": 66,
+          "defenseRating": 54,
+          "passingRating": 66,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Che Adams",
+          "position": "FW",
+          "overallRating": 68,
+          "attackRating": 66,
+          "defenseRating": 52,
+          "passingRating": 64,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Sekou Mara",
+          "position": "FW",
+          "overallRating": 67,
+          "attackRating": 65,
+          "defenseRating": 51,
+          "passingRating": 63,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jack Stephens",
+          "position": "DF",
+          "overallRating": 66,
+          "attackRating": 52,
+          "defenseRating": 66,
+          "passingRating": 64,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Yukinari Sugawara",
+          "position": "DF",
+          "overallRating": 65,
+          "attackRating": 54,
+          "defenseRating": 64,
+          "passingRating": 63,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Mislav Orsic",
+          "position": "FW",
+          "overallRating": 67,
+          "attackRating": 65,
+          "defenseRating": 52,
+          "passingRating": 65,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Will Smallbone",
+          "position": "MF",
+          "overallRating": 66,
+          "attackRating": 59,
+          "defenseRating": 62,
+          "passingRating": 67,
+          "subPosition": "CM"
+        }
       ]
     }
   ]
