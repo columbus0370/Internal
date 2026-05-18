@@ -5,6 +5,7 @@ import '../models/match_commentary.dart';
 import '../models/match_stats.dart';
 import '../services/match_commentary_generator.dart';
 import '../services/match_stats_generator.dart';
+import '../services/match_analysis_service.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
@@ -720,104 +721,170 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
   }
 
   Widget _buildCommentaryTab() {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: ListView(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-            const Text(
-              'Match Commentary',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-            ..._buildCommentaryList(),
-            const SizedBox(height: 16),
-          ],
-        ),
-      ),
-    );
-  }
-
-  List<Widget> _buildCommentaryList() {
-    final commentaries = MatchCommentaryGenerator.generateCommentary(widget.prediction);
-
-    return commentaries.map((commentary) {
-      final color = commentary.teamName == widget.prediction.homeTeamName
-          ? Colors.blue
-          : Colors.orange;
-
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            border: Border(
-              left: BorderSide(
-                color: color,
-                width: 3,
-              ),
-            ),
-            color: color.withOpacity(0.05),
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+    return FutureBuilder<Map<String, dynamic>>(
+      future: MatchAnalysisService.analyzeMatch(widget.prediction),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: Text(
-                      commentary.toString(),
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                  const SizedBox(height: 20),
+                  const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.deepPurple),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    '🤖 AI 試合分析を生成中...',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
                     ),
                   ),
-                  const SizedBox(width: 6),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 6,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: color,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text(
-                      commentary.action,
-                      style: const TextStyle(
-                        fontSize: 9,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                  const SizedBox(height: 20),
+                ],
+              ),
+            ),
+          );
+        }
+
+        if (snapshot.hasError) {
+          return Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.warning,
+                        color: Colors.orange,
+                        size: 24,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                      const SizedBox(width: 8),
+                      const Expanded(
+                        child: Text(
+                          '分析取得エラー',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.orange,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    snapshot.error.toString(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 6),
-              Text(
-                commentary.description,
-                style: const TextStyle(
-                  fontSize: 12,
-                  height: 1.4,
-                  color: Colors.black87,
+            ),
+          );
+        }
+
+        if (!snapshot.hasData) {
+          return const Card(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Text('データが利用できません'),
+            ),
+          );
+        }
+
+        final result = snapshot.data!;
+        final analysis = result['analysis'] as Map<String, dynamic>?;
+
+        if (analysis == null) {
+          return const Card(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Text('分析データが見つかりません'),
+            ),
+          );
+        }
+
+        return Card(
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                const Text(
+                  '🤖 AI 試合分析',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
+                const SizedBox(height: 12),
+                _buildAnalysisSection('要約', analysis['summary'] as String?),
+                const SizedBox(height: 12),
+                _buildAnalysisSection('ホームチーム分析', analysis['homeTeamAnalysis'] as String?),
+                const SizedBox(height: 12),
+                _buildAnalysisSection('アウェイチーム分析', analysis['awayTeamAnalysis'] as String?),
+                const SizedBox(height: 12),
+                _buildAnalysisSection('戦術的ポイント', analysis['tacticalPoints'] as String?),
+                const SizedBox(height: 12),
+                _buildAnalysisSection('注目選手', analysis['keyPlayers'] as String?),
+                const SizedBox(height: 12),
+                _buildAnalysisSection('ボール保持率分析', analysis['possessionAnalysis'] as String?),
+                const SizedBox(height: 12),
+                _buildAnalysisSection('予測', analysis['prediction'] as String?),
+                const SizedBox(height: 12),
+                _buildAnalysisSection('リスク要因', analysis['risks'] as String?),
+                const SizedBox(height: 16),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildAnalysisSection(String title, String? content) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        border: Border(
+          left: BorderSide(
+            color: Colors.deepPurple,
+            width: 3,
           ),
         ),
-      );
-    }).toList();
+        color: Colors.deepPurple.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Colors.deepPurple,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            content ?? '情報なし',
+            style: const TextStyle(
+              fontSize: 12,
+              height: 1.4,
+              color: Colors.black87,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildScoreCard() {
