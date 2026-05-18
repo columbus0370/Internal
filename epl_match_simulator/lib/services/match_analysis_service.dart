@@ -31,32 +31,39 @@ class MatchAnalysisService {
     return _isProduction ? _productionUrl : _apiBaseUrl;
   }
 
-  static Future<Map<String, dynamic>> analyzeMatch(MatchPrediction prediction) async {
+  static Future<Map<String, dynamic>> analyzeMatch(
+    MatchPrediction prediction, {
+    int matchQuarter = 0,
+  }) async {
     try {
+      final matchData = {
+        'homeTeamName': prediction.homeTeamName,
+        'awayTeamName': prediction.awayTeamName,
+        'homeScore': prediction.homeScore,
+        'awayScore': prediction.awayScore,
+        'homeTeam': {
+          'attackPower': prediction.homeTeam.attackPower,
+          'defensePower': prediction.homeTeam.defensePower,
+          'ballControl': prediction.homeTeam.ballControl,
+        },
+        'awayTeam': {
+          'attackPower': prediction.awayTeam.attackPower,
+          'defensePower': prediction.awayTeam.defensePower,
+          'ballControl': prediction.awayTeam.ballControl,
+        },
+        'possession': prediction.possession,
+        'mom': prediction.mom,
+        'result': prediction.result,
+        'goals': prediction.goals.map((g) => {
+          'minute': g.minute,
+          'scorer': g.scorer,
+          'team': g.team,
+          'assist': g.assist,
+        }).toList(),
+      };
+
       final requestBody = {
-        'prediction': {
-          'homeTeamName': prediction.homeTeamName,
-          'awayTeamName': prediction.awayTeamName,
-          'homeScore': prediction.homeScore,
-          'awayScore': prediction.awayScore,
-          'homeTeam': {
-            'attackPower': prediction.homeTeam.attackPower,
-            'defensePower': prediction.homeTeam.defensePower,
-            'ballControl': prediction.homeTeam.ballControl,
-          },
-          'awayTeam': {
-            'attackPower': prediction.awayTeam.attackPower,
-            'defensePower': prediction.awayTeam.defensePower,
-            'ballControl': prediction.awayTeam.ballControl,
-          },
-          'possession': prediction.possession,
-          'mom': prediction.mom,
-          'goals': prediction.goals.map((g) => {
-            'minute': g.minute,
-            'scorer': g.scorer,
-            'team': g.team,
-          }).toList(),
-        }
+        'prediction': matchData,
       };
 
       final response = await http
@@ -73,7 +80,7 @@ class MatchAnalysisService {
           return {
             'success': true,
             'analysis': data['analysis'],
-            'source': data['source'] ?? 'unknown',
+            'model': data['model'] ?? 'unknown',
           };
         } else {
           return {
@@ -93,7 +100,7 @@ class MatchAnalysisService {
       return {
         'success': false,
         'analysis': _generateFallbackAnalysis(prediction),
-        'error': 'Request timeout',
+        'error': 'Request timeout (60s)',
       };
     } catch (e) {
       return {
@@ -105,15 +112,87 @@ class MatchAnalysisService {
   }
 
   static Map<String, dynamic> _generateFallbackAnalysis(MatchPrediction prediction) {
+    final narrative = '''${prediction.homeTeamName} vs ${prediction.awayTeamName}
+
+【試合概況】
+${prediction.homeTeamName}がホームでの試合に臨み、${prediction.awayTeamName}がアウェイからの挑戦。
+最終スコア：${prediction.homeScore}対${prediction.awayScore}（${prediction.result}）
+
+【前半】
+試合開始から両チームが激しく競い合う。${prediction.homeTeamName}はホーム有利を活かし、ボール支配率${(prediction.possession * 100).toStringAsFixed(1)}%で試合を優位に進める。${prediction.awayTeamName}も効率的なカウンター攻撃で対抗する。
+
+【後半】
+後半に入ると、試合の流れが激化。主要な得点シーンが生まれ、試合は最後まで白熱した展開となる。
+
+【試合評価】
+${prediction.homeTeamName}の攻撃力${prediction.homeTeam.attackPower}と${prediction.awayTeamName}の守備力${prediction.awayTeam.defensePower}の対比が試合の鍵となった。''';
+
     return {
-      'summary': '${prediction.homeTeamName}が${prediction.awayTeamName}とのマッチアップで、試合結果${prediction.homeScore}対${prediction.awayScore}という予測です。',
-      'homeTeamAnalysis': '${prediction.homeTeamName}は攻撃力${prediction.homeTeam.attackPower}、守備力${prediction.homeTeam.defensePower}を持っています。ホーム有利を活かした試合展開が期待されます。',
-      'awayTeamAnalysis': '${prediction.awayTeamName}は攻撃力${prediction.awayTeam.attackPower}、守備力${prediction.awayTeam.defensePower}で対抗します。アウェイながら効率的な攻撃が重要になります。',
-      'tacticalPoints': '${prediction.homeTeamName}のホーム有利とボール支配に対し、${prediction.awayTeamName}がカウンター攻撃をどう活かすかが焦点です。',
-      'keyPlayers': '${prediction.mom}が試合の決定的な場面で活躍することが予想されます。',
-      'possessionAnalysis': 'ボール保持率は${(prediction.possession * 100).toStringAsFixed(1)}%で、${prediction.homeTeamName}が支配的な試合展開になるでしょう。',
-      'prediction': '${prediction.homeTeamName}が${prediction.homeScore}対${prediction.awayScore}で勝利する予測です。',
-      'risks': '予想外の個人的なエラーや怪我による退場が試合の流れを大きく変える可能性があります。',
+      'narrative': narrative,
+      'narrative_segments': [
+        {
+          'quarter': 1,
+          'minute_range': '0-15',
+          'events': [
+            {
+              'minute': '5',
+              'team': prediction.homeTeamName,
+              'event_type': 'possession',
+              'description': '試合開始。${prediction.homeTeamName}がボール支配で試合をリード。'
+            }
+          ],
+          'quarter_summary': '試合開始。${prediction.homeTeamName}がホーム有利で序盤を支配。'
+        },
+        {
+          'quarter': 2,
+          'minute_range': '15-30',
+          'events': [
+            {
+              'minute': '20',
+              'team': prediction.awayTeamName,
+              'event_type': 'counter',
+              'description': '${prediction.awayTeamName}がカウンター攻撃で反撃を試みる。'
+            }
+          ],
+          'quarter_summary': '両チームが競い合い、激しいテンポで試合が進む。'
+        },
+        {
+          'quarter': 3,
+          'minute_range': '45-60',
+          'events': [
+            {
+              'minute': '50',
+              'team': prediction.homeTeamName,
+              'event_type': 'shot',
+              'description': '${prediction.homeTeamName}が得点チャンスを迎える。'
+            }
+          ],
+          'quarter_summary': '後半戦が始まり、試合の流れが変わる。'
+        },
+        {
+          'quarter': 4,
+          'minute_range': '75-90',
+          'events': [
+            {
+              'minute': '80',
+              'team': prediction.homeTeamName,
+              'event_type': 'goal',
+              'description': '決定的な得点シーン。最終的に${prediction.homeScore}対${prediction.awayScore}で終了。'
+            }
+          ],
+          'quarter_summary': '試合終盤。${prediction.homeTeamName}が勝利を確定させる。'
+        }
+      ],
+      'overall_summary': '${prediction.homeTeamName}が${prediction.homeScore}対${prediction.awayScore}で${prediction.result}。${prediction.mom}がマン・オブ・ザ・マッチに選ばれた。',
+      'summary': '${prediction.homeTeamName}が${prediction.awayTeamName}とのマッチアップで、${prediction.homeScore}対${prediction.awayScore}で勝利。',
+      'keyMoments': prediction.goals
+          .map((goal) => {
+            'minute': goal.minute,
+            'team': goal.team,
+            'event': 'Goal',
+            'description': '${goal.scorer}が得点を挙げた。${goal.assist != null ? 'アシスト：${goal.assist}' : 'ダイレクト得点'}'
+          })
+          .toList(),
     };
   }
 }

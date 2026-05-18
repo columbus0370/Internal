@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../models/match_prediction.dart';
 import '../models/team.dart';
-import '../models/match_commentary.dart';
 import '../models/match_stats.dart';
-import '../services/match_commentary_generator.dart';
 import '../services/match_stats_generator.dart';
 import '../services/match_analysis_service.dart';
+import '../services/preference_service.dart';
+import 'player_detail_screen.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
@@ -21,6 +21,17 @@ class PredictionResultScreen extends StatefulWidget {
 
 class _PredictionResultScreenState extends State<PredictionResultScreen> {
   int _selectedTabIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _saveTeamSelection();
+  }
+
+  Future<void> _saveTeamSelection() async {
+    await PreferenceService.setLastHomeTeam(widget.prediction.homeTeamName);
+    await PreferenceService.setLastAwayTeam(widget.prediction.awayTeamName);
+  }
 
   static const _scoreTextStyle = TextStyle(
     fontSize: 48,
@@ -317,32 +328,56 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
           spacing: 8,
           runSpacing: 8,
           children: team.players.map((player) {
-            return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
-                border: Border.all(color: color, width: 1),
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    player.name,
-                    style: const TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.bold,
+            return GestureDetector(
+              onTap: () {
+                try {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PlayerDetailScreen(
+                        player: player,
+                        teamName: team.name,
+                        teamColor: color,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    '${player.position} • ${player.subPosition}',
-                    style: const TextStyle(
-                      fontSize: 9,
-                      color: Colors.grey,
+                  );
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Error loading player details: $e'),
+                      backgroundColor: Colors.red,
                     ),
-                  ),
-                ],
+                  );
+                  print('Error navigating to player detail: $e');
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.1),
+                  border: Border.all(color: color, width: 1),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      player.name,
+                      style: const TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      '${player.position} • ${player.subPosition}',
+                      style: const TextStyle(
+                        fontSize: 9,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           }).toList(),
@@ -874,6 +909,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         }
 
         if (snapshot.hasError) {
+          final errorMsg = snapshot.error?.toString() ?? 'Unknown error';
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -902,11 +938,17 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    snapshot.error.toString(),
+                    'API通信に失敗しました。フォールバック解説を表示します。\n\nエラー詳細: $errorMsg',
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
+                      height: 1.4,
                     ),
+                  ),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: () => setState(() {}),
+                    child: const Text('リトライ'),
                   ),
                 ],
               ),
@@ -934,6 +976,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         }
 
         final analysis = result['analysis'] as Map<String, dynamic>;
+        final narrativeSegments = analysis['narrative_segments'] as List<dynamic>?;
 
         return Card(
           child: Padding(
@@ -947,14 +990,18 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection(
-                  '実況中継',
-                  _safeGetString(analysis, 'narrative'),
-                ),
+                if (narrativeSegments != null && narrativeSegments.isNotEmpty)
+                  _buildNarrativeSegmentsSection(narrativeSegments)
+                else
+                  _buildAnalysisSection(
+                    '実況中継',
+                    _safeGetString(analysis, 'narrative'),
+                  ),
                 const SizedBox(height: 12),
                 _buildAnalysisSection(
                   '総括',
-                  _safeGetString(analysis, 'summary'),
+                  _safeGetString(analysis, 'overall_summary') ??
+                      _safeGetString(analysis, 'summary'),
                 ),
                 const SizedBox(height: 12),
                 _buildKeyMomentsSection(analysis),
@@ -1011,8 +1058,139 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     );
   }
 
+  Widget _buildNarrativeSegmentsSection(List<dynamic> segments) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ...segments.map((seg) {
+          final segment = seg as Map<String, dynamic>;
+          final quarter = segment['quarter'] ?? '?';
+          final minuteRange = segment['minute_range'] ?? '';
+          final quarterSummary = segment['quarter_summary']?.toString() ?? '';
+          final events = segment['events'] as List<dynamic>?;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.deepPurple.withOpacity(0.1),
+                  border: Border(
+                    left: BorderSide(
+                      color: Colors.deepPurple,
+                      width: 3,
+                    ),
+                  ),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            'Q$quarter ($minuteRange分)',
+                            style: const TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      quarterSummary,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        height: 1.4,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    if (events != null && events.isNotEmpty) ...[
+                      const SizedBox(height: 8),
+                      ...events.map((evt) {
+                        final event = evt as Map<String, dynamic>;
+                        final minute = event['minute']?.toString() ?? '?';
+                        final team = event['team']?.toString() ?? '';
+                        final eventType = event['event_type']?.toString() ?? '';
+                        final description = event['description']?.toString() ?? '';
+
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 6),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 30,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    minute,
+                                    style: const TextStyle(
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '$team - $eventType',
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    Text(
+                                      description,
+                                      style: const TextStyle(
+                                        fontSize: 9,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
+          );
+        }).toList(),
+      ],
+    );
+  }
+
   Widget _buildKeyMomentsSection(Map<String, dynamic> analysis) {
-    final keyMoments = analysis['keyMoments'] as List<dynamic>?;
+    final keyMoments = analysis['keyMoments'] as List<dynamic>? ??
+        analysis['key_moments'] as List<dynamic>?;
     if (keyMoments == null || keyMoments.isEmpty) {
       return const SizedBox.shrink();
     }

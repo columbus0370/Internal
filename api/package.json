@@ -1,0 +1,10 @@
+{
+  "name": "epl-match-simulator-api",
+  "version": "1.0.0",
+  "description": "Vercel API functions for EPL Match Simulator",
+  "main": "analyze.js",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.35.0"
+  },
+  "type": "module"
+}

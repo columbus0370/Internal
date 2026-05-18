@@ -21,7 +21,11 @@
       "Bash(node)",
       "Bash(flutter clean *)",
       "Bash(flutter pub *)",
-      "Bash(flutter build *)"
+      "Bash(flutter build *)",
+      "Bash(flutter run *)",
+      "Bash(curl -s http://localhost:5000)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "Bash(flutter analyze *)"
     ]
   }
 }
