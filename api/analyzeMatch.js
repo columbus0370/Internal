@@ -1,6 +1,6 @@
 const CLAUDE_MODEL = "claude-sonnet-4-6";
 const CLAUDE_ENDPOINT = "https://api.anthropic.com/v1/messages";
-const ANTHROPIC_VERSION = "2023-06-01";
+const ANTHROPIC_VERSION = "2024-06-01";
 
 const SYSTEM_PROMPT = `あなたはサッカー試合分析の専門家です。試合予測データを受け取り、JSON形式で試合の詳細な分析を日本語で生成します。
 
@@ -104,6 +104,7 @@ module.exports = async (req, res) => {
         "x-api-key": apiKey,
         "anthropic-version": ANTHROPIC_VERSION,
         "content-type": "application/json",
+        "user-agent": "epl-match-simulator/1.0",
       },
       body: JSON.stringify({
         model: CLAUDE_MODEL,
@@ -116,7 +117,11 @@ module.exports = async (req, res) => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Claude API error:", data);
+      console.error("Claude API error:", {
+        status: response.status,
+        errorType: data.error?.type,
+        errorMessage: data.error?.message,
+      });
       // API エラーの場合はフォールバック分析を返す
       const fallbackAnalysis = generateFallbackAnalysis(prediction);
       return res.status(200).json({
