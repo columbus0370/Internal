@@ -521,48 +521,82 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     final st = team.players.where((p) => p.subPosition == 'ST').toList();
     final rw = team.players.where((p) => p.subPosition == 'RW').toList();
     final lw = team.players.where((p) => p.subPosition == 'LW').toList();
+    final mf = team.players.where((p) => p.position == 'MF').toList();
+    final fw = team.players.where((p) => p.position == 'FW').toList();
 
     final players = <Map<String, String>>[];
 
-    if (gk.isNotEmpty) players.add({'name': gk[0].name, 'position': 'GK'});
+    // GK (1)
+    if (gk.isNotEmpty) {
+      players.add({'name': gk[0].name, 'position': 'GK'});
+    }
 
-    // Defenders: 2 CB, 1 RB, 1 LB
+    // Defenders: 2 CB, 1 RB, 1 LB = 4
     for (int i = 0; i < 2 && i < cb.length; i++) {
       players.add({'name': cb[i].name, 'position': 'CB'});
     }
     if (rb.isNotEmpty) {
       players.add({'name': rb[0].name, 'position': 'RB'});
+    } else if (mf.isNotEmpty) {
+      players.add({'name': mf[0].name, 'position': 'RB'});
     }
     if (lb.isNotEmpty) {
       players.add({'name': lb[0].name, 'position': 'LB'});
+    } else if (mf.length > 1) {
+      players.add({'name': mf[1].name, 'position': 'LB'});
     }
 
-    // Midfielders: 1 CDM, 1 CM, 1 CAM
+    // Midfielders: 1 CDM, 1 CM, 1 CAM = 3
     if (cdm.isNotEmpty) {
       players.add({'name': cdm[0].name, 'position': 'CDM'});
     } else if (cm.isNotEmpty) {
-      players.add({'name': cm[0].name, 'position': 'CM'});
+      players.add({'name': cm[0].name, 'position': 'CDM'});
+    } else if (mf.isNotEmpty) {
+      players.add({'name': mf[2 < mf.length ? 2 : 0].name, 'position': 'CDM'});
     }
-    if (cm.isNotEmpty) {
-      players.add({'name': cm[0].name, 'position': 'CM'});
+    if (cm.length > (cdm.isNotEmpty ? 0 : 1)) {
+      players.add({'name': cm[cdm.isNotEmpty ? 0 : 1].name, 'position': 'CM'});
+    } else if (mf.length > 2) {
+      players.add({'name': mf[2].name, 'position': 'CM'});
     }
     if (cam.isNotEmpty) {
       players.add({'name': cam[0].name, 'position': 'CAM'});
     } else if (cm.length > 1) {
-      players.add({'name': cm[1].name, 'position': 'CM'});
+      players.add({'name': cm[1].name, 'position': 'CAM'});
+    } else if (mf.length > 3) {
+      players.add({'name': mf[3].name, 'position': 'CAM'});
     }
 
-    // Forwards: 1 ST, 1 RW or LW
+    // Forwards: 1 ST, 1 RW or LW = 2
     if (st.isNotEmpty) {
       players.add({'name': st[0].name, 'position': 'ST'});
+    } else if (fw.isNotEmpty) {
+      players.add({'name': fw[0].name, 'position': 'ST'});
+    } else if (mf.isNotEmpty) {
+      players.add({'name': mf[mf.length - 1].name, 'position': 'ST'});
     }
     if (rw.isNotEmpty) {
       players.add({'name': rw[0].name, 'position': 'RW'});
     } else if (lw.isNotEmpty) {
       players.add({'name': lw[0].name, 'position': 'LW'});
+    } else if (fw.length > 1) {
+      players.add({'name': fw[1].name, 'position': 'RW'});
+    } else if (mf.isNotEmpty) {
+      players.add({'name': mf[0].name, 'position': 'RW'});
     }
 
-    return players;
+    // Ensure exactly 11 players
+    while (players.length < 11 && team.players.isNotEmpty) {
+      for (var p in team.players) {
+        if (players.length >= 11) break;
+        if (!players.any((pl) => pl['name'] == p.name)) {
+          players.add({'name': p.name, 'position': p.position});
+        }
+      }
+      if (players.length < 11) break;
+    }
+
+    return players.take(11).toList();
   }
 
   List<Map<String, double>> _getHomeHalfPositions() {
@@ -909,49 +943,21 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 const Text(
-                  '🤖 AI 試合分析',
+                  '🎙️ 試合実況',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
                 _buildAnalysisSection(
-                  '要約',
+                  '実況中継',
+                  _safeGetString(analysis, 'narrative'),
+                ),
+                const SizedBox(height: 12),
+                _buildAnalysisSection(
+                  '総括',
                   _safeGetString(analysis, 'summary'),
                 ),
                 const SizedBox(height: 12),
-                _buildAnalysisSection(
-                  'ホームチーム分析',
-                  _safeGetString(analysis, 'homeTeamAnalysis'),
-                ),
-                const SizedBox(height: 12),
-                _buildAnalysisSection(
-                  'アウェイチーム分析',
-                  _safeGetString(analysis, 'awayTeamAnalysis'),
-                ),
-                const SizedBox(height: 12),
-                _buildAnalysisSection(
-                  '戦術的ポイント',
-                  _safeGetString(analysis, 'tacticalPoints'),
-                ),
-                const SizedBox(height: 12),
-                _buildAnalysisSection(
-                  '注目選手',
-                  _safeGetString(analysis, 'keyPlayers'),
-                ),
-                const SizedBox(height: 12),
-                _buildAnalysisSection(
-                  'ボール保持率分析',
-                  _safeGetString(analysis, 'possessionAnalysis'),
-                ),
-                const SizedBox(height: 12),
-                _buildAnalysisSection(
-                  '予測',
-                  _safeGetString(analysis, 'prediction'),
-                ),
-                const SizedBox(height: 12),
-                _buildAnalysisSection(
-                  'リスク要因',
-                  _safeGetString(analysis, 'risks'),
-                ),
+                _buildKeyMomentsSection(analysis),
                 const SizedBox(height: 16),
               ],
             ),
@@ -1000,6 +1006,99 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               color: Colors.black87,
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildKeyMomentsSection(Map<String, dynamic> analysis) {
+    final keyMoments = analysis['keyMoments'] as List<dynamic>?;
+    if (keyMoments == null || keyMoments.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        border: Border(
+          left: BorderSide(
+            color: Colors.deepPurple,
+            width: 3,
+          ),
+        ),
+        color: Colors.deepPurple.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            '重要な場面',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Colors.deepPurple,
+            ),
+          ),
+          const SizedBox(height: 8),
+          ...keyMoments.map((moment) {
+            final m = moment as Map<String, dynamic>;
+            final minute = m['minute']?.toString() ?? '?';
+            final event = m['event']?.toString() ?? 'イベント';
+            final team = m['team']?.toString() ?? '';
+            final description = m['description']?.toString() ?? '';
+
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 40,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Center(
+                      child: Text(
+                        minute,
+                        style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '$team - $event',
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        Text(
+                          description,
+                          style: const TextStyle(
+                            fontSize: 10,
+                            color: Colors.grey,
+                            height: 1.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
         ],
       ),
     );

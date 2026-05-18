@@ -2,38 +2,59 @@ const CLAUDE_MODEL = "claude-sonnet-4-6";
 const CLAUDE_ENDPOINT = "https://api.anthropic.com/v1/messages";
 const ANTHROPIC_VERSION = "2023-06-01";
 
-const SYSTEM_PROMPT = `あなたはサッカー試合分析の専門家です。試合予測データを受け取り、JSON形式で試合の詳細な分析を日本語で生成します。
+const SYSTEM_PROMPT = `あなたはプロのサッカー実況解説者です。試合予測データを受け取り、90分間の試合を時系列で実況する日本語テキストを生成します。
 
 必ず以下のJSONフォーマットのみで応答してください。説明文・前置き・コードフェンスは出力しないでください。
 
 {
-  "summary": "試合全体の簡潔な分析（2-3文）",
-  "homeTeamAnalysis": "ホームチームの強み・弱み・戦術的特徴（3-4文）",
-  "awayTeamAnalysis": "アウェイチームの強み・弱み・戦術的特徴（3-4文）",
-  "tacticalPoints": "両チーム間の戦術的な相違点と対抗軸（2-3文）",
-  "keyPlayers": "注目選手と試合への影響（3-4文）",
-  "possessionAnalysis": "ボール保持率と支配権の意味（2文）",
-  "prediction": "試合の流れ・スコア予測の根拠（3-4文）",
-  "risks": "予測の不確実性・予想外の展開可能性（2文）"
+  "narrative": "試合全体の実況（キックオフから試合終了まで、時系列で試合の流れを描写。各チームの攻め方・守り方、活躍選手、重要な場面を含む。500-1000字）",
+  "summary": "試合全体の簡潔な総括（2-3文）",
+  "keyMoments": [
+    {
+      "minute": "分単位の時間",
+      "event": "イベント種別（ゴール/チャンス/警告/セーブなど）",
+      "team": "チーム名",
+      "description": "詳細な出来事の説明"
+    }
+  ]
 }
 
-各フィールドは空にせず、具体的かつ実用的な内容で埋めてください。スコア以外の要素を重視してください。`;
+narrativeフィールドは必ず具体的かつ自然な実況形式で、スコア以外の要素（戦術、選手の活躍、試合の流れ）を重視してください。`;
 
 function generateFallbackAnalysis(prediction) {
   const homeTeam = prediction.homeTeam || {};
   const awayTeam = prediction.awayTeam || {};
   const homeTeamName = prediction.homeTeamName || "ホームチーム";
   const awayTeamName = prediction.awayTeamName || "アウェイチーム";
+  const possession = Math.round((prediction.possession || 0.5) * 100);
+
+  const narrative = `【前半】キックオフ。${homeTeamName}が${possession}%のボール保持率でゲームをコントロール。${homeTeamName}の中盤が${awayTeamName}のプレッシャーをかわしながら、サイドを経由した攻撃を展開。${prediction.mom || "注目選手"}が深い位置でボールを受け、チャンスを作り出す。${awayTeamName}は${possession > 50 ? "効率的なカウンター攻撃で" : "ボール奪取後の素早い攻撃で"}得点機会を伺う。前半の要所では両チームの中盤争いが激化。${homeTeamName}の守備力${homeTeam.defensePower || 85}とよく対応。
+
+【後半】${awayTeamName}が攻撃的なフォーメーション変更で圧力を高める。${homeTeamName}は攻撃力${homeTeam.attackPower || 85}を活かし、${prediction.homeScore > prediction.awayScore ? "得点機会をものにして" : "シュート数を重ねるが"}スコアを重ねる。試合が動くのは${70 + Math.floor(Math.random() * 10)}分付近。${prediction.goals && prediction.goals.length > 0 ? prediction.goals.map(g => `${g.minute}分に${g.scorer}がゴール`).join("。") : "決定的な場面が続く"}。終盤に${awayTeamName}が${prediction.awayScore > prediction.homeScore ? "ゴール返し" : "追い詰めるが"}、最終的に${prediction.homeScore}対${prediction.awayScore}で試合終了。`;
 
   return {
-    summary: `${homeTeamName}が${awayTeamName}とのマッチアップで、戦力分析に基づいた試合展開が予想されます。両チームの攻撃力と守備力のバランスが試合の鍵となるでしょう。`,
-    homeTeamAnalysis: `${homeTeamName}は攻撃力${homeTeam.attackPower || 85}、守備力${homeTeam.defensePower || 85}を持っています。ボール保持率${Math.round((prediction.possession || 0.5) * 100)}%の支配権を活かした戦術展開が期待されます。`,
-    awayTeamAnalysis: `${awayTeamName}は攻撃力${awayTeam.attackPower || 80}、守備力${awayTeam.defensePower || 80}で対抗します。アウェイながらカウンター攻撃による得点機会の創出が重要な戦略となります。`,
-    tacticalPoints: `${homeTeamName}のホーム有利を${awayTeamName}がどう攻略するかが焦点です。${homeTeamName}の支配的なボール保持に対し、${awayTeamName}の効率的な攻撃が対抗軸になるでしょう。`,
-    keyPlayers: `${prediction.mom || "注目選手"}が試合の決定的な場面で活躍することが予想されます。${homeTeamName}のフォワードと${awayTeamName}のディフェンダーの対決が見どころとなります。`,
-    possessionAnalysis: `ボール保持率${Math.round((prediction.possession || 0.5) * 100)}%は${homeTeamName}の支配的なボール保持を示唆しています。このボール支配をいかに得点に結び付けるかが勝敗を分ける要因となります。`,
-    prediction: `両チームのバランスの取れた対戦になることが予想されます。最終スコアは${prediction.homeScore || 1}対${prediction.awayScore || 1}程度の接戦になるでしょう。`,
-    risks: `予想外の個人的なエラーや怪我による退場が試合の流れを大きく変える可能性があります。セットプレーでの予期しない得点も考慮に入れる必要があります。`,
+    narrative: narrative,
+    summary: `${homeTeamName}が${awayTeamName}を${prediction.homeScore}対${prediction.awayScore}で下す。${possession}%のボール保持から得られた支配的な試合展開。`,
+    keyMoments: [
+      {
+        minute: "15分",
+        event: "チャンス",
+        team: homeTeamName,
+        description: `${homeTeamName}が左サイドからの攻撃でゴール前にボールを供給するもキーパーが好セーブ`
+      },
+      ...(prediction.goals && prediction.goals.length > 0 ? prediction.goals.map(g => ({
+        minute: `${g.minute}分`,
+        event: "ゴール",
+        team: g.team,
+        description: `${g.scorer}がゴール。${g.team}が得点を重ねる重要な瞬間`
+      })) : []),
+      {
+        minute: "85分",
+        event: "警告",
+        team: awayTeamName,
+        description: `${awayTeamName}の選手が激しいタックルでイエローカード`
+      }
+    ]
   };
 }
 
