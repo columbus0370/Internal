@@ -2,6 +2,11 @@
   "buildCommand": "bash vercel-build.sh",
   "outputDirectory": "build/web",
   "installCommand": "npm install",
+  "functions": {
+    "api/**": {
+      "runtime": "nodejs20.x"
+    }
+  },
   "env": {
     "FLUTTER_BUILD_MODE": "release"
   },
@@ -17,3 +22,4 @@
     }
   ]
 }
+
