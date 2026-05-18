@@ -11,10 +11,20 @@ class MatchAnalysisService {
       'https://epl-match-simulator.vercel.app';
   static const Duration _timeout = Duration(seconds: 60);
 
-  // 本番環境かどうかを判定（Vercel デプロイ時は VERCEL 環境変数が設定される）
+  // 本番環境かどうかを判定（実行時にホスト情報から判定）
   static bool get _isProduction {
-    const isVercel = String.fromEnvironment('VERCEL', defaultValue: '');
-    return isVercel.isNotEmpty;
+    // Flutter Web では String.fromEnvironment はコンパイル時のみ有効なので、
+    // 実行時の判定にはホスト情報を使用する
+    try {
+      final currentUrl = Uri.base.toString();
+      // localhostやIPアドレスでなければ本番環境と判定
+      return !currentUrl.contains('localhost') &&
+             !currentUrl.contains('127.0.0.1') &&
+             !currentUrl.contains('0.0.0.0');
+    } catch (e) {
+      // エラー時は本番環境扱い（安全サイド）
+      return true;
+    }
   }
 
   static String get _apiUrl {
