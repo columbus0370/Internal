@@ -17,7 +17,11 @@
       "Glob(**)",
       "Bash(python3 -c \"import json; f=open\\('/d/src/projects/Internal/epl_match_simulator/assets/pl_2025_26_teams.json'\\); data=json.load\\(f\\); print\\('Teams count:', len\\(data['teams']\\)\\); print\\('First team:', data['teams'][0]['name'], '- Formation:', data['teams'][0].get\\('formation', 'N/A'\\)\\)\")",
       "PowerShell($json = Get-Content \"D:\\\\src\\\\projects\\\\Internal\\\\epl_match_simulator\\\\assets\\\\pl_2025_26_teams.json\" -Raw | ConvertFrom-Json; @{TeamsCount = $json.teams.Count; FirstTeam = $json.teams[0].name; FirstTeamFormation = $json.teams[0].formation; FirstTeamPlayers = $json.teams[0].players.Count})",
-      "PowerShell($json = Get-Content \"D:\\\\src\\\\projects\\\\Internal\\\\epl_match_simulator\\\\assets\\\\pl_2025_26_teams.json\" -Raw | ConvertFrom-Json; $json.teams | ForEach-Object { \"$\\($_.leagueRank\\). $\\($_.name\\) - Formation: $\\($_.formation\\)\" })"
+      "PowerShell($json = Get-Content \"D:\\\\src\\\\projects\\\\Internal\\\\epl_match_simulator\\\\assets\\\\pl_2025_26_teams.json\" -Raw | ConvertFrom-Json; $json.teams | ForEach-Object { \"$\\($_.leagueRank\\). $\\($_.name\\) - Formation: $\\($_.formation\\)\" })",
+      "Bash(node)",
+      "Bash(flutter clean *)",
+      "Bash(flutter pub *)",
+      "Bash(flutter build *)"
     ]
   }
 }

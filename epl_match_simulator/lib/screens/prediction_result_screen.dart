@@ -625,9 +625,9 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       {'x': 0.2, 'y': 0.32},
       {'x': 0.5, 'y': 0.32},
       {'x': 0.8, 'y': 0.32},
-      {'x': 0.25, 'y': 0.48},
-      {'x': 0.5, 'y': 0.38},
-      {'x': 0.75, 'y': 0.48},
+      {'x': 0.25, 'y': 0.45},
+      {'x': 0.5, 'y': 0.49},
+      {'x': 0.75, 'y': 0.45},
     ];
   }
 
