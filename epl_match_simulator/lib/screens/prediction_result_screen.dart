@@ -1946,24 +1946,7 @@ class _SegmentedNarrativeView extends StatefulWidget {
       _SegmentedNarrativeViewState();
 }
 
-class _SegmentedNarrativeViewState extends State<_SegmentedNarrativeView>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: 5,
-      vsync: this,
-    );
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
+class _SegmentedNarrativeViewState extends State<_SegmentedNarrativeView> {
 
   @override
   Widget build(BuildContext context) {
@@ -1972,51 +1955,38 @@ class _SegmentedNarrativeViewState extends State<_SegmentedNarrativeView>
     final summary = widget.analysis['overall_summary'] ?? '';
     final keyMoments = (widget.analysis['key_moments'] ?? []) as List<dynamic>;
 
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(12),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TabBar(
-            controller: _tabController,
-            tabs: const [
-              Tab(text: 'Q1'),
-              Tab(text: 'Q2'),
-              Tab(text: 'Q3'),
-              Tab(text: 'Q4'),
-              Tab(text: '総括'),
-            ],
-            labelColor: Colors.deepPurple,
-            unselectedLabelColor: Colors.grey,
-            indicatorColor: Colors.deepPurple,
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                ...List.generate(
-                  4,
-                  (index) => _buildQuarterTab(
-                    segments.length > index
-                        ? segments[index]
-                        : {
-                            'quarter': index + 1,
-                            'narrative': '',
-                            'events': [],
-                            'quarter_score': '0-0',
-                            'quarter_summary': '',
-                          },
-                  ),
-                ),
-                _buildSummaryTab(summary, keyMoments),
-              ],
+          ...List.generate(
+            4,
+            (index) => Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: _buildQuarterCard(
+                segments.length > index
+                    ? segments[index]
+                    : {
+                        'quarter': index + 1,
+                        'narrative': '',
+                        'events': [],
+                        'quarter_score': '0-0',
+                        'quarter_summary': '',
+                      },
+              ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: _buildSummaryCard(summary, keyMoments),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildQuarterTab(Map<String, dynamic> segment) {
+  Widget _buildQuarterCard(Map<String, dynamic> segment) {
     final quarterNum = segment['quarter'] ?? 0;
     final narrative = _safeGetString(
         segment, 'narrative', '試合の実況が生成されています...');
@@ -2024,66 +1994,64 @@ class _SegmentedNarrativeViewState extends State<_SegmentedNarrativeView>
     final score = _safeGetString(segment, 'quarter_score', '0-0');
     final summary = _safeGetString(segment, 'quarter_summary', '');
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '第${quarterNum}クォーター',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  score,
+    return Card(
+      elevation: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '第${quarterNum}クォーター',
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple,
                   ),
                 ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    score,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Text(
+              narrative,
+              style: const TextStyle(fontSize: 14, height: 1.6),
+            ),
+            if (events.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              const Text(
+                'イベント',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              _buildEventTimeline(events),
+            ],
+            if (summary.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Text(
+                summary,
+                style: TextStyle(fontSize: 13, color: Colors.grey[700]),
               ),
             ],
-          ),
-          const SizedBox(height: 16),
-          Card(
-            elevation: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Text(
-                narrative,
-                style: const TextStyle(fontSize: 14, height: 1.6),
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          if (events.isNotEmpty) ...[
-            const Text(
-              'イベント',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            _buildEventTimeline(events),
           ],
-          const SizedBox(height: 16),
-          if (summary.isNotEmpty)
-            Text(
-              summary,
-              style: TextStyle(fontSize: 13, color: Colors.grey[700]),
-            ),
-        ],
+        ),
       ),
     );
   }
@@ -2146,68 +2114,68 @@ class _SegmentedNarrativeViewState extends State<_SegmentedNarrativeView>
     );
   }
 
-  Widget _buildSummaryTab(String summary, List<dynamic> keyMoments) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Card(
-            elevation: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Text(
-                summary,
-                style: const TextStyle(fontSize: 14, height: 1.6),
+  Widget _buildSummaryCard(String summary, List<dynamic> keyMoments) {
+    return Card(
+      elevation: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              '総括',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-          const SizedBox(height: 24),
-          if (keyMoments.isNotEmpty) ...[
-            const Text(
-              '重要な場面',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
             const SizedBox(height: 12),
-            ...List.generate(
-              keyMoments.length,
-              (index) {
-                final moment = keyMoments[index] as Map<String, dynamic>;
-                final minute = _safeGetString(moment, 'minute', '');
-                final event = _safeGetString(moment, 'event', '');
-                final team = _safeGetString(moment, 'team', '');
-                final desc = _safeGetString(moment, 'description', '');
-
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                minute,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(width: 8),
-                              Text('$team - ${_getEventIcon(event)}'),
-                            ],
-                          ),
-                          const SizedBox(height: 6),
-                          Text(desc),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
+            Text(
+              summary,
+              style: const TextStyle(fontSize: 14, height: 1.6),
             ),
+            if (keyMoments.isNotEmpty) ...[
+              const SizedBox(height: 24),
+              const Text(
+                '重要な場面',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              ...List.generate(
+                keyMoments.length,
+                (index) {
+                  final moment = keyMoments[index] as Map<String, dynamic>;
+                  final minute = _safeGetString(moment, 'minute', '');
+                  final event = _safeGetString(moment, 'event', '');
+                  final team = _safeGetString(moment, 'team', '');
+                  final desc = _safeGetString(moment, 'description', '');
+
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              minute,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(width: 8),
+                            Text('$team - ${_getEventIcon(event)}'),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(desc),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
