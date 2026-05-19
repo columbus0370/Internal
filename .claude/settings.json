@@ -36,7 +36,8 @@
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(python update_players.py)",
       "Bash(python3 update_players.py)",
-      "Bash(dart update_players.dart)"
+      "Bash(dart update_players.dart)",
+      "mcp__Claude_in_Chrome__read_console_messages"
     ]
   }
 }
