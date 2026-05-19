@@ -20,6 +20,8 @@ epl_match_simulator/**
 !epl_match_simulator/lib/services/**
 !epl_match_simulator/lib/screens/
 !epl_match_simulator/lib/screens/**
+!epl_match_simulator/lib/widgets/
+!epl_match_simulator/lib/widgets/**
 !epl_match_simulator/lib/data/
 !epl_match_simulator/lib/data/**
 !epl_match_simulator/lib/models/
