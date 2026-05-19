@@ -11,8 +11,7 @@
   },
   "env": {
     "FLUTTER_BUILD_MODE": "release",
-    "ANTHROPIC_API_VERSION": "2023-06-01",
-    "CLAUDE_API_KEY": "@CLAUDE_API_KEY"
+    "ANTHROPIC_API_VERSION": "2023-06-01"
   },
   "rewrites": [
     {
