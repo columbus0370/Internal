@@ -11,6 +11,11 @@ class MatchAnalysisService {
       'https://epl-match-simulator.vercel.app';
   static const Duration _timeout = Duration(seconds: 60);
 
+  // API status tracking
+  static bool _isUsingApiInLastCall = false;
+
+  static String get apiStatus => _isUsingApiInLastCall ? 'API' : 'Fallback';
+
   // 本番環境かどうかを判定（実行時にホスト情報から判定）
   static bool get _isProduction {
     // Flutter Web では String.fromEnvironment はコンパイル時のみ有効なので、
@@ -77,12 +82,14 @@ class MatchAnalysisService {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         if (data['success'] == true) {
+          _isUsingApiInLastCall = true;
           return {
             'success': true,
             'analysis': data['analysis'],
             'model': data['model'] ?? 'unknown',
           };
         } else {
+          _isUsingApiInLastCall = false;
           return {
             'success': false,
             'analysis': _generateFallbackAnalysis(prediction),
@@ -90,6 +97,7 @@ class MatchAnalysisService {
           };
         }
       } else {
+        _isUsingApiInLastCall = false;
         return {
           'success': false,
           'analysis': _generateFallbackAnalysis(prediction),
@@ -97,12 +105,14 @@ class MatchAnalysisService {
         };
       }
     } on TimeoutException {
+      _isUsingApiInLastCall = false;
       return {
         'success': false,
         'analysis': _generateFallbackAnalysis(prediction),
         'error': 'Request timeout (60s)',
       };
     } catch (e) {
+      _isUsingApiInLastCall = false;
       return {
         'success': false,
         'analysis': _generateFallbackAnalysis(prediction),

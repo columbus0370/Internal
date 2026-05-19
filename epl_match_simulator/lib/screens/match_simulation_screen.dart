@@ -4,17 +4,20 @@ import '../models/match_prediction.dart';
 import '../models/simulation_event.dart';
 import '../services/match_simulation_service.dart';
 import '../widgets/match_simulation_widgets.dart';
+import '../widgets/goal_popup_widget.dart';
 
 class MatchSimulationScreen extends StatefulWidget {
   final MatchPrediction prediction;
   final Stream<bool>? simulationStartSignal;
   final VoidCallback? onSimulationComplete;
+  final bool fullscreenMode;
 
   const MatchSimulationScreen({
     super.key,
     required this.prediction,
     this.simulationStartSignal,
     this.onSimulationComplete,
+    this.fullscreenMode = false,
   });
 
   @override
@@ -99,6 +102,31 @@ class _MatchSimulationScreenState extends State<MatchSimulationScreen> {
               _events.add(event);
             }
 
+            // Detect goal event and show popup
+            if (event.type == EventType.goal) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) {
+                  _simulationService.pause();
+                  showDialog<void>(
+                    context: context,
+                    barrierDismissible: false,
+                    barrierColor: Colors.black.withValues(alpha: 0.5),
+                    builder: (dialogContext) => GoalPopupWidget(
+                      scorerName: event.details['scorer'] as String? ?? 'Unknown',
+                      goalMinute: event.minute,
+                      teamName: event.team,
+                      homeScore: _simulationService.homeScore,
+                      awayScore: _simulationService.awayScore,
+                    ),
+                  ).then((_) {
+                    if (mounted) {
+                      _simulationService.resume();
+                    }
+                  });
+                }
+              });
+            }
+
             // Detect full time event and trigger callback
             if (event.type == EventType.fullTime &&
                 !_simulationCompleteNotified &&
@@ -151,16 +179,21 @@ class _MatchSimulationScreenState extends State<MatchSimulationScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                // Controls
-                ControlsPanelWidget(
-                  isRunning: _simulationService.isRunning,
-                  onPlay: _handlePlay,
-                  onPause: _handlePause,
-                  onReset: _handleReset,
-                  onSpeedChanged: _handleSpeedChanged,
-                  currentSpeed: _speedMultiplier,
-                ),
-                const SizedBox(height: 24),
+                // Controls (hidden in fullscreen mode)
+                if (!widget.fullscreenMode)
+                  Column(
+                    children: [
+                      ControlsPanelWidget(
+                        isRunning: _simulationService.isRunning,
+                        onPlay: _handlePlay,
+                        onPause: _handlePause,
+                        onReset: _handleReset,
+                        onSpeedChanged: _handleSpeedChanged,
+                        currentSpeed: _speedMultiplier,
+                      ),
+                      const SizedBox(height: 24),
+                    ],
+                  ),
 
                 // Match summary section (show at full time)
                 if (_simulationService.currentMinute == 90)

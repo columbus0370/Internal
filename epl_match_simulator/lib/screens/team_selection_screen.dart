@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/team.dart';
 import '../services/prediction_engine.dart';
 import 'prediction_result_screen.dart';
+import 'match_simulation_screen.dart';
 
 class TeamSelectionScreen extends StatefulWidget {
   final List<Team> teams;
@@ -63,7 +64,21 @@ class _TeamSelectionScreenState extends State<TeamSelectionScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PredictionResultScreen(prediction: prediction),
+                          builder: (context) => MatchSimulationScreen(
+                            prediction: prediction,
+                            fullscreenMode: true,
+                            onSimulationComplete: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PredictionResultScreen(
+                                    prediction: prediction,
+                                    initialTabIndex: 0,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       );
                     }

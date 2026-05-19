@@ -31,7 +31,9 @@
       "Bash(cd /d/src/projects/Internal/epl_match_simulator && find lib -name \"*.dart\" | head -20)",
       "Read(//d/d/src/projects/Internal/epl_match_simulator/**)",
       "Bash(Get-ChildItem -Path \"d:\\\\src\\\\projects\\\\Internal\" -Recurse -Filter \"match_simulation_service.dart\" -ErrorAction SilentlyContinue)",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "Bash(Get-ChildItem -Path \"D:\\\\src\\\\projects\\\\Internal\" -Recurse -Filter \"*.dart\")",
+      "Bash(Select-Object -ExpandProperty FullName)"
     ]
   }
 }

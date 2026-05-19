@@ -11,10 +11,12 @@ import 'match_simulation_screen.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
+  final int? initialTabIndex;
 
   const PredictionResultScreen({
     super.key,
     required this.prediction,
+    this.initialTabIndex,
   });
 
   @override
@@ -32,6 +34,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     _simulationStartSignal = StreamController<bool>.broadcast();
     _saveTeamSelection();
     _analysisResult = MatchAnalysisService.analyzeMatch(widget.prediction);
+    _selectedTabIndex = widget.initialTabIndex ?? 0;
 
     Future.delayed(const Duration(milliseconds: 500), () {
       if (mounted) {
@@ -89,10 +92,35 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final apiStatus = MatchAnalysisService.apiStatus;
+    final isUsingApi = apiStatus == 'API';
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Match Prediction'),
         backgroundColor: Colors.deepPurple,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: isUsingApi ? Colors.deepPurple : Colors.amber,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Text(
+                  apiStatus,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
