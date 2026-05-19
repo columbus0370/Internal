@@ -1972,48 +1972,46 @@ class _SegmentedNarrativeViewState extends State<_SegmentedNarrativeView>
     final summary = widget.analysis['overall_summary'] ?? '';
     final keyMoments = (widget.analysis['key_moments'] ?? []) as List<dynamic>;
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          children: [
-            TabBar(
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        children: [
+          TabBar(
+            controller: _tabController,
+            tabs: const [
+              Tab(text: 'Q1'),
+              Tab(text: 'Q2'),
+              Tab(text: 'Q3'),
+              Tab(text: 'Q4'),
+              Tab(text: '総括'),
+            ],
+            labelColor: Colors.deepPurple,
+            unselectedLabelColor: Colors.grey,
+            indicatorColor: Colors.deepPurple,
+          ),
+          Expanded(
+            child: TabBarView(
               controller: _tabController,
-              tabs: const [
-                Tab(text: 'Q1'),
-                Tab(text: 'Q2'),
-                Tab(text: 'Q3'),
-                Tab(text: 'Q4'),
-                Tab(text: '総括'),
-              ],
-              labelColor: Colors.deepPurple,
-              unselectedLabelColor: Colors.grey,
-              indicatorColor: Colors.deepPurple,
-            ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  ...List.generate(
-                    4,
-                    (index) => _buildQuarterTab(
-                      segments.length > index
-                          ? segments[index]
-                          : {
-                              'quarter': index + 1,
-                              'narrative': '',
-                              'events': [],
-                              'quarter_score': '0-0',
-                              'quarter_summary': '',
-                            },
-                    ),
+              children: [
+                ...List.generate(
+                  4,
+                  (index) => _buildQuarterTab(
+                    segments.length > index
+                        ? segments[index]
+                        : {
+                            'quarter': index + 1,
+                            'narrative': '',
+                            'events': [],
+                            'quarter_score': '0-0',
+                            'quarter_summary': '',
+                          },
                   ),
-                  _buildSummaryTab(summary, keyMoments),
-                ],
-              ),
+                ),
+                _buildSummaryTab(summary, keyMoments),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
