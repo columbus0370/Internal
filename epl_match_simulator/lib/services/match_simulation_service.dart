@@ -47,16 +47,30 @@ class MatchSimulationService {
       team: prediction.homeTeamName,
       details: {'message': 'Match starts!'},
     );
-    _eventStreamController.add(kickoffEvent);
+
+    try {
+      _eventStreamController.add(kickoffEvent);
+    } catch (e) {
+      print('Error emitting kickoff event: $e');
+      _isRunning = false;
+      return;
+    }
 
     // Start timer with speed multiplier applied
     final baseInterval = Duration(milliseconds: 500);
     final actualInterval = Duration(
       milliseconds: (baseInterval.inMilliseconds / _speedMultiplier).round(),
     );
-    _timer = Timer.periodic(actualInterval, (timer) {
-      _processNextMinute();
-    });
+
+    try {
+      _timer = Timer.periodic(actualInterval, (timer) {
+        _processNextMinute();
+      });
+    } catch (e) {
+      print('Error creating timer: $e');
+      _isRunning = false;
+      rethrow;
+    }
   }
 
   void pause() {
@@ -126,7 +140,12 @@ class MatchSimulationService {
                   : 'Draw'
         },
       );
-      _eventStreamController.add(fullTimeEvent);
+
+      try {
+        _eventStreamController.add(fullTimeEvent);
+      } catch (e) {
+        print('Error emitting fulltime event: $e');
+      }
       return;
     }
 
@@ -146,7 +165,11 @@ class MatchSimulationService {
 
     // Emit all events for this minute
     for (final event in eventsAtMinute) {
-      _eventStreamController.add(event);
+      try {
+        _eventStreamController.add(event);
+      } catch (e) {
+        print('Error emitting event at minute $_currentMinute: $e');
+      }
     }
 
     _currentMinute++;

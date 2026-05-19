@@ -36,9 +36,20 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     _analysisResult = MatchAnalysisService.analyzeMatch(widget.prediction);
     _selectedTabIndex = widget.initialTabIndex ?? 0;
 
-    Future.delayed(const Duration(milliseconds: 500), () {
+    print('PredictionResultScreen: Initializing with initialTabIndex=$_selectedTabIndex');
+
+    // Schedule initial tab switch with adequate delay for StreamBuilder rebuild
+    Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) {
+        print('PredictionResultScreen: Switching to Simulation tab (index 3)');
         setState(() => _selectedTabIndex = 3); // Simulation tab
+      }
+    });
+
+    // Send start signal after additional delay to ensure widget is fully initialized
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (mounted && !_simulationStartSignal.isClosed) {
+        print('PredictionResultScreen: Sending simulation start signal');
         _simulationStartSignal.add(true); // Start signal
       }
     });
@@ -973,6 +984,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         prediction: widget.prediction,
         simulationStartSignal: _simulationStartSignal.stream,
         onSimulationComplete: _onSimulationComplete,
+        fullscreenMode: false,
       ),
     );
   }

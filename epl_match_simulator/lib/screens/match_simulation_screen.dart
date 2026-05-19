@@ -40,10 +40,22 @@ class _MatchSimulationScreenState extends State<MatchSimulationScreen> {
     if (widget.simulationStartSignal != null) {
       _simulationStartSubscription =
           widget.simulationStartSignal!.listen((shouldStart) {
+        print('MatchSimulationScreen: Received start signal: $shouldStart');
         if (shouldStart && mounted) {
+          print('MatchSimulationScreen: Starting simulation');
           _handlePlay();
         }
       });
+    } else if (widget.fullscreenMode) {
+      // Auto-start simulation in fullscreen mode without signal
+      print('MatchSimulationScreen: No signal provided, auto-starting in fullscreen mode');
+      Future.delayed(const Duration(milliseconds: 300), () {
+        if (mounted) {
+          _handlePlay();
+        }
+      });
+    } else {
+      print('MatchSimulationScreen: No start signal and not fullscreen mode - waiting for manual start');
     }
   }
 
