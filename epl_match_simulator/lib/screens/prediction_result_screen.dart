@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import '../models/match_prediction.dart';
 import '../models/team.dart';
 import '../models/match_stats.dart';
@@ -23,17 +24,40 @@ class PredictionResultScreen extends StatefulWidget {
 class _PredictionResultScreenState extends State<PredictionResultScreen> {
   int _selectedTabIndex = 0;
   late Future<Map<String, dynamic>> _analysisResult;
+  late StreamController<bool> _simulationStartSignal;
 
   @override
   void initState() {
     super.initState();
+    _simulationStartSignal = StreamController<bool>.broadcast();
     _saveTeamSelection();
     _analysisResult = MatchAnalysisService.analyzeMatch(widget.prediction);
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        setState(() => _selectedTabIndex = 3); // Simulation tab
+        _simulationStartSignal.add(true); // Start signal
+      }
+    });
   }
 
   Future<void> _saveTeamSelection() async {
     await PreferenceService.setLastHomeTeam(widget.prediction.homeTeamName);
     await PreferenceService.setLastAwayTeam(widget.prediction.awayTeamName);
+  }
+
+  @override
+  void dispose() {
+    _simulationStartSignal.close();
+    super.dispose();
+  }
+
+  void _onSimulationComplete() {
+    if (mounted) {
+      setState(() {
+        _selectedTabIndex = 2; // Commentary tab
+      });
+    }
   }
 
   static const _scoreTextStyle = TextStyle(
@@ -919,6 +943,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       padding: const EdgeInsets.only(top: 16),
       child: MatchSimulationScreen(
         prediction: widget.prediction,
+        simulationStartSignal: _simulationStartSignal.stream,
+        onSimulationComplete: _onSimulationComplete,
       ),
     );
   }

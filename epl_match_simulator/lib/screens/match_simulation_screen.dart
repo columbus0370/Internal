@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import '../models/match_prediction.dart';
 import '../models/simulation_event.dart';
 import '../services/match_simulation_service.dart';
@@ -6,10 +7,14 @@ import '../widgets/match_simulation_widgets.dart';
 
 class MatchSimulationScreen extends StatefulWidget {
   final MatchPrediction prediction;
+  final Stream<bool>? simulationStartSignal;
+  final VoidCallback? onSimulationComplete;
 
   const MatchSimulationScreen({
     super.key,
     required this.prediction,
+    this.simulationStartSignal,
+    this.onSimulationComplete,
   });
 
   @override
@@ -20,15 +25,28 @@ class _MatchSimulationScreenState extends State<MatchSimulationScreen> {
   late MatchSimulationService _simulationService;
   final List<SimulationEvent> _events = [];
   double _speedMultiplier = 1.0;
+  StreamSubscription<bool>? _simulationStartSubscription;
+  bool _simulationCompleteNotified = false;
 
   @override
   void initState() {
     super.initState();
     _simulationService = MatchSimulationService(prediction: widget.prediction);
+
+    // Monitor simulationStartSignal
+    if (widget.simulationStartSignal != null) {
+      _simulationStartSubscription =
+          widget.simulationStartSignal!.listen((shouldStart) {
+        if (shouldStart && mounted) {
+          _handlePlay();
+        }
+      });
+    }
   }
 
   @override
   void dispose() {
+    _simulationStartSubscription?.cancel();
     _simulationService.dispose();
     super.dispose();
   }
@@ -52,6 +70,7 @@ class _MatchSimulationScreenState extends State<MatchSimulationScreen> {
   void _handleReset() {
     _simulationService.reset();
     _events.clear();
+    _simulationCompleteNotified = false;
     setState(() {});
   }
 
@@ -78,6 +97,18 @@ class _MatchSimulationScreenState extends State<MatchSimulationScreen> {
                 !_events.any(
                     (e) => e.minute == event.minute && e.type == event.type)) {
               _events.add(event);
+            }
+
+            // Detect full time event and trigger callback
+            if (event.type == EventType.fullTime &&
+                !_simulationCompleteNotified &&
+                widget.onSimulationComplete != null) {
+              _simulationCompleteNotified = true;
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) {
+                  widget.onSimulationComplete!();
+                }
+              });
             }
           }
 
