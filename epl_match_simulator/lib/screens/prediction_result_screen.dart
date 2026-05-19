@@ -21,11 +21,13 @@ class PredictionResultScreen extends StatefulWidget {
 
 class _PredictionResultScreenState extends State<PredictionResultScreen> {
   int _selectedTabIndex = 0;
+  late Future<Map<String, dynamic>> _analysisResult;
 
   @override
   void initState() {
     super.initState();
     _saveTeamSelection();
+    _analysisResult = MatchAnalysisService.analyzeMatch(widget.prediction);
   }
 
   Future<void> _saveTeamSelection() async {
@@ -879,7 +881,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
 
   Widget _buildCommentaryTab() {
     return FutureBuilder<Map<String, dynamic>>(
-      future: MatchAnalysisService.analyzeMatch(widget.prediction),
+      future: _analysisResult,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Card(
@@ -947,7 +949,12 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   ),
                   const SizedBox(height: 12),
                   ElevatedButton(
-                    onPressed: () => setState(() {}),
+                    onPressed: () {
+                      setState(() {
+                        _analysisResult =
+                            MatchAnalysisService.analyzeMatch(widget.prediction);
+                      });
+                    },
                     child: const Text('リトライ'),
                   ),
                 ],
@@ -976,40 +983,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         }
 
         final analysis = result['analysis'] as Map<String, dynamic>;
-        final narrativeSegments = analysis['narrative_segments'] as List<dynamic>?;
-
-        return Card(
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: ListView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                const Text(
-                  '🎙️ 試合実況',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 12),
-                if (narrativeSegments != null && narrativeSegments.isNotEmpty)
-                  _buildNarrativeSegmentsSection(narrativeSegments)
-                else
-                  _buildAnalysisSection(
-                    '実況中継',
-                    _safeGetString(analysis, 'narrative'),
-                  ),
-                const SizedBox(height: 12),
-                _buildAnalysisSection(
-                  '総括',
-                  _safeGetString(analysis, 'overall_summary') ??
-                      _safeGetString(analysis, 'summary'),
-                ),
-                const SizedBox(height: 12),
-                _buildKeyMomentsSection(analysis),
-                const SizedBox(height: 16),
-              ],
-            ),
-          ),
-        );
+        return _SegmentedNarrativeView(analysis: analysis);
       },
     );
   }
@@ -1958,5 +1932,309 @@ class SoccerFieldPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(SoccerFieldPainter oldDelegate) => false;
+}
+
+class _SegmentedNarrativeView extends StatefulWidget {
+  final Map<String, dynamic> analysis;
+
+  const _SegmentedNarrativeView({
+    required this.analysis,
+  });
+
+  @override
+  State<_SegmentedNarrativeView> createState() =>
+      _SegmentedNarrativeViewState();
+}
+
+class _SegmentedNarrativeViewState extends State<_SegmentedNarrativeView>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 5,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final segments =
+        (widget.analysis['narrative_segments'] ?? []) as List<dynamic>;
+    final summary = widget.analysis['overall_summary'] ?? '';
+    final keyMoments = (widget.analysis['key_moments'] ?? []) as List<dynamic>;
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          children: [
+            TabBar(
+              controller: _tabController,
+              tabs: const [
+                Tab(text: 'Q1'),
+                Tab(text: 'Q2'),
+                Tab(text: 'Q3'),
+                Tab(text: 'Q4'),
+                Tab(text: '総括'),
+              ],
+              labelColor: Colors.deepPurple,
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: Colors.deepPurple,
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  ...List.generate(
+                    4,
+                    (index) => _buildQuarterTab(
+                      segments.length > index
+                          ? segments[index]
+                          : {
+                              'quarter': index + 1,
+                              'narrative': '',
+                              'events': [],
+                              'quarter_score': '0-0',
+                              'quarter_summary': '',
+                            },
+                    ),
+                  ),
+                  _buildSummaryTab(summary, keyMoments),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildQuarterTab(Map<String, dynamic> segment) {
+    final quarterNum = segment['quarter'] ?? 0;
+    final narrative = _safeGetString(
+        segment, 'narrative', '試合の実況が生成されています...');
+    final events = (segment['events'] ?? []) as List<dynamic>;
+    final score = _safeGetString(segment, 'quarter_score', '0-0');
+    final summary = _safeGetString(segment, 'quarter_summary', '');
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '第${quarterNum}クォーター',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.deepPurple.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  score,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Card(
+            elevation: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                narrative,
+                style: const TextStyle(fontSize: 14, height: 1.6),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          if (events.isNotEmpty) ...[
+            const Text(
+              'イベント',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            _buildEventTimeline(events),
+          ],
+          const SizedBox(height: 16),
+          if (summary.isNotEmpty)
+            Text(
+              summary,
+              style: TextStyle(fontSize: 13, color: Colors.grey[700]),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEventTimeline(List<dynamic> events) {
+    return Column(
+      children: List.generate(
+        events.length,
+        (index) {
+          final event = events[index] as Map<String, dynamic>;
+          final minute = _safeGetString(event, 'minute', '');
+          final team = _safeGetString(event, 'team', '');
+          final eventType = _safeGetString(event, 'event', '');
+          final description = _safeGetString(event, 'description', '');
+
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    minute,
+                    style: const TextStyle(
+                        fontSize: 11, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '$team - ${_getEventIcon(eventType)} $eventType',
+                        style: const TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        description,
+                        style: TextStyle(
+                            fontSize: 12, color: Colors.grey[600]),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildSummaryTab(String summary, List<dynamic> keyMoments) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Card(
+            elevation: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                summary,
+                style: const TextStyle(fontSize: 14, height: 1.6),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          if (keyMoments.isNotEmpty) ...[
+            const Text(
+              '重要な場面',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            ...List.generate(
+              keyMoments.length,
+              (index) {
+                final moment = keyMoments[index] as Map<String, dynamic>;
+                final minute = _safeGetString(moment, 'minute', '');
+                final event = _safeGetString(moment, 'event', '');
+                final team = _safeGetString(moment, 'team', '');
+                final desc = _safeGetString(moment, 'description', '');
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                minute,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(width: 8),
+                              Text('$team - ${_getEventIcon(event)}'),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Text(desc),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  String _getEventIcon(String eventType) {
+    return switch (eventType.toLowerCase()) {
+      'ゴール' || 'goal' => '⚽',
+      'シュート' || 'shoot' || 'shot' => '🎯',
+      'ファウル' || 'foul' => '🚨',
+      'セーブ' || 'save' => '🧤',
+      'チャンス' || 'chance' => '💥',
+      'パス' || 'pass' => '👟',
+      _ => '•',
+    };
+  }
+
+  String _safeGetString(
+      Map<String, dynamic> map, String key, String defaultValue) {
+    try {
+      final value = map[key];
+      if (value == null) return defaultValue;
+      return value.toString();
+    } catch (e) {
+      return defaultValue;
+    }
+  }
 }
 

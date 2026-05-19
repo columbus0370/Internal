@@ -112,87 +112,233 @@ class MatchAnalysisService {
   }
 
   static Map<String, dynamic> _generateFallbackAnalysis(MatchPrediction prediction) {
-    final narrative = '''${prediction.homeTeamName} vs ${prediction.awayTeamName}
+    final homeTeamName = prediction.homeTeamName;
+    final awayTeamName = prediction.awayTeamName;
+    final possession = prediction.possession;
+
+    // Map goals to quarters (0-15, 15-30, 45-60, 75-90)
+    Map<int, List<Map<String, dynamic>>> goalsByQuarter = {};
+    for (var goal in (prediction.goals ?? [])) {
+      final minute = int.tryParse(goal.minute.toString()) ?? 0;
+      late int quarter;
+      if (minute < 15) {
+        quarter = 1; // 0-15
+      } else if (minute < 30) {
+        quarter = 2; // 15-30
+      } else if (minute < 45) {
+        quarter = 2; // 30-45: still Q2 (late first half)
+      } else if (minute < 60) {
+        quarter = 3; // 45-60
+      } else {
+        quarter = 4; // 60-90
+      }
+
+      goalsByQuarter.putIfAbsent(quarter, () => []);
+      goalsByQuarter[quarter]!.add({
+        'team': goal.team,
+        'minute': minute,
+        'scorer': goal.scorer,
+      });
+    }
+
+    final narrative = '''${homeTeamName} vs ${awayTeamName}
 
 【試合概況】
-${prediction.homeTeamName}がホームでの試合に臨み、${prediction.awayTeamName}がアウェイからの挑戦。
+${homeTeamName}がホームでの試合に臨み、${awayTeamName}がアウェイからの挑戦。
 最終スコア：${prediction.homeScore}対${prediction.awayScore}（${prediction.result}）
 
 【前半】
-試合開始から両チームが激しく競い合う。${prediction.homeTeamName}はホーム有利を活かし、ボール支配率${(prediction.possession * 100).toStringAsFixed(1)}%で試合を優位に進める。${prediction.awayTeamName}も効率的なカウンター攻撃で対抗する。
+試合開始から両チームが激しく競い合う。${homeTeamName}はホーム有利を活かし、ボール支配率${(possession * 100).toStringAsFixed(1)}%で試合を優位に進める。${awayTeamName}も効率的なカウンター攻撃で対抗する。
 
 【後半】
 後半に入ると、試合の流れが激化。主要な得点シーンが生まれ、試合は最後まで白熱した展開となる。
 
 【試合評価】
-${prediction.homeTeamName}の攻撃力${prediction.homeTeam.attackPower}と${prediction.awayTeamName}の守備力${prediction.awayTeam.defensePower}の対比が試合の鍵となった。''';
+${homeTeamName}の攻撃力${prediction.homeTeam.attackPower}と${awayTeamName}の守備力${prediction.awayTeam.defensePower}の対比が試合の鍵となった。''';
+
+    // Generate narrative segments with quarter-specific narratives
+    final List<Map<String, dynamic>> narrativeSegments = [];
+    for (int quarterNum = 1; quarterNum <= 4; quarterNum++) {
+      final cumulativeHomeGoals =
+          _calculateCumulativeGoals(goalsByQuarter, quarterNum, homeTeamName);
+      final cumulativeAwayGoals =
+          _calculateCumulativeGoals(goalsByQuarter, quarterNum, awayTeamName);
+
+      final quarter = {
+        'quarter': quarterNum,
+        'minute_range': _getQuarterMinuteRange(quarterNum),
+        'quarter_score': '$cumulativeHomeGoals-$cumulativeAwayGoals',
+        'narrative': _generateQuarterNarrative(
+          quarterNum,
+          homeTeamName,
+          awayTeamName,
+          cumulativeHomeGoals,
+          cumulativeAwayGoals,
+          prediction.homeTeam,
+          prediction.awayTeam,
+          possession,
+        ),
+        'events': _generateQuarterEvents(
+          quarterNum,
+          homeTeamName,
+          awayTeamName,
+          goalsByQuarter,
+        ),
+        'quarter_summary': _generateQuarterSummary(quarterNum, homeTeamName, awayTeamName, cumulativeHomeGoals, cumulativeAwayGoals),
+      };
+      narrativeSegments.add(quarter);
+    }
 
     return {
       'narrative': narrative,
-      'narrative_segments': [
-        {
-          'quarter': 1,
-          'minute_range': '0-15',
-          'events': [
-            {
-              'minute': '5',
-              'team': prediction.homeTeamName,
-              'event_type': 'possession',
-              'description': '試合開始。${prediction.homeTeamName}がボール支配で試合をリード。'
-            }
-          ],
-          'quarter_summary': '試合開始。${prediction.homeTeamName}がホーム有利で序盤を支配。'
-        },
-        {
-          'quarter': 2,
-          'minute_range': '15-30',
-          'events': [
-            {
-              'minute': '20',
-              'team': prediction.awayTeamName,
-              'event_type': 'counter',
-              'description': '${prediction.awayTeamName}がカウンター攻撃で反撃を試みる。'
-            }
-          ],
-          'quarter_summary': '両チームが競い合い、激しいテンポで試合が進む。'
-        },
-        {
-          'quarter': 3,
-          'minute_range': '45-60',
-          'events': [
-            {
-              'minute': '50',
-              'team': prediction.homeTeamName,
-              'event_type': 'shot',
-              'description': '${prediction.homeTeamName}が得点チャンスを迎える。'
-            }
-          ],
-          'quarter_summary': '後半戦が始まり、試合の流れが変わる。'
-        },
-        {
-          'quarter': 4,
-          'minute_range': '75-90',
-          'events': [
-            {
-              'minute': '80',
-              'team': prediction.homeTeamName,
-              'event_type': 'goal',
-              'description': '決定的な得点シーン。最終的に${prediction.homeScore}対${prediction.awayScore}で終了。'
-            }
-          ],
-          'quarter_summary': '試合終盤。${prediction.homeTeamName}が勝利を確定させる。'
-        }
-      ],
-      'overall_summary': '${prediction.homeTeamName}が${prediction.homeScore}対${prediction.awayScore}で${prediction.result}。${prediction.mom}がマン・オブ・ザ・マッチに選ばれた。',
-      'summary': '${prediction.homeTeamName}が${prediction.awayTeamName}とのマッチアップで、${prediction.homeScore}対${prediction.awayScore}で勝利。',
+      'narrative_segments': narrativeSegments,
+      'overall_summary': '${homeTeamName}が${prediction.homeScore}対${prediction.awayScore}で${prediction.result}。${prediction.mom}がマン・オブ・ザ・マッチに選ばれた。',
+      'summary': '${homeTeamName}が${awayTeamName}とのマッチアップで、${prediction.homeScore}対${prediction.awayScore}で勝利。',
       'keyMoments': prediction.goals
           .map((goal) => {
             'minute': goal.minute,
             'team': goal.team,
             'event': 'Goal',
-            'description': '${goal.scorer}が得点を挙げた。${goal.assist != null ? 'アシスト：${goal.assist}' : 'ダイレクト得点'}'
+            'description':
+                '${goal.scorer}が得点を挙げた。${goal.assist != null ? 'アシスト：${goal.assist}' : 'ダイレクト得点'}'
+          })
+          .toList(),
+      'key_moments': prediction.goals
+          .map((goal) => {
+            'minute': goal.minute,
+            'team': goal.team,
+            'event': 'ゴール',
+            'description':
+                '${goal.scorer}が得点を挙げた。${goal.assist != null ? 'アシスト：${goal.assist}' : 'ダイレクト得点'}'
           })
           .toList(),
     };
+  }
+
+  static String _getQuarterMinuteRange(int quarterNum) {
+    return switch (quarterNum) {
+      1 => '0-15',
+      2 => '15-45',
+      3 => '45-60',
+      4 => '60-90',
+      _ => '0-90',
+    };
+  }
+
+  static int _calculateCumulativeGoals(
+    Map<int, List<Map<String, dynamic>>> goalsByQuarter,
+    int upToQuarter,
+    String teamName,
+  ) {
+    int total = 0;
+    for (int q = 1; q <= upToQuarter; q++) {
+      final goals = goalsByQuarter[q] ?? [];
+      total += goals.where((g) => g['team'] == teamName).length;
+    }
+    return total;
+  }
+
+  static String _generateQuarterNarrative(
+    int quarterNum,
+    String homeTeamName,
+    String awayTeamName,
+    int homeGoals,
+    int awayGoals,
+    dynamic homeTeam,
+    dynamic awayTeam,
+    double possession,
+  ) {
+    final isHomeAttacking = possession > 0.55;
+    final scoreLine = homeGoals > awayGoals
+        ? "リード"
+        : awayGoals > homeGoals
+            ? "ビハインド"
+            : "同点";
+
+    String narrative = '';
+
+    if (quarterNum == 1) {
+      narrative =
+          '【第1クォーター】キックオフ。${homeTeamName}${isHomeAttacking ? 'が積極的に' : 'は守備的に'}試合を開始。';
+      narrative +=
+          'ボール保持率${(possession * 100).toStringAsFixed(0)}%で${isHomeAttacking ? 'ホーム側が試合をコントロール' : 'アウェイ側がペースを握る'}。';
+      narrative +=
+          '${homeTeamName}${homeGoals > 0 ? 'が先制に成功し' : 'は得点機を迎えるも'}、$homeGoals-$awayGoalsで前半15分を終える。';
+    } else if (quarterNum == 2) {
+      narrative =
+          '【第2クォーター】${homeTeamName}は${homeGoals > awayGoals ? '優位' : '巻き返しを図る'}中。';
+      narrative +=
+          '${awayTeamName}の攻撃力が活躍、サイドを経由した攻撃で得点機を創出。';
+      narrative +=
+          '後半に向けて$homeGoals-$awayGoalsの${scoreLine}の状況で前半を終える。';
+    } else if (quarterNum == 3) {
+      narrative =
+          '【第3クォーター】後半開始。${homeTeamName}は前半の作戦を継続、守備力で${awayTeamName}の攻撃を封じる。';
+      narrative +=
+          '${homeGoals == awayGoals ? '同点状況が続く中、' : ''}得点を巡る激しい攻防が繰り広げられる。';
+      narrative += '第3クォーター終盤に$homeGoals-$awayGoalsの状況に。';
+    } else {
+      narrative =
+          '【第4クォーター】終盤の戦い。${homeTeamName}は${homeGoals > awayGoals ? '勝利を目指して' : '追いすがり'}、最後のスパート。';
+      narrative +=
+          '${awayTeamName}も全力で${homeGoals > awayGoals ? '同点を目指す' : 'リードを奪い取ろう'}。';
+      narrative +=
+          '最終的に$homeGoals-$awayGoalsで試合終了。試合全体を通じ、両チームの全力の戦いが展開された。';
+    }
+
+    return narrative.length > 600 ? narrative.substring(0, 600) : narrative;
+  }
+
+  static List<Map<String, dynamic>> _generateQuarterEvents(
+    int quarterNum,
+    String homeTeamName,
+    String awayTeamName,
+    Map<int, List<Map<String, dynamic>>> goalsByQuarter,
+  ) {
+    final quarterGoals = goalsByQuarter[quarterNum] ?? [];
+    final events = <Map<String, dynamic>>[];
+
+    for (var goal in quarterGoals) {
+      events.add({
+        'minute': goal['minute'].toString(),
+        'team': goal['team'],
+        'event': 'ゴール',
+        'event_type': 'goal',
+        'description': '${goal['scorer']}が得点を挙げた。',
+      });
+    }
+
+    // Add default event if no goals in quarter
+    if (events.isEmpty) {
+      final defaultTeam = quarterNum.isEven ? awayTeamName : homeTeamName;
+      final minuteStart = (quarterNum - 1) * 15 + 5;
+      events.add({
+        'minute': minuteStart.toString(),
+        'team': defaultTeam,
+        'event': 'ボール保持',
+        'event_type': 'possession',
+        'description': '試合の流れが続く。',
+      });
+    }
+
+    return events;
+  }
+
+  static String _generateQuarterSummary(
+    int quarterNum,
+    String homeTeamName,
+    String awayTeamName,
+    int homeGoals,
+    int awayGoals,
+  ) {
+    if (quarterNum == 1) {
+      return '試合開始。${homeTeamName}がホーム有利で序盤を支配。';
+    } else if (quarterNum == 2) {
+      return '両チームが競い合い、激しいテンポで試合が進む。';
+    } else if (quarterNum == 3) {
+      return '後半戦が始まり、試合の流れが変わる。';
+    } else {
+      return '試合終盤。${homeGoals > awayGoals ? homeTeamName : awayTeamName}が勝利を確定させる。';
+    }
   }
 }
