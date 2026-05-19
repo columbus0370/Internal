@@ -11,7 +11,7 @@ class MatchSimulationService {
   int _homeScore = 0;
   int _awayScore = 0;
   bool _isRunning = false;
-  double _speedMultiplier = 1.0;
+  double _speedMultiplier = 2.0;
   final List<SimulationEvent> _allEvents = [];
 
   MatchSimulationService({required this.prediction}) {

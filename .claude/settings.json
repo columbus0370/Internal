@@ -33,7 +33,10 @@
       "Bash(Get-ChildItem -Path \"d:\\\\src\\\\projects\\\\Internal\" -Recurse -Filter \"match_simulation_service.dart\" -ErrorAction SilentlyContinue)",
       "Bash(Select-Object FullName)",
       "Bash(Get-ChildItem -Path \"D:\\\\src\\\\projects\\\\Internal\" -Recurse -Filter \"*.dart\")",
-      "Bash(Select-Object -ExpandProperty FullName)"
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(python update_players.py)",
+      "Bash(python3 update_players.py)",
+      "Bash(dart update_players.dart)"
     ]
   }
 }
