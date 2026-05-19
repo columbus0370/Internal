@@ -6,6 +6,7 @@ import '../services/match_stats_generator.dart';
 import '../services/match_analysis_service.dart';
 import '../services/preference_service.dart';
 import 'player_detail_screen.dart';
+import 'match_simulation_screen.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   final MatchPrediction prediction;
@@ -88,7 +89,9 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                 ? _buildStamenTab()
                 : _selectedTabIndex == 1
                     ? _buildStatsTab()
-                    : _buildCommentaryTab(),
+                    : _selectedTabIndex == 2
+                        ? _buildCommentaryTab()
+                        : _buildSimulationTab(),
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () => Navigator.pop(context),
@@ -116,96 +119,128 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: () => setState(() => _selectedTabIndex = 0),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                decoration: BoxDecoration(
-                  border: _selectedTabIndex == 0
-                      ? Border(
-                          bottom: BorderSide(
-                            color: Colors.deepPurple,
-                            width: 3,
-                          ),
-                        )
-                      : null,
-                ),
-                child: Text(
-                  'Stamen',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: _selectedTabIndex == 0
-                        ? Colors.deepPurple
-                        : Colors.grey,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: () => setState(() => _selectedTabIndex = 0),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  decoration: BoxDecoration(
+                    border: _selectedTabIndex == 0
+                        ? Border(
+                            bottom: BorderSide(
+                              color: Colors.deepPurple,
+                              width: 3,
+                            ),
+                          )
+                        : null,
+                  ),
+                  child: Text(
+                    'Stamen',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: _selectedTabIndex == 0
+                          ? Colors.deepPurple
+                          : Colors.grey,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: GestureDetector(
-              onTap: () => setState(() => _selectedTabIndex = 1),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                decoration: BoxDecoration(
-                  border: _selectedTabIndex == 1
-                      ? Border(
-                          bottom: BorderSide(
-                            color: Colors.deepPurple,
-                            width: 3,
-                          ),
-                        )
-                      : null,
-                ),
-                child: Text(
-                  'Stats',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: _selectedTabIndex == 1
-                        ? Colors.deepPurple
-                        : Colors.grey,
+            Expanded(
+              child: GestureDetector(
+                onTap: () => setState(() => _selectedTabIndex = 1),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  decoration: BoxDecoration(
+                    border: _selectedTabIndex == 1
+                        ? Border(
+                            bottom: BorderSide(
+                              color: Colors.deepPurple,
+                              width: 3,
+                            ),
+                          )
+                        : null,
+                  ),
+                  child: Text(
+                    'Stats',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: _selectedTabIndex == 1
+                          ? Colors.deepPurple
+                          : Colors.grey,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: GestureDetector(
-              onTap: () => setState(() => _selectedTabIndex = 2),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                decoration: BoxDecoration(
-                  border: _selectedTabIndex == 2
-                      ? Border(
-                          bottom: BorderSide(
-                            color: Colors.deepPurple,
-                            width: 3,
-                          ),
-                        )
-                      : null,
-                ),
-                child: Text(
-                  'Commentary',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: _selectedTabIndex == 2
-                        ? Colors.deepPurple
-                        : Colors.grey,
+            Expanded(
+              child: GestureDetector(
+                onTap: () => setState(() => _selectedTabIndex = 2),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  decoration: BoxDecoration(
+                    border: _selectedTabIndex == 2
+                        ? Border(
+                            bottom: BorderSide(
+                              color: Colors.deepPurple,
+                              width: 3,
+                            ),
+                          )
+                        : null,
+                  ),
+                  child: Text(
+                    'Commentary',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: _selectedTabIndex == 2
+                          ? Colors.deepPurple
+                          : Colors.grey,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: GestureDetector(
+                onTap: () => setState(() => _selectedTabIndex = 3),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  decoration: BoxDecoration(
+                    border: _selectedTabIndex == 3
+                        ? Border(
+                            bottom: BorderSide(
+                              color: Colors.deepPurple,
+                              width: 3,
+                            ),
+                          )
+                        : null,
+                  ),
+                  child: Text(
+                    'Simulation',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: _selectedTabIndex == 3
+                          ? Colors.deepPurple
+                          : Colors.grey,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -356,7 +391,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
+                  color: color.withValues(alpha: 0.1),
                   border: Border.all(color: color, width: 1),
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -804,9 +839,9 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.deepPurple.withOpacity(0.05),
+        color: Colors.deepPurple.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: Colors.deepPurple.withOpacity(0.2)),
+        border: Border.all(color: Colors.deepPurple.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -876,6 +911,15 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
         Text(label, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
         Text(awayValue, style: _boldPurpleStyle),
       ],
+    );
+  }
+
+  Widget _buildSimulationTab() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: MatchSimulationScreen(
+        prediction: widget.prediction,
+      ),
     );
   }
 
@@ -1004,7 +1048,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
             width: 3,
           ),
         ),
-        color: Colors.deepPurple.withOpacity(0.05),
+        color: Colors.deepPurple.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Column(
@@ -1049,7 +1093,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: Colors.deepPurple.withOpacity(0.1),
+                  color: Colors.deepPurple.withValues(alpha: 0.1),
                   border: Border(
                     left: BorderSide(
                       color: Colors.deepPurple,
@@ -1178,7 +1222,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
             width: 3,
           ),
         ),
-        color: Colors.deepPurple.withOpacity(0.05),
+        color: Colors.deepPurple.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Column(
@@ -1318,7 +1362,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               decoration: BoxDecoration(
-                color: Colors.deepPurple.withOpacity(0.1),
+                color: Colors.deepPurple.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -1387,8 +1431,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: isHomeGoal
-                        ? Colors.blue.withOpacity(0.1)
-                        : Colors.orange.withOpacity(0.1),
+                        ? Colors.blue.withValues(alpha: 0.1)
+                        : Colors.orange.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                       color: isHomeGoal ? Colors.blue : Colors.orange,
@@ -1655,7 +1699,7 @@ class UnifiedSoccerFieldWidget extends StatelessWidget {
                   color: _getPositionColor(player['position']),
                   fontWeight: FontWeight.bold,
                   fontSize: 7,
-                  backgroundColor: Colors.white.withOpacity(0.8),
+                  backgroundColor: Colors.white.withValues(alpha: 0.8),
                 ),
               ),
             ),
