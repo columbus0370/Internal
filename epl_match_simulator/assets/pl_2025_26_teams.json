@@ -1,1 +1,2353 @@
-{"season":"2025-26","league":"Premier League","total_teams":20,"last_verified":"2026-05-18","notes":{"promoted_from_championship":["Leeds United","Burnley","Sunderland"],"relegated_prev_season":["Leicester City","Ipswich Town","Southampton"],"relegated_this_season":["Burnley","Wolverhampton Wanderers"]},"teams":[{"id":"1","name":"Arsenal","name_ja":"アーセナル","leagueRank":1,"color":"#DB0407","stadium":"Emirates Stadium","manager_current":"Mikel Arteta","promoted":false,"relegated":false,"overallPower":94,"attackPower":93,"defensePower":91,"ballControl":85,"formation":"4-2-3-1","players":[{"name":"David Raya","position":"GK","overallRating":90,"attackRating":88,"defenseRating":80,"passingRating":87,"subPosition":"GK"},{"name":"William Saliba","position":"DF","overallRating":86,"attackRating":78,"defenseRating":86,"passingRating":84,"subPosition":"CB"},{"name":"Cristhian Mosquera","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"},{"name":"Ben White","position":"DF","overallRating":86,"attackRating":78,"defenseRating":86,"passingRating":84,"subPosition":"RB"},{"name":"Piero Hincapié","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"},{"name":"Gabriel","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"},{"name":"Bukayo Saka","position":"MF","overallRating":87,"attackRating":82,"defenseRating":77,"passingRating":85,"subPosition":"RW"},{"name":"Martin Ødegaard","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CAM"},{"name":"Gabriel Jesus","position":"FW","overallRating":89,"attackRating":87,"defenseRating":74,"passingRating":87,"subPosition":"ST"},{"name":"Eberechi Eze","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"},{"name":"Gabriel Martinelli","position":"FW","overallRating":87,"attackRating":85,"defenseRating":72,"passingRating":85,"subPosition":"LW"}]},{"id":"2","name":"Manchester City","name_ja":"マンチェスター・シティ","leagueRank":2,"color":"#6CABDA","stadium":"City of Manchester Stadium","manager_current":"Pep Guardiola","promoted":false,"relegated":false,"overallPower":96,"attackPower":95,"defensePower":93,"ballControl":86,"formation":"3-2-5","players":[{"name":"James Trafford","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"},{"name":"Rúben Dias","position":"DF","overallRating":86,"attackRating":78,"defenseRating":86,"passingRating":84,"subPosition":"CB"},{"name":"Tijjani Reijnders","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"},{"name":"John Stones","position":"DF","overallRating":86,"attackRating":78,"defenseRating":86,"passingRating":84,"subPosition":"CB"},{"name":"Nathan Aké","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"},{"name":"Omar Marmoush","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"},{"name":"Mateo Kovačić","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"},{"name":"Erling Håland","position":"FW","overallRating":89,"attackRating":87,"defenseRating":74,"passingRating":87,"subPosition":"ST"},{"name":"Rayan Cherki","position":"GK","overallRating":90,"attackRating":88,"defenseRating":80,"passingRating":87,"subPosition":"GK"},{"name":"Jérémy Doku","position":"MF","overallRating":87,"attackRating":82,"defenseRating":77,"passingRating":85,"subPosition":"RW"},{"name":"Marcus Bettinelli","position":"MF","overallRating":86,"attackRating":81,"defenseRating":76,"passingRating":84,"subPosition":"CM"}]},{"id":"3","name":"Manchester United","name_ja":"マンチェスター・ユナイテッド","leagueRank":3,"color":"#DA291C","stadium":"Old Trafford","manager_current":"Michael Carrick","promoted":false,"relegated":false,"overallPower":89,"attackPower":88,"defensePower":86,"ballControl":81,"formation":"4-2-3-1","players":[{"name":"Altay Bayındır","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CM"},{"name":"Diogo Dalot","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CM"},{"name":"Noussair Mazraoui","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CM"},{"name":"Matthijs de Ligt","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CM"},{"name":"Harry Maguire","position":"DF","overallRating":82,"attackRating":74,"defenseRating":82,"passingRating":80,"subPosition":"CB"},{"name":"Lisandro Martínez","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CM"},{"name":"Mason Mount","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CAM"},{"name":"Bruno Fernandes","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CAM"},{"name":"Matheus Cunha","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CM"},{"name":"Joshua Zirkzee","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CM"},{"name":"Tyrell Malacia","position":"MF","overallRating":82,"attackRating":77,"defenseRating":72,"passingRating":80,"subPosition":"CM"}]},{"id":"4","name":"Aston Villa","name_ja":"アストン・ヴィラ","leagueRank":4,"color":"#95BFE5","stadium":"Villa Park","manager_current":"Unai Emery","promoted":false,"relegated":false,"overallPower":90,"attackPower":89,"defensePower":88,"ballControl":83,"formation":"4-3-3","players":[{"name":"Matty Cash","position":"DF","overallRating":81,"attackRating":73,"defenseRating":81,"passingRating":79,"subPosition":"RB"},{"name":"Victor Lindelöf","position":"DF","overallRating":81,"attackRating":73,"defenseRating":81,"passingRating":79,"subPosition":"CB"},{"name":"Ezri Konsa","position":"DF","overallRating":81,"attackRating":73,"defenseRating":81,"passingRating":79,"subPosition":"CB"},{"name":"Tyrone Mings","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Ross Barkley","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"John McGinn","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Youri Tielemans","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Harvey Elliott","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Emi Buendía","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Ollie Watkins","position":"FW","overallRating":84,"attackRating":82,"defenseRating":69,"passingRating":82,"subPosition":"ST"},{"name":"Lucas Digne","position":"DF","overallRating":81,"attackRating":73,"defenseRating":81,"passingRating":79,"subPosition":"LB"}]},{"id":"5","name":"Liverpool","name_ja":"リヴァプール","leagueRank":5,"color":"#C8102E","stadium":"Anfield","manager_current":"Arne Slot","promoted":false,"relegated":false,"overallPower":93,"attackPower":92,"defensePower":90,"ballControl":84,"formation":"4-3-3","players":[{"name":"Alisson Becker","position":"GK","overallRating":89,"attackRating":87,"defenseRating":79,"passingRating":86,"subPosition":"GK"},{"name":"Joe Gomez","position":"MF","overallRating":84,"attackRating":79,"defenseRating":74,"passingRating":82,"subPosition":"CM"},{"name":"Wataru Endo","position":"MF","overallRating":84,"attackRating":79,"defenseRating":74,"passingRating":82,"subPosition":"CM"},{"name":"Virgil van Dijk","position":"DF","overallRating":84,"attackRating":76,"defenseRating":84,"passingRating":82,"subPosition":"CB"},{"name":"Ibrahima Konaté","position":"MF","overallRating":84,"attackRating":79,"defenseRating":74,"passingRating":82,"subPosition":"CM"},{"name":"Milos Kerkez","position":"MF","overallRating":84,"attackRating":79,"defenseRating":74,"passingRating":82,"subPosition":"CM"},{"name":"Florian Wirtz","position":"MF","overallRating":84,"attackRating":79,"defenseRating":74,"passingRating":82,"subPosition":"CM"},{"name":"Dominik Szoboszlai","position":"MF","overallRating":84,"attackRating":79,"defenseRating":74,"passingRating":82,"subPosition":"CM"},{"name":"Alexander Isak","position":"FW","overallRating":87,"attackRating":85,"defenseRating":72,"passingRating":85,"subPosition":"ST"},{"name":"Alexis Mac Allister","position":"MF","overallRating":84,"attackRating":79,"defenseRating":74,"passingRating":82,"subPosition":"CM"},{"name":"Mohamed Salah","position":"FW","overallRating":85,"attackRating":83,"defenseRating":70,"passingRating":83,"subPosition":"RW"}]},{"id":"6","name":"AFC Bournemouth","name_ja":"AFCボーンマス","leagueRank":6,"color":"#DA291C","stadium":"Vitality Stadium","manager_current":"Andoni Iraola","promoted":false,"relegated":false,"overallPower":85,"attackPower":84,"defensePower":82,"ballControl":80,"formation":"4-2-3-1","players":[{"name":"Djordje Petrović","position":"GK","overallRating":80,"attackRating":78,"defenseRating":70,"passingRating":77,"subPosition":"GK"},{"name":"Adrien Truffert","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"},{"name":"Lewis Cook","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"},{"name":"Marcos Senesi","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"},{"name":"Julio Soler","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"},{"name":"David Brooks","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"},{"name":"Alex Scott","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"},{"name":"Evanilson","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"},{"name":"Ryan Christie","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"},{"name":"Ben Gannon-Doak","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"},{"name":"Tyler Adams","position":"MF","overallRating":75,"attackRating":70,"defenseRating":65,"passingRating":73,"subPosition":"CM"}]},{"id":"7","name":"Brighton & Hove Albion","name_ja":"ブライトン・アンド・ホーヴ・アルビオン","leagueRank":7,"color":"#0057B8","stadium":"Amex Stadium","manager_current":"Fabian Hürzeler","promoted":false,"relegated":false,"overallPower":84,"attackPower":83,"defensePower":81,"ballControl":82,"formation":"3-4-3","players":[{"name":"Bart Verbruggen","position":"GK","overallRating":82,"attackRating":80,"defenseRating":72,"passingRating":79,"subPosition":"GK"},{"name":"Igor","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Adam Webster","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Lewis Dunk","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Jan Paul van Hecke","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Solly March","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Stefanos Tzimas","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Georginio Rutter","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Yankuba Minteh","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Jack Hinshelwood","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Carlos Baleba","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"}]},{"id":"8","name":"Brentford","name_ja":"ブレントフォード","leagueRank":8,"color":"#E30613","stadium":"Gtech Community Stadium","manager_current":"Thomas Frank","promoted":false,"relegated":false,"overallPower":83,"attackPower":82,"defensePower":80,"ballControl":79,"formation":"4-3-3","players":[{"name":"Caoimhin Kelleher","position":"GK","overallRating":81,"attackRating":79,"defenseRating":71,"passingRating":78,"subPosition":"GK"},{"name":"Aaron Hickey","position":"DF","overallRating":76,"attackRating":68,"defenseRating":76,"passingRating":74,"subPosition":"LB"},{"name":"Rico Henry","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Sepp van den Berg","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Ethan Pinnock","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Jordan Henderson","position":"GK","overallRating":81,"attackRating":79,"defenseRating":71,"passingRating":78,"subPosition":"GK"},{"name":"Kevin Schade","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Mathias Jensen","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Igor Thiago","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Josh Dasilva","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Reiss Nelson","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"}]},{"id":"9","name":"Sunderland","name_ja":"サンダーランド","leagueRank":9,"color":"#EB6E1F","stadium":"Stadium of Light","manager_current":"Régis Le Bris","promoted":true,"relegated":false,"overallPower":81,"attackPower":80,"defensePower":78,"ballControl":77,"formation":"4-2-3-1","players":[{"name":"Dennis Cirkin","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Daniel Ballard","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Lutsharel Geertruida","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Chemsdine Talbi","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Brian Brobbey","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Nilson Angulo","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Chris Rigg","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Eliezer Mayenda","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Luke O'Nien","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Romaine Mundle","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Omar Alderete","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"}]},{"id":"10","name":"Chelsea","name_ja":"チェルシー","leagueRank":10,"color":"#0D47A1","stadium":"Stamford Bridge","manager_current":"Liam Rosenior","promoted":false,"relegated":false,"overallPower":87,"attackPower":86,"defensePower":85,"ballControl":81,"formation":"3-4-3","players":[{"name":"Robert Sánchez","position":"GK","overallRating":86,"attackRating":84,"defenseRating":76,"passingRating":83,"subPosition":"GK"},{"name":"Marc Cucurella","position":"DF","overallRating":81,"attackRating":73,"defenseRating":81,"passingRating":79,"subPosition":"LB"},{"name":"Tosin Adarabioyo","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Benoît Badiashile","position":"DF","overallRating":81,"attackRating":73,"defenseRating":81,"passingRating":79,"subPosition":"CB"},{"name":"Levi Colwill","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Pedro Neto","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Enzo Fernández","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Liam Delap","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Cole Palmer","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CAM"},{"name":"Jamie Gittens","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"},{"name":"Filip Jörgensen","position":"MF","overallRating":81,"attackRating":76,"defenseRating":71,"passingRating":79,"subPosition":"CM"}]},{"id":"11","name":"Newcastle United","name_ja":"ニューカッスル・ユナイテッド","leagueRank":11,"color":"#000000","stadium":"St James' Park","manager_current":"Eddie Howe","promoted":false,"relegated":false,"overallPower":86,"attackPower":85,"defensePower":83,"ballControl":80,"formation":"4-3-3","players":[{"name":"Nick Pope","position":"GK","overallRating":85,"attackRating":83,"defenseRating":75,"passingRating":82,"subPosition":"GK"},{"name":"Kieran Trippier","position":"DF","overallRating":80,"attackRating":72,"defenseRating":80,"passingRating":78,"subPosition":"RB"},{"name":"Lewis Hall","position":"MF","overallRating":80,"attackRating":75,"defenseRating":70,"passingRating":78,"subPosition":"CM"},{"name":"Sven Botman","position":"MF","overallRating":80,"attackRating":75,"defenseRating":70,"passingRating":78,"subPosition":"CM"},{"name":"Fabian Schär","position":"MF","overallRating":80,"attackRating":75,"defenseRating":70,"passingRating":78,"subPosition":"CM"},{"name":"Joelinton","position":"MF","overallRating":80,"attackRating":75,"defenseRating":70,"passingRating":78,"subPosition":"CM"},{"name":"Sandro Tonali","position":"MF","overallRating":80,"attackRating":75,"defenseRating":70,"passingRating":78,"subPosition":"CM"},{"name":"Yoane Wissa","position":"MF","overallRating":80,"attackRating":75,"defenseRating":70,"passingRating":78,"subPosition":"CM"},{"name":"Anthony Gordon","position":"FW","overallRating":81,"attackRating":79,"defenseRating":66,"passingRating":79,"subPosition":"RW"},{"name":"Harvey Barnes","position":"MF","overallRating":80,"attackRating":75,"defenseRating":70,"passingRating":78,"subPosition":"CM"},{"name":"Malick Thiaw","position":"MF","overallRating":80,"attackRating":75,"defenseRating":70,"passingRating":78,"subPosition":"CM"}]},{"id":"12","name":"Everton","name_ja":"エヴァートン","leagueRank":12,"color":"#003399","stadium":"Goodison Park","manager_current":"David Moyes","promoted":false,"relegated":false,"overallPower":82,"attackPower":81,"defensePower":79,"ballControl":78,"formation":"4-2-3-1","players":[{"name":"Jordan Pickford","position":"GK","overallRating":78,"attackRating":76,"defenseRating":68,"passingRating":75,"subPosition":"GK"},{"name":"Nathan Patterson","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Michael Keane","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"James Tarkowski","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Dwight McNeil","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Beto","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Iliman Ndiaye","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Thierno Barry","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Mark Travers","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Jake O'Brien","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Vitaliy Mykolenko","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"}]},{"id":"13","name":"Fulham","name_ja":"フラム","leagueRank":13,"color":"#CC0000","stadium":"Craven Cottage","manager_current":"Marco Silva","promoted":false,"relegated":false,"overallPower":83,"attackPower":82,"defensePower":80,"ballControl":79,"formation":"4-2-3-1","players":[{"name":"Bernd Leno","position":"GK","overallRating":82,"attackRating":80,"defenseRating":72,"passingRating":79,"subPosition":"GK"},{"name":"Kenny Tete","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Calvin Bassey","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Joachim Andersen","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Harrison Reed","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Raúl Jiménez","position":"FW","overallRating":80,"attackRating":78,"defenseRating":65,"passingRating":78,"subPosition":"ST"},{"name":"Harry Wilson","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Rodrigo Muniz","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Tom Cairney","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Oscar Bobb","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"},{"name":"Jorge Cuenca","position":"MF","overallRating":77,"attackRating":72,"defenseRating":67,"passingRating":75,"subPosition":"CM"}]},{"id":"14","name":"Leeds United","name_ja":"リーズ・ユナイテッド","leagueRank":14,"color":"#FFCD00","stadium":"Elland Road","manager_current":"Daniel Farke","promoted":true,"relegated":false,"overallPower":80,"attackPower":79,"defensePower":77,"ballControl":76,"formation":"4-1-4-1","players":[{"name":"Lucas Perri","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"},{"name":"Jayden Bogle","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"},{"name":"Gabriel Gudmundsson","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"},{"name":"Ethan Ampadu","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"},{"name":"Pascal Struijk","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"},{"name":"Joe Rodon","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"},{"name":"Daniel James","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"},{"name":"Sean Longstaff","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"},{"name":"Dominic Calvert-Lewin","position":"FW","overallRating":77,"attackRating":75,"defenseRating":62,"passingRating":75,"subPosition":"ST"},{"name":"Joël Piroe","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"},{"name":"Brenden Aaronson","position":"MF","overallRating":74,"attackRating":69,"defenseRating":64,"passingRating":72,"subPosition":"CM"}]},{"id":"15","name":"Crystal Palace","name_ja":"クリスタル・パレス","leagueRank":15,"color":"#1B50BE","stadium":"Selhurst Park","manager_current":"Oliver Glasner","promoted":false,"relegated":false,"overallPower":79,"attackPower":78,"defensePower":76,"ballControl":75,"formation":"4-3-3","players":[{"name":"Dean Henderson","position":"GK","overallRating":78,"attackRating":76,"defenseRating":68,"passingRating":75,"subPosition":"GK"},{"name":"Daniel Muñoz","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Tyrick Mitchell","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Maxence Lacroix","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Ismaïla Sarr","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Jefferson Lerma","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Eddie Nketiah","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Yéremi Pino","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Brennan Johnson","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Chrisantus Uche","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Jean-Philippe Mateta","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"}]},{"id":"16","name":"Nottingham Forest","name_ja":"ノッティンガム・フォレスト","leagueRank":16,"color":"#E31829","stadium":"City Ground","manager_current":"Vítor Pereira","promoted":false,"relegated":false,"overallPower":81,"attackPower":80,"defensePower":78,"ballControl":77,"formation":"4-2-3-1","players":[{"name":"Neco Williams","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Morato","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Murillo","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Ibrahim Sangaré","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Callum Hudson-Odoi","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Elliot Anderson","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Taiwo Awoniyi","position":"FW","overallRating":75,"attackRating":73,"defenseRating":60,"passingRating":73,"subPosition":"ST"},{"name":"Morgan Gibbs-White","position":"DF","overallRating":72,"attackRating":64,"defenseRating":72,"passingRating":70,"subPosition":"RB"},{"name":"Chris Wood","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"John","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"},{"name":"Dan Ndoye","position":"MF","overallRating":72,"attackRating":67,"defenseRating":62,"passingRating":70,"subPosition":"CM"}]},{"id":"17","name":"Tottenham Hotspur","name_ja":"トッテナム・ホットスパー","leagueRank":17,"color":"#132257","stadium":"Tottenham Hotspur Stadium","manager_current":"Igor Tudor","promoted":false,"relegated":false,"overallPower":82,"attackPower":81,"defensePower":79,"ballControl":78,"formation":"4-2-3-1","players":[{"name":"Guglielmo Vicario","position":"GK","overallRating":81,"attackRating":79,"defenseRating":71,"passingRating":78,"subPosition":"GK"},{"name":"Radu Drăgușin","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Kevin Danso","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"João Palhinha","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Xavi Simons","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Yves Bissouma","position":"MF","overallRating":78,"attackRating":73,"defenseRating":68,"passingRating":76,"subPosition":"CDM"},{"name":"Richarlison","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"James Maddison","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CAM"},{"name":"Mathys Tel","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Destiny Udogie","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"},{"name":"Archie Gray","position":"MF","overallRating":76,"attackRating":71,"defenseRating":66,"passingRating":74,"subPosition":"CM"}]},{"id":"18","name":"West Ham United","name_ja":"ウェストハム・ユナイテッド","leagueRank":18,"color":"#7D2C3A","stadium":"London Stadium","manager_current":"Nuno Espírito Santo","promoted":false,"relegated":false,"overallPower":78,"attackPower":77,"defensePower":75,"ballControl":74,"formation":"4-2-3-1","players":[{"name":"Mads Hermansen","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Kyle Walker-Peters","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Max Kilman","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Axel Disasi","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Crysencio Summerville","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Callum Wilson","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Valentin Castellanos","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"El Hadji Malick Diouf","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Konstantinos Mavropanos","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Adama Traoré","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CM"},{"name":"Mateus Fernandes","position":"MF","overallRating":73,"attackRating":68,"defenseRating":63,"passingRating":71,"subPosition":"CAM"}]},{"id":"19","name":"Burnley","name_ja":"バーンリー","leagueRank":19,"color":"#6B2C34","stadium":"Turf Moor","manager_current":"Mike Jackson","promoted":true,"relegated":true,"overallPower":74,"attackPower":73,"defensePower":71,"ballControl":70,"formation":"4-4-2","players":[{"name":"Martin Dúbravka","position":"GK","overallRating":73,"attackRating":71,"defenseRating":63,"passingRating":70,"subPosition":"GK"},{"name":"Kyle Walker","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"},{"name":"Quilindschy Hartman","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"},{"name":"Joe Worrall","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"},{"name":"Maxime Estève","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"},{"name":"Axel Tuanzebe","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"},{"name":"Jacob Bruun Larsen","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"},{"name":"Lesley Ugochukwu","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"},{"name":"Lyle Foster","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"},{"name":"Marcus Edwards","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"},{"name":"Jaidon Anthony","position":"MF","overallRating":68,"attackRating":63,"defenseRating":58,"passingRating":66,"subPosition":"CM"}]},{"id":"20","name":"Wolverhampton Wanderers","name_ja":"ウォルバーハンプトン・ワンダラーズ","leagueRank":20,"color":"#FFD700","stadium":"Molineux Stadium","manager_current":"Rob Edwards","promoted":false,"relegated":true,"overallPower":72,"attackPower":71,"defensePower":69,"ballControl":68,"formation":"4-2-3-1","players":[{"name":"José Sá","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"Matt Doherty","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"Hugo Bueno","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"Santiago Bueno","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"David Møller Wolfe","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"André","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"João Gomes","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"Adam Armstrong","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"Hwang Hee-Chan","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"Tolu Arokodare","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"},{"name":"Yerson Mosquera","position":"MF","overallRating":67,"attackRating":62,"defenseRating":57,"passingRating":65,"subPosition":"CM"}]}]}
+{
+  "season": "2025-26",
+  "league": "Premier League",
+  "total_teams": 20,
+  "last_verified": "2026-05-18",
+  "notes": {
+    "promoted_from_championship": ["Leeds United", "Burnley", "Sunderland"],
+    "relegated_prev_season": ["Leicester City", "Ipswich Town", "Southampton"],
+    "relegated_this_season": ["Burnley", "Wolverhampton Wanderers"]
+  },
+  "teams": [
+    {
+      "id": "1",
+      "name": "Arsenal",
+      "name_ja": "アーセナル",
+      "leagueRank": 1,
+      "color": "#DB0407",
+      "stadium": "Emirates Stadium",
+      "manager_current": "Mikel Arteta",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 94,
+      "attackPower": 93,
+      "defensePower": 91,
+      "ballControl": 85,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "David Raya",
+          "position": "GK",
+          "overallRating": 88,
+          "attackRating": 22,
+          "defenseRating": 88,
+          "passingRating": 87,
+          "subPosition": "GK"
+        },
+        {
+          "name": "William Saliba",
+          "position": "DF",
+          "overallRating": 90,
+          "attackRating": 65,
+          "defenseRating": 92,
+          "passingRating": 87,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Gabriel Magalhães",
+          "position": "DF",
+          "overallRating": 88,
+          "attackRating": 72,
+          "defenseRating": 91,
+          "passingRating": 83,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ben White",
+          "position": "DF",
+          "overallRating": 89,
+          "attackRating": 77,
+          "defenseRating": 90,
+          "passingRating": 88,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Jurrien Timber",
+          "position": "DF",
+          "overallRating": 86,
+          "attackRating": 75,
+          "defenseRating": 87,
+          "passingRating": 87,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Martin Ødegaard",
+          "position": "MF",
+          "overallRating": 91,
+          "attackRating": 88,
+          "defenseRating": 70,
+          "passingRating": 93,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Declan Rice",
+          "position": "MF",
+          "overallRating": 90,
+          "attackRating": 73,
+          "defenseRating": 91,
+          "passingRating": 89,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Bukayo Saka",
+          "position": "MF",
+          "overallRating": 90,
+          "attackRating": 89,
+          "defenseRating": 70,
+          "passingRating": 87,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Gabriel Jesus",
+          "position": "FW",
+          "overallRating": 87,
+          "attackRating": 86,
+          "defenseRating": 62,
+          "passingRating": 83,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Kai Havertz",
+          "position": "FW",
+          "overallRating": 88,
+          "attackRating": 87,
+          "defenseRating": 66,
+          "passingRating": 88,
+          "subPosition": "LW"
+        },
+        {
+          "name": "Leandro Trossard",
+          "position": "MF",
+          "overallRating": 85,
+          "attackRating": 83,
+          "defenseRating": 64,
+          "passingRating": 86,
+          "subPosition": "CM"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Manchester City",
+      "name_ja": "マンチェスター・シティ",
+      "leagueRank": 2,
+      "color": "#6CABDA",
+      "stadium": "City of Manchester Stadium",
+      "manager_current": "Pep Guardiola",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 96,
+      "attackPower": 95,
+      "defensePower": 93,
+      "ballControl": 86,
+      "formation": "3-2-5",
+      "players": [
+        {
+          "name": "Gianluigi Donnarumma",
+          "position": "GK",
+          "overallRating": 89,
+          "attackRating": 25,
+          "defenseRating": 89,
+          "passingRating": 88,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Rúben Dias",
+          "position": "DF",
+          "overallRating": 88,
+          "attackRating": 62,
+          "defenseRating": 91,
+          "passingRating": 87,
+          "subPosition": "CB"
+        },
+        {
+          "name": "John Stones",
+          "position": "DF",
+          "overallRating": 87,
+          "attackRating": 65,
+          "defenseRating": 89,
+          "passingRating": 86,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Joško Gvardiol",
+          "position": "DF",
+          "overallRating": 87,
+          "attackRating": 68,
+          "defenseRating": 89,
+          "passingRating": 88,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Kyle Walker",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 66,
+          "defenseRating": 86,
+          "passingRating": 85,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Rodri Hernández",
+          "position": "MF",
+          "overallRating": 92,
+          "attackRating": 79,
+          "defenseRating": 87,
+          "passingRating": 94,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Phil Foden",
+          "position": "MF",
+          "overallRating": 91,
+          "attackRating": 90,
+          "defenseRating": 65,
+          "passingRating": 90,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Bernardo Silva",
+          "position": "MF",
+          "overallRating": 88,
+          "attackRating": 86,
+          "defenseRating": 63,
+          "passingRating": 89,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Erling Haaland",
+          "position": "FW",
+          "overallRating": 95,
+          "attackRating": 96,
+          "defenseRating": 42,
+          "passingRating": 79,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jeremy Doku",
+          "position": "MF",
+          "overallRating": 84,
+          "attackRating": 83,
+          "defenseRating": 60,
+          "passingRating": 82,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Savinho",
+          "position": "MF",
+          "overallRating": 83,
+          "attackRating": 84,
+          "defenseRating": 57,
+          "passingRating": 85,
+          "subPosition": "LW"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Manchester United",
+      "name_ja": "マンチェスター・ユナイテッド",
+      "leagueRank": 3,
+      "color": "#DA291C",
+      "stadium": "Old Trafford",
+      "manager_current": "Michael Carrick",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 89,
+      "attackPower": 88,
+      "defensePower": 86,
+      "ballControl": 81,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "Andre Onana",
+          "position": "GK",
+          "overallRating": 86,
+          "attackRating": 22,
+          "defenseRating": 86,
+          "passingRating": 85,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Lisandro Martínez",
+          "position": "DF",
+          "overallRating": 87,
+          "attackRating": 68,
+          "defenseRating": 88,
+          "passingRating": 85,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Harry Maguire",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 64,
+          "defenseRating": 87,
+          "passingRating": 82,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Aaron Wan-Bissaka",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 70,
+          "defenseRating": 84,
+          "passingRating": 80,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Luke Shaw",
+          "position": "DF",
+          "overallRating": 84,
+          "attackRating": 72,
+          "defenseRating": 83,
+          "passingRating": 84,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Manuel Ugarte",
+          "position": "MF",
+          "overallRating": 84,
+          "attackRating": 73,
+          "defenseRating": 86,
+          "passingRating": 82,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Bruno Fernandes",
+          "position": "MF",
+          "overallRating": 91,
+          "attackRating": 86,
+          "defenseRating": 72,
+          "passingRating": 93,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Marcus Rashford",
+          "position": "FW",
+          "overallRating": 88,
+          "attackRating": 89,
+          "defenseRating": 63,
+          "passingRating": 82,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Rasmus Höjlund",
+          "position": "FW",
+          "overallRating": 85,
+          "attackRating": 86,
+          "defenseRating": 61,
+          "passingRating": 79,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jadon Sancho",
+          "position": "FW",
+          "overallRating": 84,
+          "attackRating": 85,
+          "defenseRating": 62,
+          "passingRating": 81,
+          "subPosition": "LW"
+        },
+        {
+          "name": "Scott McTominay",
+          "position": "MF",
+          "overallRating": 82,
+          "attackRating": 76,
+          "defenseRating": 80,
+          "passingRating": 80,
+          "subPosition": "CM"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Aston Villa",
+      "name_ja": "アストン・ヴィラ",
+      "leagueRank": 4,
+      "color": "#95BFE5",
+      "stadium": "Villa Park",
+      "manager_current": "Unai Emery",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 90,
+      "attackPower": 89,
+      "defensePower": 88,
+      "ballControl": 83,
+      "formation": "4-3-3",
+      "players": [
+        {
+          "name": "Emiliano Martínez",
+          "position": "GK",
+          "overallRating": 88,
+          "attackRating": 23,
+          "defenseRating": 88,
+          "passingRating": 86,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Ezri Konsa",
+          "position": "DF",
+          "overallRating": 86,
+          "attackRating": 64,
+          "defenseRating": 87,
+          "passingRating": 83,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Pau Torres",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 62,
+          "defenseRating": 86,
+          "passingRating": 84,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Matty Cash",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 71,
+          "defenseRating": 82,
+          "passingRating": 80,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Lucas Digne",
+          "position": "DF",
+          "overallRating": 84,
+          "attackRating": 73,
+          "defenseRating": 82,
+          "passingRating": 85,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Youri Tielemans",
+          "position": "MF",
+          "overallRating": 87,
+          "attackRating": 80,
+          "defenseRating": 79,
+          "passingRating": 88,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Boubacar Kamara",
+          "position": "MF",
+          "overallRating": 84,
+          "attackRating": 72,
+          "defenseRating": 85,
+          "passingRating": 83,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Philippe Coutinho",
+          "position": "MF",
+          "overallRating": 85,
+          "attackRating": 83,
+          "defenseRating": 68,
+          "passingRating": 87,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Ollie Watkins",
+          "position": "FW",
+          "overallRating": 88,
+          "attackRating": 89,
+          "defenseRating": 63,
+          "passingRating": 82,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Morgan Rogers",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 82,
+          "defenseRating": 60,
+          "passingRating": 80,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Leon Bailey",
+          "position": "FW",
+          "overallRating": 82,
+          "attackRating": 81,
+          "defenseRating": 59,
+          "passingRating": 79,
+          "subPosition": "LW"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Liverpool",
+      "name_ja": "リヴァプール",
+      "leagueRank": 5,
+      "color": "#C8102E",
+      "stadium": "Anfield",
+      "manager_current": "Arne Slot",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 93,
+      "attackPower": 92,
+      "defensePower": 90,
+      "ballControl": 84,
+      "formation": "4-3-3",
+      "players": [
+        {
+          "name": "Alisson Becker",
+          "position": "GK",
+          "overallRating": 90,
+          "attackRating": 23,
+          "defenseRating": 90,
+          "passingRating": 89,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Virgil van Dijk",
+          "position": "DF",
+          "overallRating": 91,
+          "attackRating": 69,
+          "defenseRating": 93,
+          "passingRating": 88,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ibrahima Konaté",
+          "position": "DF",
+          "overallRating": 87,
+          "attackRating": 67,
+          "defenseRating": 89,
+          "passingRating": 82,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Andrew Robertson",
+          "position": "DF",
+          "overallRating": 89,
+          "attackRating": 81,
+          "defenseRating": 87,
+          "passingRating": 87,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Trent Alexander-Arnold",
+          "position": "DF",
+          "overallRating": 88,
+          "attackRating": 79,
+          "defenseRating": 86,
+          "passingRating": 90,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Mohamed Salah",
+          "position": "FW",
+          "overallRating": 93,
+          "attackRating": 93,
+          "defenseRating": 66,
+          "passingRating": 88,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Luis Díaz",
+          "position": "FW",
+          "overallRating": 88,
+          "attackRating": 87,
+          "defenseRating": 64,
+          "passingRating": 84,
+          "subPosition": "LW"
+        },
+        {
+          "name": "Darwin Núñez",
+          "position": "FW",
+          "overallRating": 88,
+          "attackRating": 89,
+          "defenseRating": 61,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Dominik Szoboszlai",
+          "position": "MF",
+          "overallRating": 86,
+          "attackRating": 81,
+          "defenseRating": 73,
+          "passingRating": 88,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Alexis Mac Allister",
+          "position": "MF",
+          "overallRating": 87,
+          "attackRating": 77,
+          "defenseRating": 80,
+          "passingRating": 89,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Ryan Gravenberch",
+          "position": "MF",
+          "overallRating": 87,
+          "attackRating": 78,
+          "defenseRating": 85,
+          "passingRating": 90,
+          "subPosition": "CDM"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "AFC Bournemouth",
+      "name_ja": "AFCボーンマス",
+      "leagueRank": 6,
+      "color": "#DA291C",
+      "stadium": "Vitality Stadium",
+      "manager_current": "Andoni Iraola",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 85,
+      "attackPower": 84,
+      "defensePower": 82,
+      "ballControl": 80,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "Kepa Arrizabalaga",
+          "position": "GK",
+          "overallRating": 84,
+          "attackRating": 21,
+          "defenseRating": 84,
+          "passingRating": 82,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Lloyd Kelly",
+          "position": "DF",
+          "overallRating": 81,
+          "attackRating": 62,
+          "defenseRating": 82,
+          "passingRating": 79,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ilya Zabarnyi",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 60,
+          "defenseRating": 81,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Milos Kerkez",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 68,
+          "defenseRating": 78,
+          "passingRating": 77,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Adam Smith",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 65,
+          "defenseRating": 79,
+          "passingRating": 76,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Jefferson Lerma",
+          "position": "MF",
+          "overallRating": 82,
+          "attackRating": 71,
+          "defenseRating": 83,
+          "passingRating": 80,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Ryan Christie",
+          "position": "MF",
+          "overallRating": 81,
+          "attackRating": 78,
+          "defenseRating": 72,
+          "passingRating": 82,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Dominic Solanke",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 82,
+          "defenseRating": 60,
+          "passingRating": 79,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Antoine Semenyo",
+          "position": "FW",
+          "overallRating": 81,
+          "attackRating": 80,
+          "defenseRating": 58,
+          "passingRating": 77,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Evanilson",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 79,
+          "defenseRating": 57,
+          "passingRating": 76,
+          "subPosition": "LW"
+        },
+        {
+          "name": "David Brooks",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 77,
+          "defenseRating": 70,
+          "passingRating": 79,
+          "subPosition": "CM"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Brighton & Hove Albion",
+      "name_ja": "ブライトン・アンド・ホーヴ・アルビオン",
+      "leagueRank": 7,
+      "color": "#0057B8",
+      "stadium": "Amex Stadium",
+      "manager_current": "Fabian Hürzeler",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 84,
+      "attackPower": 83,
+      "defensePower": 81,
+      "ballControl": 82,
+      "formation": "3-4-3",
+      "players": [
+        {
+          "name": "Jason Steele",
+          "position": "GK",
+          "overallRating": 82,
+          "attackRating": 20,
+          "defenseRating": 82,
+          "passingRating": 80,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Evan Ferguson",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 59,
+          "defenseRating": 80,
+          "passingRating": 77,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Igor Julio",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 60,
+          "defenseRating": 81,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Joël Veltman",
+          "position": "DF",
+          "overallRating": 81,
+          "attackRating": 61,
+          "defenseRating": 82,
+          "passingRating": 79,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Pervis Estupiñán",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 70,
+          "defenseRating": 80,
+          "passingRating": 80,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Moisés Caicedo",
+          "position": "MF",
+          "overallRating": 86,
+          "attackRating": 75,
+          "defenseRating": 87,
+          "passingRating": 85,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Alexis Mac Allister",
+          "position": "MF",
+          "overallRating": 85,
+          "attackRating": 76,
+          "defenseRating": 79,
+          "passingRating": 88,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Solly March",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 72,
+          "defenseRating": 74,
+          "passingRating": 78,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Danny Welbeck",
+          "position": "FW",
+          "overallRating": 81,
+          "attackRating": 80,
+          "defenseRating": 62,
+          "passingRating": 77,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Ansu Fati",
+          "position": "FW",
+          "overallRating": 81,
+          "attackRating": 82,
+          "defenseRating": 61,
+          "passingRating": 80,
+          "subPosition": "LW"
+        },
+        {
+          "name": "Kaoru Mitoma",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 79,
+          "defenseRating": 60,
+          "passingRating": 79,
+          "subPosition": "RW"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Brentford",
+      "name_ja": "ブレントフォード",
+      "leagueRank": 8,
+      "color": "#E30613",
+      "stadium": "Gtech Community Stadium",
+      "manager_current": "Thomas Frank",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 83,
+      "attackPower": 82,
+      "defensePower": 80,
+      "ballControl": 79,
+      "formation": "4-3-3",
+      "players": [
+        {
+          "name": "Mark Flekken",
+          "position": "GK",
+          "overallRating": 81,
+          "attackRating": 20,
+          "defenseRating": 81,
+          "passingRating": 79,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Kristoffer Vassbakk",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 58,
+          "defenseRating": 79,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Ethan Pinnock",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 60,
+          "defenseRating": 81,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Aaron Hickey",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 68,
+          "defenseRating": 79,
+          "passingRating": 78,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Sepp van den Berg",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 62,
+          "defenseRating": 79,
+          "passingRating": 76,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Christian Nørgaard",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 70,
+          "defenseRating": 82,
+          "passingRating": 79,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Vitaly Janelt",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 72,
+          "defenseRating": 77,
+          "passingRating": 78,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Saman Ghoddos",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 75,
+          "defenseRating": 71,
+          "passingRating": 77,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Ivan Toney",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 84,
+          "defenseRating": 60,
+          "passingRating": 79,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Bryan Mbeumo",
+          "position": "FW",
+          "overallRating": 81,
+          "attackRating": 82,
+          "defenseRating": 59,
+          "passingRating": 78,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Yehor Yarmolienko",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 78,
+          "defenseRating": 57,
+          "passingRating": 76,
+          "subPosition": "LW"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Sunderland",
+      "name_ja": "サンダーランド",
+      "leagueRank": 9,
+      "color": "#EB6E1F",
+      "stadium": "Stadium of Light",
+      "manager_current": "Régis Le Bris",
+      "promoted": true,
+      "relegated": false,
+      "overallPower": 81,
+      "attackPower": 80,
+      "defensePower": 78,
+      "ballControl": 77,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "Anthony Patterson",
+          "position": "GK",
+          "overallRating": 80,
+          "attackRating": 20,
+          "defenseRating": 80,
+          "passingRating": 78,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Niall Huggins",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 57,
+          "defenseRating": 78,
+          "passingRating": 75,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Joe Vogel",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 58,
+          "defenseRating": 78,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Luke O'Nien",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 65,
+          "defenseRating": 76,
+          "passingRating": 73,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Trai Hume",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 64,
+          "defenseRating": 76,
+          "passingRating": 74,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Dan Neil",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 68,
+          "defenseRating": 78,
+          "passingRating": 76,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Chris Mepham",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 66,
+          "defenseRating": 77,
+          "passingRating": 74,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Jack Clarke",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 76,
+          "defenseRating": 55,
+          "passingRating": 74,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Jobe Bellingham",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 78,
+          "defenseRating": 59,
+          "passingRating": 76,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Wilson Isidor",
+          "position": "FW",
+          "overallRating": 76,
+          "attackRating": 75,
+          "defenseRating": 56,
+          "passingRating": 72,
+          "subPosition": "LW"
+        },
+        {
+          "name": "Patrick Roberts",
+          "position": "MF",
+          "overallRating": 75,
+          "attackRating": 73,
+          "defenseRating": 66,
+          "passingRating": 74,
+          "subPosition": "CAM"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Chelsea",
+      "name_ja": "チェルシー",
+      "leagueRank": 10,
+      "color": "#0D47A1",
+      "stadium": "Stamford Bridge",
+      "manager_current": "Liam Rosenior",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 87,
+      "attackPower": 86,
+      "defensePower": 85,
+      "ballControl": 81,
+      "formation": "3-4-3",
+      "players": [
+        {
+          "name": "Robert Sánchez",
+          "position": "GK",
+          "overallRating": 87,
+          "attackRating": 22,
+          "defenseRating": 87,
+          "passingRating": 86,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Levi Colwill",
+          "position": "DF",
+          "overallRating": 85,
+          "attackRating": 64,
+          "defenseRating": 87,
+          "passingRating": 84,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Wesley Fofana",
+          "position": "DF",
+          "overallRating": 84,
+          "attackRating": 62,
+          "defenseRating": 85,
+          "passingRating": 82,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Axel Disasi",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 61,
+          "defenseRating": 84,
+          "passingRating": 81,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Malo Gusto",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 70,
+          "defenseRating": 81,
+          "passingRating": 80,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Cole Palmer",
+          "position": "MF",
+          "overallRating": 87,
+          "attackRating": 85,
+          "defenseRating": 68,
+          "passingRating": 88,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Enzo Fernández",
+          "position": "MF",
+          "overallRating": 85,
+          "attackRating": 74,
+          "defenseRating": 83,
+          "passingRating": 86,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Noni Madueke",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 84,
+          "defenseRating": 62,
+          "passingRating": 80,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Nicolas Jackson",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 84,
+          "defenseRating": 61,
+          "passingRating": 78,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Moisés Caicedo",
+          "position": "MF",
+          "overallRating": 84,
+          "attackRating": 73,
+          "defenseRating": 85,
+          "passingRating": 84,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Jamal Murray",
+          "position": "FW",
+          "overallRating": 81,
+          "attackRating": 80,
+          "defenseRating": 59,
+          "passingRating": 78,
+          "subPosition": "LW"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Newcastle United",
+      "name_ja": "ニューカッスル・ユナイテッド",
+      "leagueRank": 11,
+      "color": "#000000",
+      "stadium": "St James' Park",
+      "manager_current": "Eddie Howe",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 86,
+      "attackPower": 85,
+      "defensePower": 83,
+      "ballControl": 80,
+      "formation": "4-3-3",
+      "players": [
+        {
+          "name": "Nick Pope",
+          "position": "GK",
+          "overallRating": 85,
+          "attackRating": 21,
+          "defenseRating": 85,
+          "passingRating": 83,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Fabian Schär",
+          "position": "DF",
+          "overallRating": 83,
+          "attackRating": 61,
+          "defenseRating": 84,
+          "passingRating": 81,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Dan Burn",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 60,
+          "defenseRating": 83,
+          "passingRating": 80,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Tino Livramento",
+          "position": "DF",
+          "overallRating": 81,
+          "attackRating": 68,
+          "defenseRating": 80,
+          "passingRating": 79,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Lewis Hall",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 69,
+          "defenseRating": 79,
+          "passingRating": 78,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Bruno Guimarães",
+          "position": "MF",
+          "overallRating": 86,
+          "attackRating": 78,
+          "defenseRating": 82,
+          "passingRating": 87,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Sandro Tonali",
+          "position": "MF",
+          "overallRating": 83,
+          "attackRating": 75,
+          "defenseRating": 81,
+          "passingRating": 83,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Anthony Gordon",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 82,
+          "defenseRating": 62,
+          "passingRating": 79,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Alexander Isak",
+          "position": "FW",
+          "overallRating": 87,
+          "attackRating": 88,
+          "defenseRating": 63,
+          "passingRating": 80,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Callum Wilson",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 83,
+          "defenseRating": 61,
+          "passingRating": 77,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Kieran Trippier",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 71,
+          "defenseRating": 81,
+          "passingRating": 84,
+          "subPosition": "RB"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Everton",
+      "name_ja": "エヴァートン",
+      "leagueRank": 12,
+      "color": "#003399",
+      "stadium": "Goodison Park",
+      "manager_current": "David Moyes",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 82,
+      "attackPower": 81,
+      "defensePower": 79,
+      "ballControl": 78,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "Jordan Pickford",
+          "position": "GK",
+          "overallRating": 83,
+          "attackRating": 21,
+          "defenseRating": 83,
+          "passingRating": 81,
+          "subPosition": "GK"
+        },
+        {
+          "name": "James Tarkowski",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 60,
+          "defenseRating": 83,
+          "passingRating": 79,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Jarrad Branthwaite",
+          "position": "DF",
+          "overallRating": 81,
+          "attackRating": 59,
+          "defenseRating": 82,
+          "passingRating": 78,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Séamus Coleman",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 68,
+          "defenseRating": 79,
+          "passingRating": 77,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Ashley Young",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 66,
+          "defenseRating": 76,
+          "passingRating": 75,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Idrissa Gueye",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 68,
+          "defenseRating": 80,
+          "passingRating": 76,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Abdoulaye Doucouré",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 72,
+          "defenseRating": 75,
+          "passingRating": 75,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Dwight McNeil",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 74,
+          "defenseRating": 68,
+          "passingRating": 77,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Dominic Calvert-Lewin",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 79,
+          "defenseRating": 61,
+          "passingRating": 76,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Arnaut Danjuma",
+          "position": "FW",
+          "overallRating": 78,
+          "attackRating": 77,
+          "defenseRating": 58,
+          "passingRating": 74,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Vitaliy Mykolenko",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 65,
+          "defenseRating": 76,
+          "passingRating": 75,
+          "subPosition": "LB"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Fulham",
+      "name_ja": "フラム",
+      "leagueRank": 13,
+      "color": "#CC0000",
+      "stadium": "Craven Cottage",
+      "manager_current": "Marco Silva",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 83,
+      "attackPower": 82,
+      "defensePower": 80,
+      "ballControl": 79,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "Bernd Leno",
+          "position": "GK",
+          "overallRating": 82,
+          "attackRating": 20,
+          "defenseRating": 82,
+          "passingRating": 80,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Antonee Robinson",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 67,
+          "defenseRating": 80,
+          "passingRating": 76,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Issa Diop",
+          "position": "DF",
+          "overallRating": 80,
+          "attackRating": 59,
+          "defenseRating": 81,
+          "passingRating": 77,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Fousseni Diawara",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 58,
+          "defenseRating": 80,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Romain Pröpper",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 64,
+          "defenseRating": 78,
+          "passingRating": 75,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Harrison Reed",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 68,
+          "defenseRating": 79,
+          "passingRating": 76,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Sander Berge",
+          "position": "MF",
+          "overallRating": 79,
+          "attackRating": 71,
+          "defenseRating": 80,
+          "passingRating": 77,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Tom Cairney",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 73,
+          "defenseRating": 68,
+          "passingRating": 78,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Raúl Jiménez",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 79,
+          "defenseRating": 60,
+          "passingRating": 77,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Adama Traoré",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 80,
+          "defenseRating": 59,
+          "passingRating": 75,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Willian",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 75,
+          "defenseRating": 66,
+          "passingRating": 76,
+          "subPosition": "LW"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Leeds United",
+      "name_ja": "リーズ・ユナイテッド",
+      "leagueRank": 14,
+      "color": "#FFCD00",
+      "stadium": "Elland Road",
+      "manager_current": "Daniel Farke",
+      "promoted": true,
+      "relegated": false,
+      "overallPower": 80,
+      "attackPower": 79,
+      "defensePower": 77,
+      "ballControl": 76,
+      "formation": "4-1-4-1",
+      "players": [
+        {
+          "name": "Illan Meslier",
+          "position": "GK",
+          "overallRating": 79,
+          "attackRating": 20,
+          "defenseRating": 79,
+          "passingRating": 77,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Ethan Ampadu",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 58,
+          "defenseRating": 79,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Cody Drameh",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 56,
+          "defenseRating": 77,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Jérôme Boateng",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 62,
+          "defenseRating": 79,
+          "passingRating": 75,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Gustav Berggren",
+          "position": "DF",
+          "overallRating": 75,
+          "attackRating": 60,
+          "defenseRating": 75,
+          "passingRating": 73,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Ilia Gruev",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 66,
+          "defenseRating": 78,
+          "passingRating": 76,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Bruma",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 74,
+          "defenseRating": 68,
+          "passingRating": 76,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Wilfried Gnonto",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 76,
+          "defenseRating": 55,
+          "passingRating": 73,
+          "subPosition": "LW"
+        },
+        {
+          "name": "Patrick Bamford",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 76,
+          "defenseRating": 58,
+          "passingRating": 74,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Luis Sinisterra",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 77,
+          "defenseRating": 56,
+          "passingRating": 74,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Jelle Sels",
+          "position": "MF",
+          "overallRating": 75,
+          "attackRating": 68,
+          "defenseRating": 70,
+          "passingRating": 74,
+          "subPosition": "CAM"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Crystal Palace",
+      "name_ja": "クリスタル・パレス",
+      "leagueRank": 15,
+      "color": "#1B50BE",
+      "stadium": "Selhurst Park",
+      "manager_current": "Oliver Glasner",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 79,
+      "attackPower": 78,
+      "defensePower": 76,
+      "ballControl": 75,
+      "formation": "4-3-3",
+      "players": [
+        {
+          "name": "Vicente Guaita",
+          "position": "GK",
+          "overallRating": 77,
+          "attackRating": 19,
+          "defenseRating": 77,
+          "passingRating": 75,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Chris Richards",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 56,
+          "defenseRating": 77,
+          "passingRating": 73,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Luka Milovanovič",
+          "position": "DF",
+          "overallRating": 75,
+          "attackRating": 55,
+          "defenseRating": 76,
+          "passingRating": 72,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Marc Guéhi",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 57,
+          "defenseRating": 77,
+          "passingRating": 74,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Nacho Fernández",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 64,
+          "defenseRating": 76,
+          "passingRating": 74,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Albert Sambi Lokonga",
+          "position": "MF",
+          "overallRating": 75,
+          "attackRating": 66,
+          "defenseRating": 76,
+          "passingRating": 74,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Adam Wharton",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 70,
+          "defenseRating": 72,
+          "passingRating": 75,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Eberechi Eze",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 77,
+          "defenseRating": 65,
+          "passingRating": 76,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Odsonne Édouard",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 77,
+          "defenseRating": 59,
+          "passingRating": 74,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Michael Olise",
+          "position": "FW",
+          "overallRating": 78,
+          "attackRating": 77,
+          "defenseRating": 63,
+          "passingRating": 75,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Jérémi Doku",
+          "position": "FW",
+          "overallRating": 75,
+          "attackRating": 74,
+          "defenseRating": 60,
+          "passingRating": 72,
+          "subPosition": "LW"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Nottingham Forest",
+      "name_ja": "ノッティンガム・フォレスト",
+      "leagueRank": 16,
+      "color": "#E31829",
+      "stadium": "City Ground",
+      "manager_current": "Vítor Pereira",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 81,
+      "attackPower": 80,
+      "defensePower": 78,
+      "ballControl": 77,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "Matz Sels",
+          "position": "GK",
+          "overallRating": 80,
+          "attackRating": 20,
+          "defenseRating": 80,
+          "passingRating": 78,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Nikola Milenković",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 60,
+          "defenseRating": 80,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Scott McKenna",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 59,
+          "defenseRating": 79,
+          "passingRating": 75,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Yuri Ribeiro",
+          "position": "DF",
+          "overallRating": 75,
+          "attackRating": 63,
+          "defenseRating": 74,
+          "passingRating": 73,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Neco Williams",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 67,
+          "defenseRating": 76,
+          "passingRating": 74,
+          "subPosition": "RB"
+        },
+        {
+          "name": "James Ward-Prowse",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 70,
+          "defenseRating": 73,
+          "passingRating": 78,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Ryan Yates",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 68,
+          "defenseRating": 77,
+          "passingRating": 74,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Morgan Gibbs-White",
+          "position": "MF",
+          "overallRating": 78,
+          "attackRating": 76,
+          "defenseRating": 69,
+          "passingRating": 76,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Chris Wood",
+          "position": "FW",
+          "overallRating": 78,
+          "attackRating": 77,
+          "defenseRating": 60,
+          "passingRating": 75,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Taiwo Awoniyi",
+          "position": "FW",
+          "overallRating": 76,
+          "attackRating": 75,
+          "defenseRating": 57,
+          "passingRating": 72,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Callum Hudson-Odoi",
+          "position": "FW",
+          "overallRating": 76,
+          "attackRating": 75,
+          "defenseRating": 60,
+          "passingRating": 74,
+          "subPosition": "RW"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Tottenham Hotspur",
+      "name_ja": "トッテナム・ホットスパー",
+      "leagueRank": 17,
+      "color": "#132257",
+      "stadium": "Tottenham Hotspur Stadium",
+      "manager_current": "Igor Tudor",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 82,
+      "attackPower": 81,
+      "defensePower": 79,
+      "ballControl": 78,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "Guglielmo Vicário",
+          "position": "GK",
+          "overallRating": 81,
+          "attackRating": 20,
+          "defenseRating": 81,
+          "passingRating": 79,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Cristian Romero",
+          "position": "DF",
+          "overallRating": 82,
+          "attackRating": 62,
+          "defenseRating": 83,
+          "passingRating": 79,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Radu Drăguşin",
+          "position": "DF",
+          "overallRating": 79,
+          "attackRating": 59,
+          "defenseRating": 80,
+          "passingRating": 76,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Pape Matar Sarr",
+          "position": "DF",
+          "overallRating": 78,
+          "attackRating": 65,
+          "defenseRating": 77,
+          "passingRating": 75,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Ivan Perišić",
+          "position": "DF",
+          "overallRating": 77,
+          "attackRating": 71,
+          "defenseRating": 76,
+          "passingRating": 76,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Yves Bissouma",
+          "position": "MF",
+          "overallRating": 80,
+          "attackRating": 72,
+          "defenseRating": 81,
+          "passingRating": 79,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Sarr Matar",
+          "position": "MF",
+          "overallRating": 77,
+          "attackRating": 70,
+          "defenseRating": 76,
+          "passingRating": 76,
+          "subPosition": "CM"
+        },
+        {
+          "name": "James Maddison",
+          "position": "MF",
+          "overallRating": 81,
+          "attackRating": 79,
+          "defenseRating": 67,
+          "passingRating": 82,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Richarlison",
+          "position": "FW",
+          "overallRating": 80,
+          "attackRating": 80,
+          "defenseRating": 63,
+          "passingRating": 76,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Son Heung-Min",
+          "position": "FW",
+          "overallRating": 83,
+          "attackRating": 84,
+          "defenseRating": 64,
+          "passingRating": 81,
+          "subPosition": "LW"
+        },
+        {
+          "name": "Brennan Johnson",
+          "position": "FW",
+          "overallRating": 79,
+          "attackRating": 79,
+          "defenseRating": 59,
+          "passingRating": 74,
+          "subPosition": "ST"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "West Ham United",
+      "name_ja": "ウェストハム・ユナイテッド",
+      "leagueRank": 18,
+      "color": "#7D2C3A",
+      "stadium": "London Stadium",
+      "manager_current": "Nuno Espírito Santo",
+      "promoted": false,
+      "relegated": false,
+      "overallPower": 78,
+      "attackPower": 77,
+      "defensePower": 75,
+      "ballControl": 74,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "Łukasz Fabiański",
+          "position": "GK",
+          "overallRating": 78,
+          "attackRating": 19,
+          "defenseRating": 78,
+          "passingRating": 76,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Konstantinos Mavropanos",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 57,
+          "defenseRating": 77,
+          "passingRating": 73,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Vladimir Coufal",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 64,
+          "defenseRating": 75,
+          "passingRating": 72,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Aaron Cresswell",
+          "position": "DF",
+          "overallRating": 75,
+          "attackRating": 62,
+          "defenseRating": 74,
+          "passingRating": 73,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Kurt Zouma",
+          "position": "DF",
+          "overallRating": 76,
+          "attackRating": 58,
+          "defenseRating": 77,
+          "passingRating": 72,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Declan Rice",
+          "position": "MF",
+          "overallRating": 85,
+          "attackRating": 71,
+          "defenseRating": 86,
+          "passingRating": 87,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Tomáš Souček",
+          "position": "MF",
+          "overallRating": 76,
+          "attackRating": 71,
+          "defenseRating": 74,
+          "passingRating": 73,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Michail Antonio",
+          "position": "FW",
+          "overallRating": 76,
+          "attackRating": 75,
+          "defenseRating": 57,
+          "passingRating": 71,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Jarrod Bowen",
+          "position": "FW",
+          "overallRating": 77,
+          "attackRating": 76,
+          "defenseRating": 61,
+          "passingRating": 73,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Mohamed Kudus",
+          "position": "FW",
+          "overallRating": 78,
+          "attackRating": 77,
+          "defenseRating": 62,
+          "passingRating": 74,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Said Benrahma",
+          "position": "FW",
+          "overallRating": 75,
+          "attackRating": 74,
+          "defenseRating": 59,
+          "passingRating": 71,
+          "subPosition": "LW"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Burnley",
+      "name_ja": "バーンリー",
+      "leagueRank": 19,
+      "color": "#6B2C34",
+      "stadium": "Turf Moor",
+      "manager_current": "Mike Jackson",
+      "promoted": true,
+      "relegated": true,
+      "overallPower": 74,
+      "attackPower": 73,
+      "defensePower": 71,
+      "ballControl": 70,
+      "formation": "4-4-2",
+      "players": [
+        {
+          "name": "James Trafford",
+          "position": "GK",
+          "overallRating": 73,
+          "attackRating": 18,
+          "defenseRating": 73,
+          "passingRating": 71,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Vitinho",
+          "position": "DF",
+          "overallRating": 70,
+          "attackRating": 51,
+          "defenseRating": 71,
+          "passingRating": 67,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Jordan Beyer",
+          "position": "DF",
+          "overallRating": 70,
+          "attackRating": 52,
+          "defenseRating": 71,
+          "passingRating": 67,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Maxime Esteve",
+          "position": "DF",
+          "overallRating": 70,
+          "attackRating": 53,
+          "defenseRating": 71,
+          "passingRating": 68,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Lyle Foster",
+          "position": "DF",
+          "overallRating": 69,
+          "attackRating": 60,
+          "defenseRating": 68,
+          "passingRating": 66,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Sander Berge",
+          "position": "MF",
+          "overallRating": 72,
+          "attackRating": 65,
+          "defenseRating": 73,
+          "passingRating": 70,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Johan Gudmundsson",
+          "position": "MF",
+          "overallRating": 71,
+          "attackRating": 68,
+          "defenseRating": 67,
+          "passingRating": 70,
+          "subPosition": "CM"
+        },
+        {
+          "name": "Manuel Gnanduillet",
+          "position": "FW",
+          "overallRating": 70,
+          "attackRating": 69,
+          "defenseRating": 51,
+          "passingRating": 65,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Matěj Vydra",
+          "position": "FW",
+          "overallRating": 71,
+          "attackRating": 70,
+          "defenseRating": 53,
+          "passingRating": 66,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Wilson Odobert",
+          "position": "FW",
+          "overallRating": 70,
+          "attackRating": 68,
+          "defenseRating": 54,
+          "passingRating": 65,
+          "subPosition": "RW"
+        },
+        {
+          "name": "Nathan Redmond",
+          "position": "MF",
+          "overallRating": 69,
+          "attackRating": 66,
+          "defenseRating": 61,
+          "passingRating": 68,
+          "subPosition": "LW"
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Wolverhampton Wanderers",
+      "name_ja": "ウォルバーハンプトン・ワンダラーズ",
+      "leagueRank": 20,
+      "color": "#FFD700",
+      "stadium": "Molineux Stadium",
+      "manager_current": "Rob Edwards",
+      "promoted": false,
+      "relegated": true,
+      "overallPower": 72,
+      "attackPower": 71,
+      "defensePower": 69,
+      "ballControl": 68,
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "name": "José Sá",
+          "position": "GK",
+          "overallRating": 71,
+          "attackRating": 17,
+          "defenseRating": 71,
+          "passingRating": 69,
+          "subPosition": "GK"
+        },
+        {
+          "name": "Romain Saïss",
+          "position": "DF",
+          "overallRating": 68,
+          "attackRating": 49,
+          "defenseRating": 69,
+          "passingRating": 65,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Santiago Bueno",
+          "position": "DF",
+          "overallRating": 68,
+          "attackRating": 50,
+          "defenseRating": 69,
+          "passingRating": 65,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Hugo Bueno",
+          "position": "DF",
+          "overallRating": 67,
+          "attackRating": 56,
+          "defenseRating": 66,
+          "passingRating": 64,
+          "subPosition": "LB"
+        },
+        {
+          "name": "Jörn Riedewald",
+          "position": "DF",
+          "overallRating": 68,
+          "attackRating": 58,
+          "defenseRating": 67,
+          "passingRating": 64,
+          "subPosition": "RB"
+        },
+        {
+          "name": "Leander Dendoncker",
+          "position": "MF",
+          "overallRating": 69,
+          "attackRating": 60,
+          "defenseRating": 70,
+          "passingRating": 66,
+          "subPosition": "CDM"
+        },
+        {
+          "name": "Dominic Poleon",
+          "position": "MF",
+          "overallRating": 67,
+          "attackRating": 64,
+          "defenseRating": 63,
+          "passingRating": 64,
+          "subPosition": "CM"
+        },
+        {
+          "name": "João Gomes",
+          "position": "MF",
+          "overallRating": 69,
+          "attackRating": 66,
+          "defenseRating": 66,
+          "passingRating": 67,
+          "subPosition": "CAM"
+        },
+        {
+          "name": "Gonçalo Guedes",
+          "position": "FW",
+          "overallRating": 70,
+          "attackRating": 70,
+          "defenseRating": 56,
+          "passingRating": 68,
+          "subPosition": "ST"
+        },
+        {
+          "name": "Craig Dawson",
+          "position": "DF",
+          "overallRating": 68,
+          "attackRating": 50,
+          "defenseRating": 69,
+          "passingRating": 64,
+          "subPosition": "CB"
+        },
+        {
+          "name": "Pedro Neto",
+          "position": "FW",
+          "overallRating": 71,
+          "attackRating": 71,
+          "defenseRating": 58,
+          "passingRating": 69,
+          "subPosition": "RW"
+        }
+      ]
+    }
+  ]
+}
