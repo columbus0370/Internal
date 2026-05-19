@@ -31,6 +31,7 @@ epl_match_simulator/**
 !epl_match_simulator/pubspec.yaml
 !epl_match_simulator/pubspec.lock
 !epl_match_simulator/lib/main.dart
+!epl_match_simulator/vercel-build.sh
 
 # IDE
 .vscode/
