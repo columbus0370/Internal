@@ -58,7 +58,7 @@ function generateFallbackAnalysis(prediction) {
   };
 }
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   // CORS ヘッダー設定
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
