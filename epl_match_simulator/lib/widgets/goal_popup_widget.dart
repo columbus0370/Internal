@@ -33,8 +33,7 @@ class _GoalPopupWidgetState extends State<GoalPopupWidget>
     );
     _animationController.forward();
 
-    // 2秒後に自動閉じ
-    Future.delayed(const Duration(seconds: 2), () {
+    // 2秒後に自動閉ぁE    Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
         _animationController.reverse().then((_) {
           if (mounted) Navigator.of(context).pop();
@@ -64,14 +63,14 @@ class _GoalPopupWidgetState extends State<GoalPopupWidget>
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Colors.deepPurple.withValues(alpha: 0.9),
-                  Colors.amber.withValues(alpha: 0.9),
+                  Colors.deepPurple.withOpacity(0.9),
+                  Colors.amber.withOpacity(0.9),
                 ],
               ),
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.3),
+                  color: Colors.black.withOpacity(0.3),
                   blurRadius: 20,
                   spreadRadius: 5,
                 ),
@@ -117,7 +116,7 @@ class _GoalPopupWidgetState extends State<GoalPopupWidget>
                 // Score display
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.15),
+                    color: Colors.white.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: const EdgeInsets.symmetric(

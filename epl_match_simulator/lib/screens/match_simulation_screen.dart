@@ -122,7 +122,7 @@ class _MatchSimulationScreenState extends State<MatchSimulationScreen> {
                   showDialog<void>(
                     context: context,
                     barrierDismissible: false,
-                    barrierColor: Colors.black.withValues(alpha: 0.5),
+                    barrierColor: Colors.black.withOpacity(0.5),
                     builder: (dialogContext) => GoalPopupWidget(
                       scorerName: event.details['scorer'] as String? ?? 'Unknown',
                       goalMinute: event.minute,
@@ -210,7 +210,7 @@ class _MatchSimulationScreenState extends State<MatchSimulationScreen> {
                 // Match summary section (show at full time)
                 if (_simulationService.currentMinute == 90)
                   Card(
-                    color: Colors.deepPurple.withValues(alpha: 0.1),
+                    color: Colors.deepPurple.withOpacity(0.1),
                     child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: Column(
