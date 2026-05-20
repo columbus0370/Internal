@@ -76,16 +76,16 @@ export default async (req, res) => {
     });
   }
 
-  const apiKey = process.env.CLAUDE_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY;
 
   if (!apiKey) {
-    console.warn("CLAUDE_API_KEY not set, using fallback analysis");
+    console.warn("ANTHROPIC_API_KEY not set, using fallback analysis");
     const fallbackAnalysis = generateFallbackAnalysis(req.body?.prediction || {});
     return res.status(200).json({
       success: true,
       analysis: fallbackAnalysis,
       source: "fallback",
-      error: "CLAUDE_API_KEY environment variable not set",
+      error: "ANTHROPIC_API_KEY environment variable not set",
     });
   }
 
