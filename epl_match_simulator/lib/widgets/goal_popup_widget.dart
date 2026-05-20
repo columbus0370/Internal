@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 class GoalPopupWidget extends StatefulWidget {
   final String scorerName;

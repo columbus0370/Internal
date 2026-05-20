@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'dart:async';
 import '../models/match_prediction.dart';
 import '../models/simulation_event.dart';
