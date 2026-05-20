@@ -4,37 +4,13 @@ import 'dart:async';
 import '../models/match_prediction.dart';
 
 class MatchAnalysisService {
-  // ローカル開発用
-  static const String _apiBaseUrl = 'http://localhost:3000';
-  // 本番環境用
-  static const String _productionUrl =
-      'https://epl-match-simulator.vercel.app';
+  static const String _apiEndpoint = '/api/analyzeMatch';
   static const Duration _timeout = Duration(seconds: 60);
 
   // API status tracking
   static bool _isUsingApiInLastCall = false;
 
   static String get apiStatus => _isUsingApiInLastCall ? 'API' : 'Fallback';
-
-  // 本番環境かどうかを判定（実行時にホスト情報から判定）
-  static bool get _isProduction {
-    // Flutter Web では String.fromEnvironment はコンパイル時のみ有効なので、
-    // 実行時の判定にはホスト情報を使用する
-    try {
-      final currentUrl = Uri.base.toString();
-      // localhostやIPアドレスでなければ本番環境と判定
-      return !currentUrl.contains('localhost') &&
-             !currentUrl.contains('127.0.0.1') &&
-             !currentUrl.contains('0.0.0.0');
-    } catch (e) {
-      // エラー時は本番環境扱い（安全サイド）
-      return true;
-    }
-  }
-
-  static String get _apiUrl {
-    return _isProduction ? _productionUrl : _apiBaseUrl;
-  }
 
   static Future<Map<String, dynamic>> analyzeMatch(
     MatchPrediction prediction, {
@@ -73,7 +49,7 @@ class MatchAnalysisService {
 
       final response = await http
           .post(
-            Uri.parse('$_apiUrl/api/analyzeMatch'),
+            Uri.parse(_apiEndpoint),
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode(requestBody),
           )
