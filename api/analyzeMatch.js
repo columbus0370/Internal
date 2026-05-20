@@ -88,7 +88,7 @@ function generateFallbackAnalysis(prediction) {
 
   const getQuarterGoals = (quarterNum) => {
     const quarterStart = (quarterNum - 1) * 15;
-    const quarterEnd = quarterNum * 15;
+    const quarterEnd = quarterNum === 4 ? 90 : quarterNum * 15;
     return goals.filter(g => {
       const minute = parseInt(g.minute) || 0;
       return minute > quarterStart && minute <= quarterEnd;
@@ -139,7 +139,7 @@ function generateFallbackAnalysis(prediction) {
       {
         quarter: 4,
         minute_range: "60-90分",
-        quarter_score: `${prediction.homeScore}-${prediction.awayScore}`,
+        quarter_score: calculateQuarterScore(4),
         narrative: `試合の終盤。スコアが${prediction.homeScore > prediction.awayScore ? "ホームチーム有利" : prediction.homeScore < prediction.awayScore ? "アウェイチーム有利" : "同点"}の状況で、${prediction.homeScore === prediction.awayScore ? "どちらかが決定的な場面を迎える時間帯" : "リードを守るチームと追うチームの緊迫した攻防"}が展開。${homeTeam.defensePower > 80 && awayTeam.defensePower > 80 ? "両チームの激しい守備が光る" : "スペースを活用した決定的シーン"}が期待される。ロスタイムを含む最後の瞬間まで緊張感が続く。`,
         quarter_summary: `試合の決着がつく。${prediction.homeScore > prediction.awayScore ? "ホームチームが勝利" : prediction.homeScore < prediction.awayScore ? "アウェイチームが勝利" : "戦い続く"}。`,
         events: getQuarterGoals(4).map(g => ({
