@@ -85,6 +85,7 @@ module.exports = async (req, res) => {
       success: true,
       analysis: fallbackAnalysis,
       source: "fallback",
+      error: "CLAUDE_API_KEY environment variable not set",
     });
   }
 
@@ -142,6 +143,7 @@ module.exports = async (req, res) => {
         status: response.status,
         errorType: data.error?.type,
         errorMessage: data.error?.message,
+        fullResponse: JSON.stringify(data),
       });
       // API エラーの場合はフォールバック分析を返す
       const fallbackAnalysis = generateFallbackAnalysis(prediction);
@@ -149,20 +151,26 @@ module.exports = async (req, res) => {
         success: true,
         analysis: fallbackAnalysis,
         source: "fallback",
-        error: `Claude API error (${response.status})`,
+        error: `Claude API error (${response.status}): ${data.error?.message || "Unknown error"}`,
+        apiErrorType: data.error?.type,
       });
     }
 
     const text = data?.content?.[0]?.text;
 
     if (!text) {
-      console.error("Empty content from Claude:", data);
+      console.error("Empty content from Claude:", {
+        statusCode: response.status,
+        contentLength: data?.content?.length,
+        fullResponse: JSON.stringify(data),
+      });
       const fallbackAnalysis = generateFallbackAnalysis(prediction);
       return res.status(200).json({
         success: true,
         analysis: fallbackAnalysis,
         source: "fallback",
         error: "Empty response from Claude",
+        debugInfo: { statusCode: response.status, hasContent: !!data?.content },
       });
     }
 
