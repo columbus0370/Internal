@@ -13,11 +13,6 @@
     "FLUTTER_BUILD_MODE": "release",
     "ANTHROPIC_API_VERSION": "2023-06-01"
   },
-  "build": {
-    "env": {
-      "ANTHROPIC_API_KEY": "@ANTHROPIC_API_KEY"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
