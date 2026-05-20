@@ -3,6 +3,8 @@
 build/
 _flutter/
 node_modules/
+package-lock.json
+**/package-lock.json
 
 # Environment
 .env
